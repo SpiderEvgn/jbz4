@@ -5,13 +5,15 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 
+2.2.3
 
 * System dependencies
 
 * Configuration
 
 * Database creation
+MySql2
 
 * Database initialization
 
@@ -21,7 +23,7 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Movies
 
 
 Please feel free to use a different markup language if you do not plan to run
