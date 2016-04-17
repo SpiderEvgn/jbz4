@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :wechat do
     namespace :maizuo do
       get 'maizuocinemas/index'
-
+      get 'maizuofilms/index'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
