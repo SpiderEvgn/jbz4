@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :maizuo do
       get 'maizuocinemas/index'
       get 'maizuofilms/index'
+      get 'maizuocinematickets/index'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

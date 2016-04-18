@@ -1,0 +1,38 @@
+.container-fluid
+  .row
+    .col-xs-12.col-sm-12
+      h1 来自卖座网的影院票品信息［测试］
+      = link_to '影院列表', wechat_maizuo_maizuocinemas_index_path
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th 影院 ID
+            th 票品 ID
+            th 票品类型
+            th 票品名称
+            th 市场价
+            th 销售价
+            th 票品描述
+            th 有效天数
+            th 截止日期
+            th 开始有效时间(当有效天数为0)
+
+        tbody
+          - @cinemaTickets.each do |cinemaTicket|
+            tr
+              / td = link_to admin_employee_applicant_path(applicant) do
+              /   = applicant.employee_snum
+              / 用于将来做编号的链接
+              / td = image_tag(film.picAddr, height: '100', width: '100')
+              td = cinemaTicket.cinemaId
+              td = cinemaTicket.ticketId
+              td = cinemaTicket.ticketType
+              td = cinemaTicket.ticketName
+              td = cinemaTicket.markerPrice
+              td = cinemaTicket.price
+              td = cinemaTicket.desc
+              td = cinemaTicket.enableDay
+              td = cinemaTicket.invalidationDate
+              td = cinemaTicket.effectiveBeginTime
+
+      = will_paginate @cinemaTickets, renderer: BootstrapPagination::Rails

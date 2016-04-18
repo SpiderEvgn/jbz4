@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417145640) do
+ActiveRecord::Schema.define(version: 20160418130853) do
 
   create_table "maizuocinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -35,6 +35,21 @@ ActiveRecord::Schema.define(version: 20160417145640) do
     t.string   "businessCircle", limit: 255
     t.string   "longitude",      limit: 255
     t.string   "latitude",       limit: 255
+  end
+
+  create_table "maizuocinematickets", force: :cascade do |t|
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "cinemaId",           limit: 255
+    t.string   "ticketId",           limit: 255
+    t.string   "ticketType",         limit: 255
+    t.string   "ticketName",         limit: 255
+    t.string   "markerPrice",        limit: 255
+    t.string   "price",              limit: 255
+    t.string   "desc",               limit: 255
+    t.string   "enableDay",          limit: 255
+    t.string   "invalidationDate",   limit: 255
+    t.string   "effectiveBeginTime", limit: 255
   end
 
   create_table "maizuofilms", force: :cascade do |t|
