@@ -1,5 +1,5 @@
 class Wechat::Maizuo::MaizuocinemasController < ApplicationController
-  before_action :getCinemaInfo
+  # before_action :getCinemaInfo
   # 还没想明白怎么很好的将数据导入本地数据库，暂且临时激活一个 action 将数据一次性导入，
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
 
@@ -10,28 +10,32 @@ class Wechat::Maizuo::MaizuocinemasController < ApplicationController
   private 
     def getCinemaInfo
       @cinemas = Maizuocinema.getCinemas
-      @cinemas.each do |cinema|
-        c = Maizuocinema.new
-        c.cityId = cinema['cityId']
-        c.cityName = cinema['cityName']
-        c.cinemaId = cinema['cinemaId']
-        c.cinemaName = cinema['cinemaName']
-        c.logo = cinema['logo']
-        c.address = cinema['address']
-        c.region = cinema['region']
-        c.phone = cinema['phone']
-        c.hallId = cinema['hallId']
-        c.hallNames = cinema['hallNames']
-        c.seatCounts = cinema['seatCounts']
-        c.vipflags = cinema['vipflags']
-        c.ticketFlag = cinema['ticketFlag']
-        c.seatFlag = cinema['seatFlag']
-        c.busPath = cinema['busPath']
-        c.subway = cinema['subway']
-        c.businessCircle = cinema['businessCircle']
-        c.longitude = cinema['longitude']
-        c.latitude = cinema['latitude']
-        c.save
+      if @cinemas != nil 
+        # 如果返回为nil，即本次查询失败，进入下一个循环
+        @cinemas.each do |cinema|
+          c = Maizuocinema.new
+          c.cityId = cinema['cityId']
+          c.cityName = cinema['cityName']
+          c.cinemaId = cinema['cinemaId']
+          c.cinemaName = cinema['cinemaName']
+          c.logo = cinema['logo']
+          c.address = cinema['address']
+          c.region = cinema['region']
+          c.phone = cinema['phone']
+          c.hallId = cinema['hallId']
+          c.hallNames = cinema['hallNames']
+          c.seatCounts = cinema['seatCounts']
+          c.vipflags = cinema['vipflags']
+          c.ticketFlag = cinema['ticketFlag']
+          c.seatFlag = cinema['seatFlag']
+          c.busPath = cinema['busPath']
+          c.subway = cinema['subway']
+          c.businessCircle = cinema['businessCircle']
+          c.longitude = cinema['longitude']
+          c.latitude = cinema['latitude']
+          
+          c.save
+        end
       end
     end
 

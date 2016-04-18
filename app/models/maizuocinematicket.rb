@@ -16,11 +16,18 @@ class Maizuocinematicket < ActiveRecord::Base
     time = Time.new
     timestamp = time.strftime("%Y%m%d%H%M%S")
     sign_value = Digest::MD5.hexdigest("client_id=52642103681&timestamp=#{timestamp}&key=xkGEr244(((<HAee4346fg")
-    get("/rest/ticket3.0/cinemaTickets", query: { client_id: "52642103681",  
+    response = get("/rest/ticket3.0/cinemaTickets", query: { client_id: "52642103681",  
                                                   sign: "#{sign_value}",
                                                   timestamp: "#{timestamp}",
                                                   cinemaId: "#{cinemaId}"
-                                                  })['data']['tickets']
+                                                  })
+    # 判断返回值是否正确
+    if response['result'] == 0 || response['result'] == "0"
+      return response['data']['tickets']
+    else
+      return nil
+    end
+
   end
 end
 
