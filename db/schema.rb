@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418130853) do
+ActiveRecord::Schema.define(version: 20160418135730) do
 
   create_table "maizuocinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -72,6 +72,28 @@ ActiveRecord::Schema.define(version: 20160418130853) do
     t.string   "shortInfo",   limit: 255
     t.string   "videoUrl",    limit: 255
     t.string   "grade",       limit: 255
+  end
+
+  create_table "maizuoforetells", force: :cascade do |t|
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "cinemaId",       limit: 255
+    t.string   "showDate",       limit: 255
+    t.string   "showTime",       limit: 255
+    t.string   "hallId",         limit: 255
+    t.string   "hallName",       limit: 255
+    t.string   "foretellId",     limit: 255
+    t.string   "filmId",         limit: 255
+    t.string   "price",          limit: 255
+    t.string   "marketPrice",    limit: 255
+    t.string   "flag",           limit: 255
+    t.string   "language",       limit: 255
+    t.string   "duration",       limit: 255
+    t.string   "timeout",        limit: 255
+    t.string   "sectionId",      limit: 255
+    t.string   "dimensional",    limit: 255
+    t.string   "offerId",        limit: 255
+    t.string   "lockNeedMobile", limit: 255
   end
 
 end

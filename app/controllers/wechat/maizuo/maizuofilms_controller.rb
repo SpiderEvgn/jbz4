@@ -1,5 +1,5 @@
 class Wechat::Maizuo::MaizuofilmsController < ApplicationController
-  # before_action :getFilmInfo
+  before_action :getFilmInfo
   # 还没想明白怎么很好的将数据导入本地数据库，暂且临时激活一个 action 将数据一次性导入，
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
 

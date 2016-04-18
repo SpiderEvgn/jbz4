@@ -18,7 +18,8 @@ class Maizuocinema < ActiveRecord::Base
     sign_value = Digest::MD5.hexdigest("client_id=52642103681&timestamp=#{timestamp}&key=xkGEr244(((<HAee4346fg")
     get("/rest/ticket3.0/cinemas", query: { client_id: "52642103681", 
                                             timestamp: "#{timestamp}", 
-                                            sign: "#{sign_value}"})['data']['cinemas']
+                                            sign: "#{sign_value}"
+                                          })['data']['cinemas']
   end
 
 end
