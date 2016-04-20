@@ -1,0 +1,51 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title= content_for?(:title) ? yield(:title) : "JBZ电影平台"
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", :media => "all"
+    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
+    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
+    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
+    = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    = javascript_include_tag "application"
+
+
+  body
+    .container
+      .row
+        .col-xs-12.col-sm-12
+          .jbz-notice.clearfix
+            - if notice
+              #notice.alert.alert-success style="margin-bottom: 8px;"
+                = notice
+                a.close type="button" data-dismiss="alert" &times;
+            - elsif alert
+              #notice.alert.alert-danger style="margin-bottom: 8px;"
+                = alert
+                a.close type="button" data-dismiss="alert" &times;
+
+    = yield
+
+  .navbar.navbar-default.navbar-fixed-bottom
+    .container
+      .row
+        .col-xs-4.col-sm-4
+          = link_to wechat_maizuo_maizuofilms_index_path, class: "btn btn-primary navbar-btn btn-block" do 
+            = fa_icon 'film'
+            ' 
+            |热映
+        .col-xs-4.col-sm-4
+          = link_to wechat_maizuo_maizuocinemas_index_path, class: "btn btn-success navbar-btn btn-block" do 
+            = fa_icon 'building'
+            ' 
+            |影院
+        .col-xs-4.col-sm-4
+          = link_to "" , class: "btn btn-warning navbar-btn btn-block" do
+            = fa_icon 'search'
+            ' 
+            |查询进度
