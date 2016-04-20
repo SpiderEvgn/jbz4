@@ -5,7 +5,6 @@ class Wechat::Maizuo::MaizuocinematicketsController < ApplicationController
 
   def index
     @cinemaTickets = Maizuocinematicket.all.paginate(:page => params[:page], :per_page => 12)
-    # @cinemaTickets = Maizuocinematicket.getCinemaTickets(2471)  # 测试用
   end
 
   private 
@@ -17,6 +16,7 @@ class Wechat::Maizuo::MaizuocinematicketsController < ApplicationController
         # 如果返回为nil，即本次查询失败，进入下一个循环
           @cinemaTickets.each do |ct|
             c = Maizuocinematicket.new
+
             c.cinemaId = cinema.cinemaId
             c.ticketId = ct['ticketId']
             c.ticketType = ct['ticketType']
@@ -29,8 +29,13 @@ class Wechat::Maizuo::MaizuocinematicketsController < ApplicationController
             c.effectiveBeginTime = ct['effectiveBeginTime']
 
             c.save
+          # @cinemaTickets.each do |ct|
           end
+        # if @cinemaTickets != nil
         end
+      # @cinemas.each do |cinema|
       end
+    # def getCinemaTicketInfo
     end
+
 end

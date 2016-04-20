@@ -32,6 +32,8 @@ class Maizuohallseat < ActiveRecord::Base
 
 end
 
+# t.string   "cinemaId",    limit: 255 # 影院ID
+# t.string   "hallId",      limit: 255 # 影厅ID
 # t.string   "seatId",      limit: 255 # 座位ID
 # t.string   "sectionId",   limit: 255 # 影厅区域
 # t.string   "rowId",       limit: 255 # 行编号

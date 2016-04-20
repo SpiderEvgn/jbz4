@@ -5,7 +5,6 @@ class Wechat::Maizuo::MaizuohallseatsController < ApplicationController
 
   def index
     @hallseats = Maizuohallseat.all.paginate(:page => params[:page], :per_page => 12)
-    # @hallseats = Maizuohallseat.getHallseats(2471, 4)
   end
 
   private 
@@ -20,6 +19,7 @@ class Wechat::Maizuo::MaizuohallseatsController < ApplicationController
             # 如果返回为nil，即本次查询失败，进入下一个循环
               @hallseats.each do |hs|
                 h = Maizuohallseat.new
+                
                 h.cinemaId = cinema.cinemaId
                 h.hallId = hallId
                 h.seatId = hs['seatId']

@@ -5,7 +5,6 @@ class Wechat::Maizuo::MaizuofilmsController < ApplicationController
 
   def index
     @films = Maizuofilm.all.paginate(:page => params[:page], :per_page => 5)
-    # @films = Maizuofilm.getFilms  # 测试用
   end
 
   private 
@@ -15,6 +14,7 @@ class Wechat::Maizuo::MaizuofilmsController < ApplicationController
         # 如果返回为nil，即本次查询失败，进入下一个循环
         @films.each do |film|
           f = Maizuofilm.new
+
           f.filmId = film['id']
           f.name = film['name']
           f.director = film['director']
@@ -34,7 +34,11 @@ class Wechat::Maizuo::MaizuofilmsController < ApplicationController
           f.grade = film['grade']
 
           f.save
+        # @films.each do |film|
         end
+      # if @films != nil
       end
+    # def getFilmInfo
     end
+    
 end

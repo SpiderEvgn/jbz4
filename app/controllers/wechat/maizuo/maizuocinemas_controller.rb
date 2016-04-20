@@ -15,6 +15,7 @@ class Wechat::Maizuo::MaizuocinemasController < ApplicationController
         # 如果返回为nil，即本次查询失败，进入下一个循环
         @cinemas.each do |cinema|
           c = Maizuocinema.new
+          
           c.cityId = cinema['cityId']
           c.cityName = cinema['cityName']
           c.cinemaId = cinema['cinemaId']
@@ -36,8 +37,11 @@ class Wechat::Maizuo::MaizuocinemasController < ApplicationController
           c.latitude = cinema['latitude']
           
           c.save
+        # @cinemas.each do |cinema|
         end
+      # if @cinemas != nil
       end
+    # def getCinemaInfo
     end
 
     # 应该用不到 strong params，因为数据不可本地改写

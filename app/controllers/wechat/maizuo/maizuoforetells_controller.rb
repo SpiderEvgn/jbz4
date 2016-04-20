@@ -5,7 +5,6 @@ class Wechat::Maizuo::MaizuoforetellsController < ApplicationController
 
   def index
     @foretells = Maizuoforetell.all.paginate(:page => params[:page], :per_page => 12)
-    # @foretells = Maizuoforetell.getForetells(1016)  # 测试用
   end
 
   private 
@@ -39,10 +38,15 @@ class Wechat::Maizuo::MaizuoforetellsController < ApplicationController
               f.lockNeedMobile = ftrow['lockNeedMobile']
 
               f.save
+            # ft['foretells'].each do |ftrow|
             end
+          # @foretells.each do |ft|
           end
+        # if @foretells != nil
         end
+      # @cinemas.each do |cinema|
       end
+    # def getForetellInfo
     end
 
 end
