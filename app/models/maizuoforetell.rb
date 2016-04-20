@@ -13,10 +13,12 @@ class Maizuoforetell < ActiveRecord::Base
 
   def self.getForetells(cinemaId)
     # 4. 拉取影院排期
+    client_id = ENV['JBZ4_MAIZUO_CLIENT_ID']  # 测试ID: 52642103681
+    key = ENV['JBZ4_MAIZUO_KEY']  # 测试key: xkGEr244(((<HAee4346fg
     time = Time.new
     timestamp = time.strftime("%Y%m%d%H%M%S")
-    sign_value = Digest::MD5.hexdigest("cinemaId=#{cinemaId}&client_id=52642103681&timestamp=#{timestamp}&key=xkGEr244(((<HAee4346fg")
-    response = get("/rest/ticket4.0/foretells", query: { client_id: "52642103681",  
+    sign_value = Digest::MD5.hexdigest("cinemaId=#{cinemaId}&client_id=#{client_id}&timestamp=#{timestamp}&key=#{key}")
+    response = get("/rest/ticket4.0/foretells", query: { client_id: "#{client_id}",  
                                                          sign: "#{sign_value}",
                                                          timestamp: "#{timestamp}",
                                                          cinemaId: "#{cinemaId}"

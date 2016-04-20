@@ -14,10 +14,12 @@ class Maizuofilm < ActiveRecord::Base
   def self.getFilms
   	# (start, count, isShow)
     # 2. 拉取电影列表
+    client_id = ENV['JBZ4_MAIZUO_CLIENT_ID']  # 测试ID: 52642103681
+    key = ENV['JBZ4_MAIZUO_KEY']  # 测试key: xkGEr244(((<HAee4346fg
     time = Time.new
     timestamp = time.strftime("%Y%m%d%H%M%S")
-    sign_value = Digest::MD5.hexdigest("client_id=52642103681&timestamp=#{timestamp}&key=xkGEr244(((<HAee4346fg")
-    response = get("/rest/ticket3.0/films", query: { client_id: "52642103681",  
+    sign_value = Digest::MD5.hexdigest("client_id=#{client_id}&timestamp=#{timestamp}&key=#{key}")
+    response = get("/rest/ticket3.0/films", query: { client_id: "#{client_id}",  
                                                      sign: "#{sign_value}",
                                                      timestamp: "#{timestamp}",
                                                      count: "5"

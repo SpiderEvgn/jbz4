@@ -5,6 +5,7 @@ class Wechat::Maizuo::MaizuocinematicketsController < ApplicationController
 
   def index
     @cinemaTickets = Maizuocinematicket.all.paginate(:page => params[:page], :per_page => 12)
+    # @cinemaTickets = Maizuocinematicket.getCinemaTickets(2471)
   end
 
   private 

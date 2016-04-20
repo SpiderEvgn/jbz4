@@ -25,6 +25,10 @@ MySql2
 
 * Movies
 
+在本地设置连接商家所需的 client_id 和 key:
+export JBZ4_MAIZUO_CLIENT_ID=***
+export JBZ4_MAIZUO_KEY=***
+
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
