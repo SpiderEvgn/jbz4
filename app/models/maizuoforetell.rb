@@ -9,7 +9,7 @@ class Maizuoforetell < ActiveRecord::Base
   
   # debug_output 用来在 console 输出 api 调用过程
   debug_output $stdout
-  default_timeout 5
+  # default_timeout 5
 
   def self.getForetells(cinemaId)
     # 4. 拉取影院排期
@@ -17,10 +17,10 @@ class Maizuoforetell < ActiveRecord::Base
     timestamp = time.strftime("%Y%m%d%H%M%S")
     sign_value = Digest::MD5.hexdigest("cinemaId=#{cinemaId}&client_id=52642103681&timestamp=#{timestamp}&key=xkGEr244(((<HAee4346fg")
     response = get("/rest/ticket4.0/foretells", query: { client_id: "52642103681",  
-                                              sign: "#{sign_value}",
-                                              timestamp: "#{timestamp}",
-                                              cinemaId: "#{cinemaId}"
-                                              })
+                                                         sign: "#{sign_value}",
+                                                         timestamp: "#{timestamp}",
+                                                         cinemaId: "#{cinemaId}"
+                                                         })
     # 判断返回值是否正确
     if response['result'] == 0 || response['result'] == "0"
       return response['data']

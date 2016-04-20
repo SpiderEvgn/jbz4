@@ -9,7 +9,7 @@ class Maizuocinema < ActiveRecord::Base
   
   # debug_output 用来在 console 输出 api 调用过程
   debug_output $stdout
-  default_timeout 5
+  # default_timeout 5
 
   def self.getCinemas
     # 1. 拉取城市和影院列表
@@ -17,9 +17,9 @@ class Maizuocinema < ActiveRecord::Base
     timestamp = time.strftime("%Y%m%d%H%M%S")
     sign_value = Digest::MD5.hexdigest("client_id=52642103681&timestamp=#{timestamp}&key=xkGEr244(((<HAee4346fg")
     response = get("/rest/ticket3.0/cinemas", query: { client_id: "52642103681", 
-                                            timestamp: "#{timestamp}", 
-                                            sign: "#{sign_value}"
-                                          })
+                                                       timestamp: "#{timestamp}", 
+                                                       sign: "#{sign_value}"
+                                                       })
     # 判断返回值是否正确
     if response['result'] == 0 || response['result'] == "0"
       return response['data']['cinemas']

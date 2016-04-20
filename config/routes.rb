@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'maizuofilms/index'
       get 'maizuocinematickets/index'
       get 'maizuoforetells/index'
+      get 'maizuohallseats/index'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
