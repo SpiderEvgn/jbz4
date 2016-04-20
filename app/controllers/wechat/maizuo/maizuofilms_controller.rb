@@ -5,7 +5,7 @@ class Wechat::Maizuo::MaizuofilmsController < ApplicationController
   layout 'wechat'
   
   def index
-    @films = Maizuofilm.all.paginate(:page => params[:page], :per_page => 4)
+    @films = Maizuofilm.all.paginate(:page => params[:page], :per_page => 20)
   end
 
   private 
