@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       get 'maizuoforetells/index'
       get 'maizuohallseats/index'
     end
+
+    get 'jbzfilms/index'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,36 @@
+.container-fluid
+  .row
+    .col-xs-12.col-sm-12
+      h1 由 JBZ 提供［测试］
+      hr
+      - @films.each do |film|
+        .row
+          .col-xs-4.col-sm-4
+            / = link_to wechat_jbz_sku_path(sku.id) do
+            /   = image_tag 'product.png', width: '100%'
+            = image_tag(film.picAddr, height: '150', width: '110')
+            br
+            p.pull-right
+              |评分:
+              '
+              |
+              = film.grade
+          .col-xs-8.col-sm-8
+            p.filmname = film.name
+            .filmdetails 
+              |简介:
+              '
+              |
+              = film.shortInfo
+            .filmdetails 
+              |导演:
+              '
+              |
+              = film.director
+            .filmdetails 
+              |主演:
+              '
+              |
+              = film.actors
+        hr
+      = will_paginate @films, renderer: BootstrapPagination::Rails
