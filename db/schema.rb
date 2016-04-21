@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419141510) do
+ActiveRecord::Schema.define(version: 20160421165949) do
+
+  create_table "jbzhotfilms", force: :cascade do |t|
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "filmId",      limit: 255
+    t.string   "name",        limit: 255
+    t.string   "director",    limit: 255
+    t.string   "actors",      limit: 255
+    t.string   "filmType",    limit: 255
+    t.string   "area",        limit: 255
+    t.string   "length",      limit: 255
+    t.string   "releaseDate", limit: 255
+    t.string   "isShow",      limit: 255
+    t.string   "language",    limit: 255
+    t.string   "company",     limit: 255
+    t.text     "info",        limit: 65535
+    t.string   "picAddr",     limit: 255
+    t.string   "dimensional", limit: 255
+    t.string   "shortInfo",   limit: 255
+    t.string   "videoUrl",    limit: 255
+    t.string   "grade",       limit: 255
+  end
 
   create_table "maizuocinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false

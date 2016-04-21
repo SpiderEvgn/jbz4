@@ -1,7 +1,7 @@
 .container-fluid
   .row
     .col-xs-12.col-sm-12
-      h1 由 JBZ 提供［测试］
+      h1 最近三天的热映电影［测试］
       hr
       - @films.each do |film|
         .row
@@ -32,5 +32,3 @@
               '
               |
               = film.actors
-        hr
-      = will_paginate @films, renderer: BootstrapPagination::Rails
