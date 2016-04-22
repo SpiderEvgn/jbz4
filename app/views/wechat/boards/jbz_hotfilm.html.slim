@@ -19,17 +19,28 @@
               = link_to wechat_jbzlocal_jbzhotfilm_path(film.filmId) do
                 = film.name
             .filmdetails 
+              |类型:
+              '
+              |
+              = film.filmType
+              br
+              |地区:
+              '
+              |
+              = film.area
+              '
+              ||
+              '
+              |
+              = film.language
+              br
               |简介:
               '
               |
               = film.shortInfo
-            .filmdetails 
+              br
               |导演:
               '
               |
               = film.director
-            .filmdetails 
-              |主演:
-              '
-              |
-              = film.actors
+        hr

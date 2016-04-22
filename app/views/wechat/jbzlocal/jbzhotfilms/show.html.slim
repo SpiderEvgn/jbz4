@@ -1,32 +1,85 @@
 .container-fluid
   .row
     .col-xs-12.col-sm-12
-      h1 单部电影信息［测试］
-      table.table.table-striped.table-hover
-        thead
-          tr
-            th 电影名称
-            th 导演
-            th 主演
-            th 类型
-            th 国家地区
-            th 片长
-            th 首映日期
-            th 维度
-            th 简介
+      / 界面的上半部分，展示影片海报和详情
+      .row
+        .col-xs-4.col-sm-4
+          = image_tag(@jbzhotfilm.picAddr, height: '180', width: '120')
+        .col-xs-8.col-sm-8
+          h6.filmname 
+            = @jbzhotfilm.name
+          .filmdetails
+            |类型:
+            '
+            |
+            = @jbzhotfilm.filmType
+            br
+            |地区:
+            '
+            |
+            = @jbzhotfilm.area
+            '
+            ||
+            '
+            |
+            = @jbzhotfilm.language
+            br
+            |上映时间:
+            '
+            |
+            = @jbzhotfilm.releaseDate
+            br
+            |片长:
+            '
+            |
+            = @jbzhotfilm.length
+            '
+            |分钟
+            '
+            ||
+            '
+            |
+            = @jbzhotfilm.dimensional
+            br
+            |导演:
+            '
+            |
+            = @jbzhotfilm.director
+      hr
+      / 界面的中间部分，展示演员列表 和 剧情介绍
+      .row
+        .col-xs-12.col-sm-12
+          |主演:
+          '
+          |
+          = @jbzhotfilm.actors
+          br
+          br
+          |剧情介绍:
+          '
+          |
+          = @jbzhotfilm.info
+      hr
+      / 界面的下半部分，展示电影评论
+      .row
+        .col-xs-12.col-sm-12
+          |敬请期待影评
 
-        tbody
-          tr
-            / td = link_to admin_employee_applicant_path(applicant) do
-            /   = applicant.employee_snum
-            / 用于将来做编号的链接
 
-            td = @jbzhotfilm.name
-            td = @jbzhotfilm.director
-            td = @jbzhotfilm.actors
-            td = @jbzhotfilm.filmType
-            td = @jbzhotfilm.area
-            td = @jbzhotfilm.length
-            td = @jbzhotfilm.releaseDate
-            td = @jbzhotfilm.dimensional
-            td = @jbzhotfilm.shortInfo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
