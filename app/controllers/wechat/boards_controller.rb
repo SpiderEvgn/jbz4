@@ -1,4 +1,4 @@
-class Wechat::BoardController < ApplicationController
+class Wechat::BoardsController < ApplicationController
   layout 'wechat'
 
   def jbz_hotfilm

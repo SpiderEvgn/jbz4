@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :wechat do
 
-    get 'board/jbz_hotfilm'  # 最外层左下角“热映”界面，显示所有最近三天热映影片列表
+    get 'boards/jbz_hotfilm'  # 最外层左下角“热映”界面，显示所有最近三天热映影片列表
 
     namespace :maizuo do
       get 'maizuocinemas/index'
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'wechat/board#jbz_hotfilm'  # 热映影片列表
+  root 'wechat/boards#jbz_hotfilm'  # 热映影片列表
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
