@@ -1,4 +1,4 @@
-class Wechat::JbzhotfilmsController < ApplicationController
+class Wechat::Jbzlocal::JbzhotfilmsController < ApplicationController
   layout 'wechat'
   # before_action :getJbzhotfilmInfo
   # 这个 action 用来自动获取最近三天热映的电影信息并存入 jbzhotfilms 表

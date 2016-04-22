@@ -13,14 +13,17 @@ Rails.application.routes.draw do
       get 'maizuohallseats/index'
     end
 
-    resources :jbzhotfilms, only: [:show]   # 显示单部电影的详细信息
+    namespace :jbzlocal do
+      resources :jbzhotfilms, only: [:show]   # 显示单部电影的详细信息
+      
+    end
 
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'wechat/board#jbz_hotfilm'
+  root 'wechat/board#jbz_hotfilm'  # 热映影片列表
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
