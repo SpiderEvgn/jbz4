@@ -1,13 +1,13 @@
 .container-fluid
   .row
     .col-xs-12.col-sm-12
-      h1 最近三天的热映电影［测试］
+      h2 最近三天的热映电影［测试］
       hr
       - @films.each do |film|
         .row
           .col-xs-4.col-sm-4
             = link_to wechat_jbzlocal_jbzhotfilm_path(film.filmId) do
-              = image_tag(film.picAddr, height: '150', width: '110')
+              = image_tag(film.picAddr, height: '150%', width: '110%')
             br
             p.pull-right
               |评分:
