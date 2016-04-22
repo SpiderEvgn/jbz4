@@ -11,7 +11,6 @@ class Wechat::Maizuo::MaizuoforetellsController < ApplicationController
   end
 
   private 
-
     def getForetellInfo
       @cinemas = Maizuocinema.all
       @cinemas.each do |cinema|

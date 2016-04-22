@@ -1,12 +1,13 @@
 class Wechat::JbzhotfilmsController < ApplicationController
+  layout 'wechat'
   # before_action :getJbzhotfilmInfo
   # 这个 action 用来自动获取最近三天热映的电影信息并存入 jbzhotfilms 表
   # 还没想明白怎么很好地从api拉取数据并导入本地数据库，暂且临时激活一个 action 将数据一次性导入，
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
-  layout 'wechat'
   
-  def index
-    @films = Jbzhotfilm.all
+  def show
+  	# 在热映电影列表点击一部电影后，把该电影ID传过来，启用 show 来显示该电影完整信息
+    @jbzhotfilm = Jbzhotfilm.find_by_filmId(params[:id])
   end
   
   private 
@@ -51,4 +52,10 @@ class Wechat::JbzhotfilmsController < ApplicationController
     # def getJbzfilmInfo
     end
 
+    # strong_params 没有用到，暂且保留
+    # def jbzhotfilm_params
+    #   params.require(:jbzhotfilm).permit(:name, :director, :actors, :filmType,
+    #                                      :area, :length, :releaseDate, :dimensional,
+    #                                      :shortInfo)
+    # end
 end

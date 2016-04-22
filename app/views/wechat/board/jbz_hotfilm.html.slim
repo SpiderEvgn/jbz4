@@ -6,9 +6,8 @@
       - @films.each do |film|
         .row
           .col-xs-4.col-sm-4
-            / = link_to wechat_jbz_sku_path(sku.id) do
-            /   = image_tag 'product.png', width: '100%'
-            = image_tag(film.picAddr, height: '150', width: '110')
+            = link_to wechat_jbzhotfilm_path(film.filmId) do
+              = image_tag(film.picAddr, height: '150', width: '110')
             br
             p.pull-right
               |评分:
@@ -16,7 +15,9 @@
               |
               = film.grade
           .col-xs-8.col-sm-8
-            p.filmname = film.name
+            p.filmname 
+              = link_to wechat_jbzhotfilm_path(film.filmId) do
+                = film.name
             .filmdetails 
               |简介:
               '

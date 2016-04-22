@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
 
   namespace :wechat do
+
+    get 'board/jbz_hotfilm'  # 最外层左下角“热映”界面，显示所有最近三天热映影片列表
+
     namespace :maizuo do
       get 'maizuocinemas/index'
       get 'maizuofilms/index'
@@ -10,13 +13,14 @@ Rails.application.routes.draw do
       get 'maizuohallseats/index'
     end
 
-    get 'jbzhotfilms/index'
+    resources :jbzhotfilms, only: [:show]   # 显示单部电影的详细信息
+
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'wechat/board#index'
+  root 'wechat/board#jbz_hotfilm'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
