@@ -1,0 +1,30 @@
+.container-fluid
+  .row
+    .col-xs-12.col-sm-12
+      h1 来自卖座网的影评信息［测试］
+      = link_to '影院列表', wechat_maizuo_maizuocinemas_index_path
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th 影评ID
+            th 作者
+            th 作者头像
+            th 电影海报
+            th 评论时间
+            th 评论内容
+
+        tbody
+          - @reviews.each do |review|
+            tr
+              / td = link_to admin_employee_applicant_path(applicant) do
+              /   = applicant.employee_snum
+              / 用于将来做编号的链接
+
+              td = review.feedId
+              td = review.author
+              td = image_tag(review.authorHeadPic, height: '100', width: '100')
+              td = image_tag(review.filmPic, height: '100', width: '100')
+              td = review.reviewTime
+              td = review.reviewContent
+
+      / = will_paginate @reviews, renderer: BootstrapPagination::Rails

@@ -8,6 +8,7 @@ class Wechat::Maizuo::MaizuoforetellsController < ApplicationController
   
   def index
     @foretells = Maizuoforetell.all.paginate(:page => params[:page], :per_page => 12)
+    # @foretells = Maizuoforetell.getForetells(1016) # 测试用
   end
 
   private 

@@ -32,7 +32,7 @@ class Maizuocinema < ActiveRecord::Base
 
 end
 
-# t.string   "cityId",         limit: 255 # 城市iD
+# t.string   "cityId",         limit: 255 # 城市ID
 # t.string   "cityName",       limit: 255 # 城市名称
 # t.string   "cinemaId",       limit: 255 # 影院iD
 # t.string   "cinemaName",     limit: 255 # 影院名称

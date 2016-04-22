@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'maizuocinematickets/index'
       get 'maizuoforetells/index'
       get 'maizuohallseats/index'
+      get 'maizuoreviews/index'
     end
 
     namespace :jbzlocal do

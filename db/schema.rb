@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421165949) do
+ActiveRecord::Schema.define(version: 20160422133026) do
 
   create_table "jbzhotfilms", force: :cascade do |t|
     t.datetime "created_at",                null: false
@@ -131,6 +131,18 @@ ActiveRecord::Schema.define(version: 20160421165949) do
     t.string   "columnNum",   limit: 255
     t.string   "damagedFlag", limit: 255
     t.string   "loveIndex",   limit: 255
+  end
+
+  create_table "maizuoreviews", force: :cascade do |t|
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "filmId",        limit: 255
+    t.string   "reviewId",      limit: 255
+    t.string   "author",        limit: 255
+    t.string   "authorHeadPic", limit: 255
+    t.string   "filmPic",       limit: 255
+    t.string   "reviewTime",    limit: 255
+    t.string   "reviewContent", limit: 255
   end
 
 end

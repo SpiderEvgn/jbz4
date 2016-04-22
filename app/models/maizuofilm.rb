@@ -33,7 +33,7 @@ class Maizuofilm < ActiveRecord::Base
   end
 end
 
-# t.string   "filmId",          limit: 255 # 电影iD（文档中是id，因为和rails默认冲突，故改）
+# t.string   "filmId",          limit: 255 # 电影ID（文档中是id，因为和rails默认冲突，故改）
 # t.string   "name",            limit: 255 # 电影名
 # t.string   "director",        limit: 255 # 导演，多个名字用｜分隔
 # t.string   "actors",          limit: 255 # 主演，多个名字用｜分隔
