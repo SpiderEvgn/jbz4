@@ -27,47 +27,47 @@
   .container-fluid
     .row
       .col-xs-12.col-sm-12
-        - @jbzhotfilms.each do |film|
-        .row
-          .col-xs-4.col-sm-4
-            = link_to wechat_jbzlocal_jbzhotfilm_path(film.filmId) do
-              = image_tag(film.picAddr, height: '150%', width: '110%')
-            br
-            p.pull-right
-              |评分:
-              '
-              |
-              = film.grade
-          .col-xs-8.col-sm-8
-            p.filmname 
-              = link_to wechat_jbzlocal_jbzhotfilm_path(film.filmId) do
-                = film.name
-            .filmdetails 
-              |类型:
-              '
-              |
-              = film.filmType
+        - @jbzforetells.each do |foretell|
+          .row
+            .col-xs-4.col-sm-4
+              = link_to wechat_jbzlocal_jbzhotfilm_path(foretell.filmId) do
+                = image_tag(foretell.jbzhotfilm.picAddr, height: '150%', width: '110%')
               br
-              |地区:
-              '
-              |
-              = film.area
-              '
-              ||
-              '
-              |
-              = film.language
-              br
-              |简介:
-              '
-              |
-              = film.shortInfo
-              br
-              |导演:
-              '
-              |
-              = film.director
-        hr
+              p.pull-right
+                |评分:
+                '
+                |
+                = foretell.jbzhotfilm.grade
+            .col-xs-8.col-sm-8
+              p.filmname 
+                = link_to wechat_jbzlocal_jbzhotfilm_path(foretell.filmId) do
+                  = foretell.jbzhotfilm.name
+              .filmdetails 
+                |类型:
+                '
+                |
+                = foretell.jbzhotfilm.filmType
+                br
+                |地区:
+                '
+                |
+                = foretell.jbzhotfilm.area
+                '
+                ||
+                '
+                |
+                = foretell.jbzhotfilm.language
+                br
+                |简介:
+                '
+                |
+                = foretell.jbzhotfilm.shortInfo
+                br
+                |导演:
+                '
+                |
+                = foretell.jbzhotfilm.director
+          hr
 
 
 

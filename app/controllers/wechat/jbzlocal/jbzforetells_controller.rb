@@ -14,10 +14,7 @@ class Wechat::Jbzlocal::JbzforetellsController < ApplicationController
     @jbzcinema = Maizuocinema.find_by_cinemaId(params[:id])
 
     # 显示热映影片列表
-    @jbzhotfilms = Jbzforetell.where(cinemaId: params[:id]).select(:filmId).uniq
-
-
-
+    @jbzforetells = Jbzforetell.where(cinemaId: params[:id]).select(:filmId).uniq
 
     # 用来显示排期详情, 这里用错了，这里应该显示影片列表
     # @Day1 = D1
