@@ -24,5 +24,88 @@
         |
         = @jbzcinema.busPath
   hr
-  .row
-    .col-xs-12.col-sm-12
+  .container-fluid
+    .row
+      .col-xs-12.col-sm-12
+        - @jbzhotfilms.each do |film|
+        .row
+          .col-xs-4.col-sm-4
+            = link_to wechat_jbzlocal_jbzhotfilm_path(film.filmId) do
+              = image_tag(film.picAddr, height: '150%', width: '110%')
+            br
+            p.pull-right
+              |评分:
+              '
+              |
+              = film.grade
+          .col-xs-8.col-sm-8
+            p.filmname 
+              = link_to wechat_jbzlocal_jbzhotfilm_path(film.filmId) do
+                = film.name
+            .filmdetails 
+              |类型:
+              '
+              |
+              = film.filmType
+              br
+              |地区:
+              '
+              |
+              = film.area
+              '
+              ||
+              '
+              |
+              = film.language
+              br
+              |简介:
+              '
+              |
+              = film.shortInfo
+              br
+              |导演:
+              '
+              |
+              = film.director
+        hr
+
+
+
+
+
+      / 以下是三天tab显示排期的代码，点击电影后显示的页面
+      / ul.nav.nav-tabs
+      /   li.active
+      /     a href="#D1"
+      /       = @Day1
+      /   li
+      /     a href="#D2"
+      /       = @Day2
+      /   li
+          / a href="#D3"
+      /       = @Day3
+
+      / .tab-content
+      /   .tab-pane.active id="D1"
+      /     - @jbzforetells_D1.each do |jbzforetell_D1|
+
+
+
+      /   .tab-pane id="D2"
+      /     p test2
+      /   .tab-pane id="D3"
+      /     p test3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
