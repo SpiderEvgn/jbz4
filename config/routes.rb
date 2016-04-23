@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :wechat do
 
     get 'boards/jbz_hotfilm'  # 最外层左下角“热映”界面，显示所有最近三天热映影片列表
+    get 'boards/jbz_cinema'   # 最外层中底部“影院”界面，显示所有影院
 
     namespace :maizuo do
       get 'maizuocinemas/index'

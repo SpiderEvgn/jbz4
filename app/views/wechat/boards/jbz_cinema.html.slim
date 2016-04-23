@@ -1,0 +1,19 @@
+.container-fluid
+  .row
+    .col-xs-12.col-sm-12
+      h2 所有影院［测试］
+      hr
+      - @cinemas.each do |cinema|
+        .row
+          .col-xs-12.col-sm-12
+            h4.filmname 
+              / = link_to wechat_jbzlocal_jbzhotfilm_path(film.filmId) do
+              = cinema.cinemaName
+              |（
+              = cinema.cityName
+              |）
+            .filmdetails
+              = cinema.address
+              br
+              = cinema.phone
+        hr
