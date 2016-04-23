@@ -1,0 +1,72 @@
+/ .navbar.navbar-default.navbar-fixed-top
+.container-fluid
+  / 界面的上半部分，展示影院详细信息
+  .row
+    .col-xs-4.col-sm-4
+      br
+      = image_tag(@jbzcinema.logo, height: '180%', width: '120%')
+    .col-xs-8.col-sm-8
+      h1.filmname 
+        = @jbzcinema.cinemaName
+      br
+      .filmdetails
+        |地址:
+        '
+        |
+        = @jbzcinema.address
+        br
+        |电话:
+        '
+        |
+        = @jbzcinema.phone
+        br
+        |交通:
+        '
+        |
+        = @jbzcinema.busPath
+  hr
+  / 影片列表希望能放在一个container里面上下拖拉，而不是整个页面一起拖，会影响上层的影院信息，这部分功能还没做
+.container-fluid
+  .row
+    .col-xs-12.col-sm-12
+      - @jbzforetells.each do |foretell|
+        .row
+          .col-xs-4.col-sm-4
+            = link_to wechat_jbzlocal_jbzforetell_path(foretell.filmId) do
+              = image_tag(foretell.jbzhotfilm.picAddr, height: '150%', width: '110%')
+            br
+            p.pull-right
+              |评分:
+              '
+              |
+              = foretell.jbzhotfilm.grade
+          .col-xs-8.col-sm-8
+            p.filmname 
+              = link_to wechat_jbzlocal_jbzforetell_path(foretell.filmId) do
+                = foretell.jbzhotfilm.name
+            .filmdetails 
+              |类型:
+              '
+              |
+              = foretell.jbzhotfilm.filmType
+              br
+              |地区:
+              '
+              |
+              = foretell.jbzhotfilm.area
+              '
+              ||
+              '
+              |
+              = foretell.jbzhotfilm.language
+              br
+              |简介:
+              '
+              |
+              = foretell.jbzhotfilm.shortInfo
+              br
+              |导演:
+              '
+              |
+              = foretell.jbzhotfilm.director
+        hr

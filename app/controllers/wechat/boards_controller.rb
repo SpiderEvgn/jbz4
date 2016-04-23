@@ -19,7 +19,7 @@ class Wechat::BoardsController < ApplicationController
 
   def jbz_cinema
   	# @cinemas = Maizuocinema.all
-    @cinemas = Maizuocinema.where("cinemaId = ? OR cinemaId = ?", "2709", "1421").all
+    @cinemas = Jbzcinema.where("cinemaId = ? OR cinemaId = ?", "2709", "1421").all
   	# 还没建立 Jbzcinema, 暂用 Maizuocinema
   end
 

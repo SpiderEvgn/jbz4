@@ -42,6 +42,37 @@ class Wechat::Maizuo::MaizuocinemasController < ApplicationController
         end
       # if @cinemas != nil
       end
+      
+      # 以下将从卖座拿来的影院数据，从 maizuocinemas 导入到 jbzcinemas
+      @mzcinemas = Maizuocinema.all
+      @mzcinemas.each do |cinema|
+        c = Jbzcinema.new
+
+        c.cityId = cinema.cityId
+        c.cityName = cinema.cityName
+        c.cinemaId = cinema.cinemaId
+        c.cinemaName = cinema.cinemaName
+        c.logo = cinema.logo
+        c.address = cinema.address
+        c.region = cinema.region
+        c.phone = cinema.phone
+        c.hallId = cinema.hallId
+        c.hallNames = cinema.hallNames
+        c.seatCounts = cinema.seatCounts
+        c.vipflags = cinema.vipflags
+        c.ticketFlag = cinema.ticketFlag
+        c.seatFlag = cinema.seatFlag
+        c.busPath = cinema.busPath
+        c.subway = cinema.subway
+        c.businessCircle = cinema.businessCircle
+        c.longitude = cinema.longitude
+        c.latitude = cinema.latitude
+        
+        c.save
+      # @mzcinemas.each do |cinema|
+      end
+
+
     # def getCinemaInfo
     end
 

@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423123313) do
+ActiveRecord::Schema.define(version: 20160423151140) do
+
+  create_table "jbzcinemas", force: :cascade do |t|
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "cityId",         limit: 255
+    t.string   "cityName",       limit: 255
+    t.string   "cinemaId",       limit: 255
+    t.string   "cinemaName",     limit: 255
+    t.string   "logo",           limit: 255
+    t.string   "address",        limit: 255
+    t.string   "region",         limit: 255
+    t.string   "phone",          limit: 255
+    t.string   "hallId",         limit: 255
+    t.string   "hallNames",      limit: 255
+    t.string   "seatCounts",     limit: 255
+    t.string   "vipflags",       limit: 255
+    t.string   "ticketFlag",     limit: 255
+    t.string   "seatFlag",       limit: 255
+    t.string   "busPath",        limit: 255
+    t.string   "subway",         limit: 255
+    t.string   "businessCircle", limit: 255
+    t.string   "longitude",      limit: 255
+    t.string   "latitude",       limit: 255
+  end
 
   create_table "jbzforetells", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -36,7 +60,7 @@ ActiveRecord::Schema.define(version: 20160423123313) do
     t.integer  "jbzhotfilm_id",  limit: 4
   end
 
-  add_index "jbzforetells", ["filmId"], name: "index_jbzforetells_on_fllmId", using: :btree
+  add_index "jbzforetells", ["jbzhotfilm_id"], name: "index_jbzforetells_on_jbzhotfilm_id", using: :btree
 
   create_table "jbzhotfilms", force: :cascade do |t|
     t.datetime "created_at",                null: false
