@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423084034) do
+ActiveRecord::Schema.define(version: 20160423123313) do
 
   create_table "jbzforetells", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -33,7 +33,10 @@ ActiveRecord::Schema.define(version: 20160423084034) do
     t.string   "dimensional",    limit: 255
     t.string   "offerId",        limit: 255
     t.string   "lockNeedMobile", limit: 255
+    t.integer  "jbzhotfilm_id",  limit: 4
   end
+
+  add_index "jbzforetells", ["filmId"], name: "index_jbzforetells_on_fllmId", using: :btree
 
   create_table "jbzhotfilms", force: :cascade do |t|
     t.datetime "created_at",                null: false
@@ -55,6 +58,13 @@ ActiveRecord::Schema.define(version: 20160423084034) do
     t.string   "shortInfo",   limit: 255
     t.string   "videoUrl",    limit: 255
     t.string   "grade",       limit: 255
+  end
+
+  add_index "jbzhotfilms", ["filmId"], name: "index_jbzhotfilms_on_filmId", using: :btree
+
+  create_table "lots", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "maizuocinemas", force: :cascade do |t|
@@ -167,4 +177,10 @@ ActiveRecord::Schema.define(version: 20160423084034) do
     t.string   "reviewContent", limit: 255
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "jbzforetells", "jbzhotfilms"
 end

@@ -1,3 +1,4 @@
 class Jbzhotfilm < ActiveRecord::Base
-	has_many :jbzforetells
+	self.primary_key = "filmId"
+	has_many :jbzforetells, foreign_key: "filmId"
 end
