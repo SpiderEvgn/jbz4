@@ -6,18 +6,18 @@ class Wechat::Maizuo::MaizuoreviewsController < ApplicationController
   def index
     # @reviews = Maizuoreview.all.paginate(:page => params[:page], :per_page => 20)
     # @reviews = Maizuoreview.getReviews(2872)  # 测试用
-    @reviews = Maizuoreview.all
+    @reviews = Maizuo::Maizuoreview.all
   end
 
   private 
     def getReviewInfo
-      @films = Jbzhotfilm.all
+      @films = Jbzlocal::Jbzhotfilm.all
       @films.each do |film|
-        @reviews = Maizuoreview.getReviews(film.filmId)
+        @reviews = Maizuo::Maizuoreview.getReviews(film.filmId)
         if @reviews != nil 
           # 如果返回为nil，即本次查询失败，进入下一个循环
           @reviews.each do |review|
-            r = Maizuoreview.new
+            r = Maizuo::Maizuoreview.new
 
             r.filmId = film.filmId
             r.reviewId = review['feedId']

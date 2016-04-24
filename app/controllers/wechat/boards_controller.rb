@@ -11,7 +11,7 @@ class Wechat::BoardsController < ApplicationController
   def jbz_hotfilm
     session[:cinemaId] = nil
     session[:filmId] = nil
-    @films = Jbzhotfilm.all
+    @films = Jbzlocal::Jbzhotfilm.all
   end
 
   def jbz_filtercinema
@@ -22,7 +22,7 @@ class Wechat::BoardsController < ApplicationController
     session[:cinemaId] = nil
     session[:filmId] = nil
   	# @cinemas = Maizuocinema.all
-    @cinemas = Jbzcinema.all.paginate(:page => params[:page], :per_page => 30)
+    @cinemas = Jbzlocal::Jbzcinema.all.paginate(:page => params[:page], :per_page => 30)
   	# 还没建立 Jbzcinema, 暂用 Maizuocinema
   end
 
@@ -40,11 +40,11 @@ class Wechat::BoardsController < ApplicationController
     D3 = (D2.to_i + 1).to_s
 
     def getJbzforetellInfo
-      Jbzforetell.delete_all
+      Jbzlocal::Jbzforetell.delete_all
       @maizuoforetells = Maizuoforetell.where("showDate = ? OR showDate = ? OR showDate = ?", "#{D1}", "#{D2}", "#{D3}").all
       # 先通过今、明、后三天的日期筛选出排期表中所有在最近三天排期数据，存入到本地 jbzforetell 排期
       @maizuoforetells.each do |mzft|
-        f = Jbzforetell.new
+        f = Jbzlocal::Jbzforetell.new
 
         f.cinemaId = mzft.cinemaId
         f.showDate = mzft.showDate
@@ -72,13 +72,13 @@ class Wechat::BoardsController < ApplicationController
     end
     
     def getJbzhotfilmInfo
-      Jbzhotfilm.delete_all
-      @jbzhotfilmIds = Jbzforetell.select(:filmId).uniq
+      Jbzlocal::Jbzhotfilm.delete_all
+      @jbzhotfilmIds = Jbzlocal::Jbzforetell.select(:filmId).uniq
       # 从已有的 Jbzforetells 表中取出所有在最近三天热映的电影，然后对 filmId 取 uniq 值，得到一个数组
       @jbzhotfilmIds.each do |mzfid|
         jbzfid = mzfid.filmId   # 将数组中的 filmId 值取出，用作以下到电影库中比对并存入 jbzhotfilm 表
-        @maizuofilm = Maizuofilm.find_by_filmId("#{jbzfid}")
-        f = Jbzhotfilm.new
+        @maizuofilm = Maizuo::Maizuofilm.find_by_filmId("#{jbzfid}")
+        f = Jbzlocal::Jbzhotfilm.new
 
         f.filmId = jbzfid
         f.name = @maizuofilm.name

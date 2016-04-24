@@ -1,4 +1,4 @@
-class Jbzcinema < ActiveRecord::Base
+class Jbzlocal::Jbzcinema < ActiveRecord::Base
   self.primary_key = "cinemaId"
   has_many :jbzforetells, foreign_key: "cinemaId"
 end

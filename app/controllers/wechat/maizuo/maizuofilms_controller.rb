@@ -9,12 +9,12 @@ class Wechat::Maizuo::MaizuofilmsController < ApplicationController
 
   private 
     def getFilmInfo
-      Maizuofilm.delete_all
-      @films = Maizuofilm.getFilms
+      Maizuo::Maizuofilm.delete_all
+      @films = Maizuo::Maizuofilm.getFilms
       if @films != nil 
         # 如果返回为nil，即本次查询失败，进入下一个循环
         @films.each do |film|
-          f = Maizuofilm.new
+          f = Maizuo::Maizuofilm.new
 
           f.filmId = film['id']
           f.name = film['name']

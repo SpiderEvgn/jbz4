@@ -1,4 +1,4 @@
-class Maizuocinematicket < ActiveRecord::Base
+class Maizuo::Maizuocinematicket < ActiveRecord::Base
   include HTTParty
 
   # 测试地址需要改变地址 /etc/hosts:  115.29.236.48  open.maizuo.com
