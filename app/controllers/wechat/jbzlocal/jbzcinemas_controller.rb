@@ -2,8 +2,10 @@ class Wechat::Jbzlocal::JbzcinemasController < ApplicationController
   layout 'wechat'
   
   def index
-    # 显示正在热映选中影片的所有影院
-    # @jbzcinemas = Jbzforetell.where(filmId: session[:filmId]).select(:cinemaId).uniq
+    # 当前选中影片的详情
+    @jbzhotfilm = Jbzhotfilm.find_by_filmId(session[:filmId])
+    # 显示选中影片的所有正在热映影院
+    @jbzforetells = Jbzforetell.where(filmId: session[:filmId]).select(:cinemaId).uniq
   end
 
   def show

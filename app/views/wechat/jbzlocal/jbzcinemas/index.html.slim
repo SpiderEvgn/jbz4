@@ -1,0 +1,44 @@
+/ .navbar.navbar-default.navbar-fixed-top
+.container-fluid
+  / 界面的上半部分，展示影片详细信息
+  .row
+    .col-xs-4.col-sm-4
+      = image_tag(@jbzhotfilm.picAddr, height: '50%', width: '80%')
+    .col-xs-8.col-sm-8
+      h1.filmname 
+        = @jbzhotfilm.name
+      br
+      .filmdetails
+        |类型:
+        '
+        |
+        = @jbzhotfilm.filmType
+        br
+        |地区:
+        '
+        |
+        = @jbzhotfilm.area
+        '
+        ||
+        '
+        |
+        = @jbzhotfilm.language
+  hr
+  / 上层的影院信息将来放到 fixed-top 里面，不会随着下面的信息拖动
+.container-fluid
+  .row
+    .col-xs-12.col-sm-12
+      - @jbzforetells.each do |foretell|
+        .row
+          .col-xs-12.col-sm-12
+            h4.filmname 
+              / = link_to wechat_jbzlocal_jbzforetell_path(foretell.cinemaId) do
+              = foretell.jbzcinema.cinemaName
+              |（
+              = foretell.jbzcinema.cityName
+              |）
+            .filmdetails
+              = foretell.jbzcinema.address
+              br
+              = foretell.jbzcinema.phone
+        hr
