@@ -52,96 +52,105 @@
       .tab-content
         .tab-pane.active id="D1" role="tabpanel"
           br
-          - @jbzforetells_D1.each do |jbzforetell_D1|
-            .row
-              .col-xs-7.col-sm-7
-                .row
-                  .col-xs-5.col-sm-5
-                    h3
-                      = jbzforetell_D1.showTime
-                  .col-xs-5.col-sm-5
-                    = jbzforetell_D1.language
-                    '
-                    ||
-                    '
-                    = jbzforetell_D1.dimensional
-                .row
-                  .col-xs-5.col-sm-5
-                    |时长
-                    '
-                    |
-                    = jbzforetell_D1.duration
-                  .col-xs-5.col-sm-5
-                    = jbzforetell_D1.hallName
-              .col-xs-2.col-sm-2
-                h4
-                  = jbzforetell_D1.price
-              .col-xs-3.col-sm-3
-                = link_to '', class: "btn btn-info" do
-                  |购票
-            hr
+          - if @jbzforetells_D1.first
+            - @jbzforetells_D1.each do |jbzforetell_D1|
+              .row
+                .col-xs-7.col-sm-7
+                  .row
+                    .col-xs-5.col-sm-5
+                      h3
+                        = jbzforetell_D1.showTime
+                    .col-xs-5.col-sm-5
+                      = jbzforetell_D1.language
+                      '
+                      ||
+                      '
+                      = jbzforetell_D1.dimensional
+                  .row
+                    .col-xs-5.col-sm-5
+                      |时长
+                      '
+                      |
+                      = jbzforetell_D1.duration
+                    .col-xs-5.col-sm-5
+                      = jbzforetell_D1.hallName
+                .col-xs-2.col-sm-2
+                  h4
+                    = jbzforetell_D1.price
+                .col-xs-3.col-sm-3
+                  = link_to '', class: "btn btn-info" do
+                    |购票
+              hr
+          - else
+            p 当日无排期
 
         .tab-pane id="D2" role="tabpanel"
           br
-          - @jbzforetells_D2.each do |jbzforetell_D2|
-            .row
-              .col-xs-7.col-sm-7
-                .row
-                  .col-xs-5.col-sm-5
-                    h3
-                      = jbzforetell_D2.showTime
-                  .col-xs-5.col-sm-5
-                    = jbzforetell_D2.language
-                    '
-                    ||
-                    '
-                    = jbzforetell_D2.dimensional
-                .row
-                  .col-xs-5.col-sm-5
-                    |时长
-                    '
-                    |
-                    = jbzforetell_D2.duration
-                  .col-xs-5.col-sm-5
-                    = jbzforetell_D2.hallName
-              .col-xs-2.col-sm-2
-                h4
-                  = jbzforetell_D2.price
-              .col-xs-3.col-sm-3
-                = link_to '', class: "btn btn-info btn-block" do
-                  |购票
-            hr
+          - if @jbzforetells_D2.first
+            - @jbzforetells_D2.each do |jbzforetell_D2|
+              .row
+                .col-xs-7.col-sm-7
+                  .row
+                    .col-xs-5.col-sm-5
+                      h3
+                        = jbzforetell_D2.showTime
+                    .col-xs-5.col-sm-5
+                      = jbzforetell_D2.language
+                      '
+                      ||
+                      '
+                      = jbzforetell_D2.dimensional
+                  .row
+                    .col-xs-5.col-sm-5
+                      |时长
+                      '
+                      |
+                      = jbzforetell_D2.duration
+                    .col-xs-5.col-sm-5
+                      = jbzforetell_D2.hallName
+                .col-xs-2.col-sm-2
+                  h4
+                    = jbzforetell_D2.price
+                .col-xs-3.col-sm-3
+                  = link_to '', class: "btn btn-info btn-block" do
+                    |购票
+              hr
+          - else
+            p 当日无排期
 
         .tab-pane id="D3" role="tabpanel"
           br
-          - @jbzforetells_D3.each do |jbzforetell_D3|
-            .row
-              .col-xs-7.col-sm-7
-                .row
-                  .col-xs-5.col-sm-5
-                    h3
-                      = jbzforetell_D3.showTime
-                  .col-xs-5.col-sm-5
-                    = jbzforetell_D3.language
-                    '
-                    ||
-                    '
-                    = jbzforetell_D3.dimensional
-                .row
-                  .col-xs-5.col-sm-5
-                    |时长
-                    '
-                    |
-                    = jbzforetell_D3.duration
-                  .col-xs-5.col-sm-5
-                    = jbzforetell_D3.hallName
-              .col-xs-2.col-sm-2
-                h4
-                  = jbzforetell_D3.price
-              .col-xs-3.col-sm-3
-                = link_to '', class: "btn btn-info btn-block" do
-                  |购票
-            hr
+          - if @jbzforetells_D3.first
+            - @jbzforetells_D3.each do |jbzforetell_D3|
+              .row
+                .col-xs-7.col-sm-7
+                  .row
+                    .col-xs-5.col-sm-5
+                      h3
+                        = jbzforetell_D3.showTime
+                    .col-xs-5.col-sm-5
+                      = jbzforetell_D3.language
+                      '
+                      ||
+                      '
+                      = jbzforetell_D3.dimensional
+                  .row
+                    .col-xs-5.col-sm-5
+                      |时长
+                      '
+                      |
+                      = jbzforetell_D3.duration
+                    .col-xs-5.col-sm-5
+                      = jbzforetell_D3.hallName
+                .col-xs-2.col-sm-2
+                  h4
+                    = jbzforetell_D3.price
+                .col-xs-3.col-sm-3
+                  = link_to '', class: "btn btn-info btn-block" do
+                    |购票
+              hr
+          - else
+            p 当日无排期
 
 
 
