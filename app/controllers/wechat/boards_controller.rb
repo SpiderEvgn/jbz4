@@ -10,6 +10,7 @@ class Wechat::BoardsController < ApplicationController
 
   def jbz_hotfilm
     session[:cinemaId] = nil
+    session[:filmId] = nil
     @films = Jbzhotfilm.all
   end
 
@@ -20,6 +21,7 @@ class Wechat::BoardsController < ApplicationController
 
   def jbz_cinema
     session[:cinemaId] = nil
+    session[:filmId] = nil
   	# @cinemas = Maizuocinema.all
     @cinemas = Jbzcinema.where("cinemaId = ? OR cinemaId = ?", "2709", "1421").all
   	# 还没建立 Jbzcinema, 暂用 Maizuocinema
