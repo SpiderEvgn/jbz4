@@ -12,7 +12,7 @@ class Wechat::Jbzlocal::JbzcinemasController < ApplicationController
     @jbzcinema = Jbzcinema.find_by_cinemaId(params[:id])
     session[:cinemaId] = params[:id]
 
-    # 显示热映影片列表
+    # 显示选中影院下所有热映影片列表
     @jbzforetells = Jbzforetell.where(cinemaId: params[:id]).select(:filmId).uniq
   end
     

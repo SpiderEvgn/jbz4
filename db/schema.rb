@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423151140) do
+ActiveRecord::Schema.define(version: 20160424021527) do
 
   create_table "jbzcinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20160423151140) do
     t.string   "longitude",      limit: 255
     t.string   "latitude",       limit: 255
   end
+
+  add_index "jbzcinemas", ["cinemaId"], name: "index_jbzcinemas_on_cinemaId", using: :btree
 
   create_table "jbzforetells", force: :cascade do |t|
     t.datetime "created_at",                 null: false
