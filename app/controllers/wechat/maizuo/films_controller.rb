@@ -1,5 +1,5 @@
-class Wechat::Maizuo::MaizuofilmsController < ApplicationController
-  # before_action :getFilmInfo
+class Wechat::Maizuo::FilmsController < ApplicationController
+  before_action :getFilmInfo
   # 还没想明白怎么很好的将数据导入本地数据库，暂且临时激活一个 action 将数据一次性导入，
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
   
@@ -9,12 +9,12 @@ class Wechat::Maizuo::MaizuofilmsController < ApplicationController
 
   private 
     def getFilmInfo
-      Maizuo::Maizuofilm.delete_all
-      @films = Maizuo::Maizuofilm.getFilms
+      # Maizuo::Film.delete_all
+      @films = Maizuo::Film.getFilms
       if @films != nil 
         # 如果返回为nil，即本次查询失败，进入下一个循环
         @films.each do |film|
-          f = Maizuo::Maizuofilm.new
+          f = Maizuo::Film.new
 
           f.filmId = film['id']
           f.name = film['name']

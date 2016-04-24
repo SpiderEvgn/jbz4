@@ -1,7 +1,7 @@
 class Wechat::BoardsController < ApplicationController
   layout 'wechat'
 
-  # before_action :getJbzforetellInfo
+  before_action :getJbzforetellInfo
   # 这个 action 用来从 maizuoforetells 获取最近三天的排期数据并存入 jbzforetells 表
   # before_action :getJbzhotfilmInfo
   # 这个 action 用来自动获取最近三天热映的电影信息并存入 jbzhotfilms 表

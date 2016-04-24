@@ -1,5 +1,5 @@
-class Wechat::Maizuo::MaizuoforetellsController < ApplicationController
-  # before_action :getForetellInfo
+class Wechat::Maizuo::ForetellsController < ApplicationController
+  before_action :getForetellInfo
   # 还没想明白怎么很好地从api拉取数据并导入本地数据库，暂且临时激活一个 action 将数据一次性导入，
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
 
@@ -7,21 +7,21 @@ class Wechat::Maizuo::MaizuoforetellsController < ApplicationController
   # 这个 action 用来自动获取最近三天热映的电影信息并存入 jbzhotfilms 表
   
   def index
-    @foretells = Maizuo::Maizuoforetell.all.paginate(:page => params[:page], :per_page => 12)
-    # @foretells = Maizuoforetell.getForetells(1016) # 测试用
+    @foretells = Maizuo::Foretell.all.paginate(:page => params[:page], :per_page => 12)
+    # @foretells = Foretell.getForetells(1016) # 测试用
   end
 
   private 
     def getForetellInfo
-      @cinemas = Maizuo::Maizuocinema.all
+      @cinemas = Maizuo::Cinema.all
       @cinemas.each do |cinema|
-        @foretells = Maizuo::Maizuoforetell.getForetells(cinema.cinemaId)
+        @foretells = Maizuo::Foretell.getForetells(cinema.cinemaId)
         if @foretells != nil 
         # 如果返回为nil，即本次查询失败，进入下一个循环
           @foretells.each do |ft|
             sd = ft['showDate'].gsub(/-/,'')
             ft['foretells'].each do |ftrow|
-              f = Maizuo::Maizuoforetell.new
+              f = Maizuo::Foretell.new
 
               f.cinemaId = cinema.cinemaId
               f.showDate = sd

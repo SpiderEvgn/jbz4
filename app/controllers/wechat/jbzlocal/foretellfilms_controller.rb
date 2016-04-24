@@ -1,4 +1,4 @@
-class Wechat::Jbzlocal::JbzforetellcinemasController < ApplicationController
+class Wechat::Jbzlocal::ForetellfilmsController < ApplicationController
   layout 'wechat'
   
   # d1 = Time.new.strftime("%d")     # 当日的天数
@@ -14,16 +14,16 @@ class Wechat::Jbzlocal::JbzforetellcinemasController < ApplicationController
     
   def show
     # 页面顶部仍然保留当前影院信息
-    @jbzcinema = Jbzlocal::Jbzcinema.find_by_cinemaId(params[:id])
+    @jbzcinema = Jbzlocal::Cinema.find_by_cinemaId(session[:cinemaId])
     # 页面中部显示当前选中的影片
-    @jbzhotfilm = Jbzlocal::Jbzhotfilm.find_by_filmId(session[:filmId])
+    @jbzhotfilm = Jbzlocal::Hotfilm.find_by_filmId(params[:id])
     # 影院在映影片中点击一部影片后，把该电影ID传过来，启用 show 来显示完整三天排期信息
     @Day1 = D1
     @Day2 = D2
     @Day3 = D3
-    @jbzforetells_D1 = Jbzlocal::Jbzforetell.where(cinemaId: params[:id], filmId: session[:filmId], showDate: "#{D1}").order("showTime").all
-    @jbzforetells_D2 = Jbzlocal::Jbzforetell.where(cinemaId: params[:id], filmId: session[:filmId], showDate: "#{D2}").order("showTime").all
-    @jbzforetells_D3 = Jbzlocal::Jbzforetell.where(cinemaId: params[:id], filmId: session[:filmId], showDate: "#{D3}").order("showTime").all
+    @jbzforetells_D1 = Jbzlocal::Foretell.where(cinemaId: session[:cinemaId], filmId: params[:id], showDate: "#{D1}").order("showTime").all
+    @jbzforetells_D2 = Jbzlocal::Foretell.where(cinemaId: session[:cinemaId], filmId: params[:id], showDate: "#{D2}").order("showTime").all
+    @jbzforetells_D3 = Jbzlocal::Foretell.where(cinemaId: session[:cinemaId], filmId: params[:id], showDate: "#{D3}").order("showTime").all
   end
     
 end

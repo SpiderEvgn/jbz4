@@ -1,21 +1,21 @@
-class Wechat::Maizuo::MaizuocinemasController < ApplicationController
-  # before_action :getCinemaInfo
+class Wechat::Maizuo::CinemasController < ApplicationController
+  before_action :getCinemaInfo
   # 还没想明白怎么很好的将数据导入本地数据库，暂且临时激活一个 action 将数据一次性导入，
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
   layout 'wechat'
   
   def index
-    @cinemas = Maizuo::Maizuocinema.all.paginate(:page => params[:page], :per_page => 4)
+    @cinemas = Maizuo::Cinema.all.paginate(:page => params[:page], :per_page => 4)
   end
 
   private 
     def getCinemaInfo
-      # Maizuocinema.delete_all
-      @cinemas = Maizuo::Maizuocinema.getCinemas
+      # Maizuo::Cinema.delete_all
+      @cinemas = Maizuo::Cinema.getCinemas
       if @cinemas != nil 
         # 如果返回为nil，即本次查询失败，进入下一个循环
         @cinemas.each do |cinema|
-          c = Maizuo::Maizuocinema.new
+          c = Maizuo::Cinema.new
           
           c.cityId = cinema['cityId']
           c.cityName = cinema['cityName']
@@ -44,9 +44,9 @@ class Wechat::Maizuo::MaizuocinemasController < ApplicationController
       end
       
       # 以下将从卖座拿来的影院数据，从 maizuocinemas 导入到 jbzcinemas
-      @mzcinemas = Maizuo::Maizuocinema.all
+      @mzcinemas = Maizuo::Cinema.all
       @mzcinemas.each do |cinema|
-        c = Jbzlocal::Jbzcinema.new
+        c = Jbzlocal::Cinema.new
 
         c.cityId = cinema.cityId
         c.cityName = cinema.cityName

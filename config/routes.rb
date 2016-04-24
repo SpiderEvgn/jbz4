@@ -7,19 +7,19 @@ Rails.application.routes.draw do
     get 'boards/jbz_cinema'   # 最外层中底部“影院”界面，显示所有影院
 
     namespace :maizuo do
-      get 'maizuocinemas/index'
-      get 'maizuofilms/index'
-      get 'maizuocinematickets/index'
-      get 'maizuoforetells/index'
-      get 'maizuohallseats/index'
-      get 'maizuoreviews/index'
+      get 'cinemas/index'
+      get 'films/index'
+      get 'cinematickets/index'
+      get 'foretells/index'
+      get 'hallseats/index'
+      get 'reviews/index'
     end
 
     namespace :jbzlocal do
-      resources :jbzhotfilms, only: [:show]   # 显示单部电影的详细信息
-      resources :jbzcinemas, only: [:index, :show]  # 显示所有影院，列出某院在映影片列表
-      resources :jbzforetellfilms, only: [:show]  # 电影 －》 影片 －》 排期
-      resources :jbzforetellcinemas, only: [:show]  # 影片 －》 电影 －》 排期
+      resources :hotfilms, only: [:show]   # 显示单部电影的详细信息
+      resources :cinemas, only: [:index, :show]  # 显示所有影院，列出某院在映影片列表
+      resources :foretellfilms, only: [:show]  # 电影 －》 影片 －》 排期
+      resources :foretellcinemas, only: [:show]  # 影片 －》 电影 －》 排期
     end
 
   end
