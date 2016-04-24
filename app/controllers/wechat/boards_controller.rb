@@ -9,6 +9,7 @@ class Wechat::BoardsController < ApplicationController
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
 
   def jbz_hotfilm
+    session[:cinemaId] = nil
     @films = Jbzhotfilm.all
   end
 
@@ -18,6 +19,7 @@ class Wechat::BoardsController < ApplicationController
   end
 
   def jbz_cinema
+    session[:cinemaId] = nil
   	# @cinemas = Maizuocinema.all
     @cinemas = Jbzcinema.where("cinemaId = ? OR cinemaId = ?", "2709", "1421").all
   	# 还没建立 Jbzcinema, 暂用 Maizuocinema

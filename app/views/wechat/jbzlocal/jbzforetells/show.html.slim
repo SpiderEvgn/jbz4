@@ -77,11 +77,11 @@
                 h4
                   = jbzforetell_D1.price
               .col-xs-3.col-sm-3
-                = link_to '', class: "btn btn-info btn-block" do
+                = link_to '', class: "btn btn-info" do
                   |购票
             hr
 
-        .tab-pane.active id="D2" role="tabpanel"
+        .tab-pane id="D2" role="tabpanel"
           br
           - @jbzforetells_D2.each do |jbzforetell_D2|
             .row
@@ -112,7 +112,7 @@
                   |购票
             hr
 
-        .tab-pane.active id="D3" role="tabpanel"
+        .tab-pane id="D3" role="tabpanel"
           br
           - @jbzforetells_D3.each do |jbzforetell_D3|
             .row
