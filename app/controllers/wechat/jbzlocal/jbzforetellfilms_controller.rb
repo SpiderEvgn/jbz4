@@ -1,4 +1,4 @@
-class Wechat::Jbzlocal::JbzforetellsController < ApplicationController
+class Wechat::Jbzlocal::JbzforetellfilmsController < ApplicationController
   layout 'wechat'
   
   d1 = Time.new.strftime("%d")     # 当日的天数

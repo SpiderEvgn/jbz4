@@ -32,8 +32,8 @@
         .row
           .col-xs-12.col-sm-12
             h4.filmname 
-              / = link_to wechat_jbzlocal_jbzforetell_path(foretell.cinemaId) do
-              = foretell.jbzcinema.cinemaName
+              = link_to wechat_jbzlocal_jbzforetellcinema_path(foretell.cinemaId) do
+                = foretell.jbzcinema.cinemaName
               |（
               = foretell.jbzcinema.cityName
               |）

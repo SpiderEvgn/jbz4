@@ -32,7 +32,7 @@
       - @jbzforetells.each do |foretell|
         .row
           .col-xs-4.col-sm-4
-            = link_to wechat_jbzlocal_jbzforetell_path(foretell.filmId) do
+            = link_to wechat_jbzlocal_jbzforetellfilm_path(foretell.filmId) do
               = image_tag(foretell.jbzhotfilm.picAddr, height: '150%', width: '110%')
             br
             p.pull-right
@@ -42,7 +42,7 @@
               = foretell.jbzhotfilm.grade
           .col-xs-8.col-sm-8
             p.filmname 
-              = link_to wechat_jbzlocal_jbzforetell_path(foretell.filmId) do
+              = link_to wechat_jbzlocal_jbzforetellfilm_path(foretell.filmId) do
                 = foretell.jbzhotfilm.name
             .filmdetails 
               |类型:

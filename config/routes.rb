@@ -17,8 +17,9 @@ Rails.application.routes.draw do
 
     namespace :jbzlocal do
       resources :jbzhotfilms, only: [:show]   # 显示单部电影的详细信息
-      resources :jbzforetells, only: [:show]  # 显示影院详细信息和某院在映影片列表, 和某部影片具体排期
       resources :jbzcinemas, only: [:index, :show]  # 显示所有影院，列出某院在映影片列表
+      resources :jbzforetellfilms, only: [:show]  # 电影 －》 影片 －》 排期
+      resources :jbzforetellcinemas, only: [:show]  # 影片 －》 电影 －》 排期
     end
 
   end
