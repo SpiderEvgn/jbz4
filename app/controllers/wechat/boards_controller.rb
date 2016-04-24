@@ -16,28 +16,31 @@ class Wechat::BoardsController < ApplicationController
 
   def jbz_filtercinema
   	# 影院筛选页面，还没想好怎么设计
-  	
   end
 
   def jbz_cinema
     session[:cinemaId] = nil
     session[:filmId] = nil
   	# @cinemas = Maizuocinema.all
-    @cinemas = Jbzcinema.where("cinemaId = ? OR cinemaId = ?", "2709", "1421").all
+    @cinemas = Jbzcinema.all.paginate(:page => params[:page], :per_page => 30)
   	# 还没建立 Jbzcinema, 暂用 Maizuocinema
   end
 
-  private 
+  private
     # 考虑将以下自动获取热映电影代码放入 jbzhotfilm 的 model 里面去，下次 commit
-    d1 = Time.new.strftime("%d")     # 当日的天数
-    d2 = (d1.to_i + 1).to_s          # 明日的天数
-    d3 = (d2.to_i + 1).to_s          # 后日的天数
-    D1 = String.new("2016-04-#{d1}") # 当天的日期
-    D2 = String.new("2016-04-#{d2}") # 明天的日期
-    D3 = String.new("2016-04-#{d3}") # 后天的日期（查最近三天的热映电影）
+    # d1 = Time.new.strftime("%d")     # 当日的天数
+    # d2 = (d1.to_i + 1).to_s          # 明日的天数
+    # d3 = (d2.to_i + 1).to_s          # 后日的天数
+    # D1 = String.new("2016-04-#{d1}") # 当天的日期
+    # D2 = String.new("2016-04-#{d2}") # 明天的日期
+    # D3 = String.new("2016-04-#{d3}") # 后天的日期（查最近三天的热映电影）
+    # 卖座改了日期的格式，没有－了,f***
+    D1 = Time.new.strftime("%Y%m%d")
+    D2 = (D1.to_i + 1).to_s
+    D3 = (D2.to_i + 1).to_s
 
     def getJbzforetellInfo
-      # Jbzforetell.destroy_all
+      Jbzforetell.delete_all
       @maizuoforetells = Maizuoforetell.where("showDate = ? OR showDate = ? OR showDate = ?", "#{D1}", "#{D2}", "#{D3}").all
       # 先通过今、明、后三天的日期筛选出排期表中所有在最近三天排期数据，存入到本地 jbzforetell 排期
       @maizuoforetells.each do |mzft|
@@ -46,6 +49,7 @@ class Wechat::BoardsController < ApplicationController
         f.cinemaId = mzft.cinemaId
         f.showDate = mzft.showDate
         f.showTime = mzft.showTime
+
         f.hallId = mzft.hallId
         f.hallName = mzft.hallName
         f.foretellId = mzft.foretellId
@@ -68,7 +72,7 @@ class Wechat::BoardsController < ApplicationController
     end
     
     def getJbzhotfilmInfo
-      # Jbzhotfilm.destroy_all
+      Jbzhotfilm.delete_all
       @jbzhotfilmIds = Jbzforetell.select(:filmId).uniq
       # 从已有的 Jbzforetells 表中取出所有在最近三天热映的电影，然后对 filmId 取 uniq 值，得到一个数组
       @jbzhotfilmIds.each do |mzfid|

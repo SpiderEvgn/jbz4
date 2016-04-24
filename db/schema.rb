@@ -59,10 +59,7 @@ ActiveRecord::Schema.define(version: 20160424021527) do
     t.string   "dimensional",    limit: 255
     t.string   "offerId",        limit: 255
     t.string   "lockNeedMobile", limit: 255
-    t.integer  "jbzhotfilm_id",  limit: 4
   end
-
-  add_index "jbzforetells", ["jbzhotfilm_id"], name: "index_jbzforetells_on_jbzhotfilm_id", using: :btree
 
   create_table "jbzhotfilms", force: :cascade do |t|
     t.datetime "created_at",                null: false
@@ -87,11 +84,6 @@ ActiveRecord::Schema.define(version: 20160424021527) do
   end
 
   add_index "jbzhotfilms", ["filmId"], name: "index_jbzhotfilms_on_filmId", using: :btree
-
-  create_table "lots", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "maizuocinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -203,10 +195,4 @@ ActiveRecord::Schema.define(version: 20160424021527) do
     t.string   "reviewContent", limit: 255
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_foreign_key "jbzforetells", "jbzhotfilms"
 end

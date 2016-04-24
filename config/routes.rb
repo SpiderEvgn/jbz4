@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'boards/jbz_cinema'   # 最外层中底部“影院”界面，显示所有影院
 
     namespace :maizuo do
-      get 'getmaizuocinemas' => 'maizuocinemas#index'
+      get 'maizuocinemas/index'
       get 'maizuofilms/index'
       get 'maizuocinematickets/index'
       get 'maizuoforetells/index'

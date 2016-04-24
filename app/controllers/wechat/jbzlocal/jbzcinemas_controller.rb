@@ -17,5 +17,5 @@ class Wechat::Jbzlocal::JbzcinemasController < ApplicationController
     # 显示选中影院下所有热映影片列表
     @jbzforetells = Jbzforetell.where(cinemaId: params[:id]).select(:filmId).uniq
   end
-    
+
 end
