@@ -1,21 +1,21 @@
 class AddColumnToMaizuoforetells < ActiveRecord::Migration
   def change
-    add_column :maizuoforetells, :cinemaId, :string
-    add_column :maizuoforetells, :showDate, :string
-    add_column :maizuoforetells, :showTime, :string
-    add_column :maizuoforetells, :hallId, :string
-    add_column :maizuoforetells, :hallName, :string
-    add_column :maizuoforetells, :foretellId, :string
-    add_column :maizuoforetells, :filmId, :string
-    add_column :maizuoforetells, :price, :string
-    add_column :maizuoforetells, :marketPrice, :string
-    add_column :maizuoforetells, :flag, :string
-    add_column :maizuoforetells, :language, :string
-    add_column :maizuoforetells, :duration, :string
-    add_column :maizuoforetells, :timeout, :string
-    add_column :maizuoforetells, :sectionId, :string
-    add_column :maizuoforetells, :dimensional, :string
-    add_column :maizuoforetells, :offerId, :string
-    add_column :maizuoforetells, :lockNeedMobile, :string
+    add_column :maizuo_foretells, :cinemaId, :string
+    add_column :maizuo_foretells, :showDate, :string
+    add_column :maizuo_foretells, :showTime, :string
+    add_column :maizuo_foretells, :hallId, :string
+    add_column :maizuo_foretells, :hallName, :string
+    add_column :maizuo_foretells, :foretellId, :string
+    add_column :maizuo_foretells, :filmId, :string
+    add_column :maizuo_foretells, :price, :string
+    add_column :maizuo_foretells, :marketPrice, :string
+    add_column :maizuo_foretells, :flag, :string
+    add_column :maizuo_foretells, :language, :string
+    add_column :maizuo_foretells, :duration, :string
+    add_column :maizuo_foretells, :timeout, :string
+    add_column :maizuo_foretells, :sectionId, :string
+    add_column :maizuo_foretells, :dimensional, :string
+    add_column :maizuo_foretells, :offerId, :string
+    add_column :maizuo_foretells, :lockNeedMobile, :string
   end
 end

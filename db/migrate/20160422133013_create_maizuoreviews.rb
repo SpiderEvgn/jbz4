@@ -1,6 +1,6 @@
 class CreateMaizuoreviews < ActiveRecord::Migration
   def change
-    create_table :maizuoreviews do |t|
+    create_table :maizuo_reviews do |t|
 
       t.timestamps null: false
     end

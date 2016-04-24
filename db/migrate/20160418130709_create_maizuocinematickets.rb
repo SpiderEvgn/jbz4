@@ -1,6 +1,6 @@
 class CreateMaizuocinematickets < ActiveRecord::Migration
   def change
-    create_table :maizuocinematickets do |t|
+    create_table :maizuo_cinematickets do |t|
 
       t.timestamps null: false
     end

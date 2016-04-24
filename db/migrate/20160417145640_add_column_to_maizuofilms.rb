@@ -1,21 +1,21 @@
 class AddColumnToMaizuofilms < ActiveRecord::Migration
   def change
-    add_column :maizuofilms, :filmId, :string
-    add_column :maizuofilms, :name, :string
-    add_column :maizuofilms, :director, :string
-    add_column :maizuofilms, :actors, :string
-    add_column :maizuofilms, :filmType, :string
-    add_column :maizuofilms, :area, :string
-    add_column :maizuofilms, :length, :string
-    add_column :maizuofilms, :releaseDate, :string
-    add_column :maizuofilms, :isShow, :string
-    add_column :maizuofilms, :language, :string
-    add_column :maizuofilms, :company, :string
-    add_column :maizuofilms, :info, :text
-    add_column :maizuofilms, :picAddr, :string
-    add_column :maizuofilms, :dimensional, :string
-    add_column :maizuofilms, :shortInfo, :string
-    add_column :maizuofilms, :videoUrl, :string
-    add_column :maizuofilms, :grade, :string
+    add_column :maizuo_films, :filmId, :string
+    add_column :maizuo_films, :name, :string
+    add_column :maizuo_films, :director, :string
+    add_column :maizuo_films, :actors, :string
+    add_column :maizuo_films, :filmType, :string
+    add_column :maizuo_films, :area, :string
+    add_column :maizuo_films, :length, :string
+    add_column :maizuo_films, :releaseDate, :string
+    add_column :maizuo_films, :isShow, :string
+    add_column :maizuo_films, :language, :string
+    add_column :maizuo_films, :company, :string
+    add_column :maizuo_films, :info, :text
+    add_column :maizuo_films, :picAddr, :string
+    add_column :maizuo_films, :dimensional, :string
+    add_column :maizuo_films, :shortInfo, :string
+    add_column :maizuo_films, :videoUrl, :string
+    add_column :maizuo_films, :grade, :string
   end
 end

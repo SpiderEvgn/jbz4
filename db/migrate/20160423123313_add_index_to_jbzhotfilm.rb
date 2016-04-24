@@ -1,5 +1,5 @@
 class AddIndexToJbzhotfilm < ActiveRecord::Migration
   def change
-  	add_index :jbzhotfilms, :filmId
+  	add_index :jbzlocal_hotfilms, :filmId
   end
 end

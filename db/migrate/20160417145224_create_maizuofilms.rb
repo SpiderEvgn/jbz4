@@ -1,6 +1,6 @@
 class CreateMaizuofilms < ActiveRecord::Migration
   def change
-    create_table :maizuofilms do |t|
+    create_table :maizuo_films do |t|
 
       t.timestamps null: false
     end

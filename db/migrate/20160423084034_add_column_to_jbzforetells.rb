@@ -1,21 +1,21 @@
 class AddColumnToJbzforetells < ActiveRecord::Migration
   def change
-  	add_column :jbzforetells, :cinemaId, :string
-    add_column :jbzforetells, :showDate, :string
-    add_column :jbzforetells, :showTime, :string
-    add_column :jbzforetells, :hallId, :string
-    add_column :jbzforetells, :hallName, :string
-    add_column :jbzforetells, :foretellId, :string
-    add_column :jbzforetells, :filmId, :string
-    add_column :jbzforetells, :price, :string
-    add_column :jbzforetells, :marketPrice, :string
-    add_column :jbzforetells, :flag, :string
-    add_column :jbzforetells, :language, :string
-    add_column :jbzforetells, :duration, :string
-    add_column :jbzforetells, :timeout, :string
-    add_column :jbzforetells, :sectionId, :string
-    add_column :jbzforetells, :dimensional, :string
-    add_column :jbzforetells, :offerId, :string
-    add_column :jbzforetells, :lockNeedMobile, :string
+  	add_column :jbzlocal_foretells, :cinemaId, :string
+    add_column :jbzlocal_foretells, :showDate, :string
+    add_column :jbzlocal_foretells, :showTime, :string
+    add_column :jbzlocal_foretells, :hallId, :string
+    add_column :jbzlocal_foretells, :hallName, :string
+    add_column :jbzlocal_foretells, :foretellId, :string
+    add_column :jbzlocal_foretells, :filmId, :string
+    add_column :jbzlocal_foretells, :price, :string
+    add_column :jbzlocal_foretells, :marketPrice, :string
+    add_column :jbzlocal_foretells, :flag, :string
+    add_column :jbzlocal_foretells, :language, :string
+    add_column :jbzlocal_foretells, :duration, :string
+    add_column :jbzlocal_foretells, :timeout, :string
+    add_column :jbzlocal_foretells, :sectionId, :string
+    add_column :jbzlocal_foretells, :dimensional, :string
+    add_column :jbzlocal_foretells, :offerId, :string
+    add_column :jbzlocal_foretells, :lockNeedMobile, :string
   end
 end

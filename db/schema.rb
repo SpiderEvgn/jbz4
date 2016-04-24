@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424021527) do
+ActiveRecord::Schema.define(version: 20160424083848) do
 
-  create_table "jbzcinemas", force: :cascade do |t|
+  create_table "jbzlocal_cinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "cityId",         limit: 255
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 20160424021527) do
     t.string   "latitude",       limit: 255
   end
 
-  add_index "jbzcinemas", ["cinemaId"], name: "index_jbzcinemas_on_cinemaId", using: :btree
+  add_index "jbzlocal_cinemas", ["cinemaId"], name: "index_jbzlocal_cinemas_on_cinemaId", using: :btree
 
-  create_table "jbzforetells", force: :cascade do |t|
+  create_table "jbzlocal_foretells", force: :cascade do |t|
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "cinemaId",       limit: 255
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20160424021527) do
     t.string   "lockNeedMobile", limit: 255
   end
 
-  create_table "jbzhotfilms", force: :cascade do |t|
+  create_table "jbzlocal_hotfilms", force: :cascade do |t|
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "filmId",      limit: 255
@@ -83,9 +83,9 @@ ActiveRecord::Schema.define(version: 20160424021527) do
     t.string   "grade",       limit: 255
   end
 
-  add_index "jbzhotfilms", ["filmId"], name: "index_jbzhotfilms_on_filmId", using: :btree
+  add_index "jbzlocal_hotfilms", ["filmId"], name: "index_jbzlocal_hotfilms_on_filmId", using: :btree
 
-  create_table "maizuocinemas", force: :cascade do |t|
+  create_table "maizuo_cinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "cityId",         limit: 255
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20160424021527) do
     t.string   "latitude",       limit: 255
   end
 
-  create_table "maizuocinematickets", force: :cascade do |t|
+  create_table "maizuo_cinematickets", force: :cascade do |t|
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "cinemaId",           limit: 255
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20160424021527) do
     t.string   "effectiveBeginTime", limit: 255
   end
 
-  create_table "maizuofilms", force: :cascade do |t|
+  create_table "maizuo_films", force: :cascade do |t|
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "filmId",      limit: 255
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 20160424021527) do
     t.string   "grade",       limit: 255
   end
 
-  create_table "maizuoforetells", force: :cascade do |t|
+  create_table "maizuo_foretells", force: :cascade do |t|
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "cinemaId",       limit: 255
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20160424021527) do
     t.string   "lockNeedMobile", limit: 255
   end
 
-  create_table "maizuohallseats", force: :cascade do |t|
+  create_table "maizuo_hallseats", force: :cascade do |t|
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "cinemaId",    limit: 255
@@ -183,7 +183,20 @@ ActiveRecord::Schema.define(version: 20160424021527) do
     t.string   "loveIndex",   limit: 255
   end
 
-  create_table "maizuoreviews", force: :cascade do |t|
+  create_table "maizuo_locks", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "orderId",    limit: 255
+    t.string   "foretellId", limit: 255
+    t.string   "seatId",     limit: 255
+    t.string   "count",      limit: 255
+    t.string   "price",      limit: 255
+    t.string   "timestamp",  limit: 255
+    t.string   "mobile",     limit: 255
+    t.string   "result",     limit: 255
+  end
+
+  create_table "maizuo_reviews", force: :cascade do |t|
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "filmId",        limit: 255

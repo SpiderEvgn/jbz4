@@ -1,6 +1,6 @@
 class CreateMaizuohallseats < ActiveRecord::Migration
   def change
-    create_table :maizuohallseats do |t|
+    create_table :maizuo_hallseats do |t|
 
       t.timestamps null: false
     end

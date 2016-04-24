@@ -1,14 +1,14 @@
 class AddColumnToMaizuohallseats < ActiveRecord::Migration
   def change
-    add_column :maizuohallseats, :cinemaId, :string
-    add_column :maizuohallseats, :hallId, :string
-    add_column :maizuohallseats, :seatId, :string
-    add_column :maizuohallseats, :sectionId, :string
-    add_column :maizuohallseats, :rowId, :string
-    add_column :maizuohallseats, :rowNum, :string
-    add_column :maizuohallseats, :columnId, :string
-    add_column :maizuohallseats, :columnNum, :string
-    add_column :maizuohallseats, :damagedFlag, :string
-    add_column :maizuohallseats, :loveIndex, :string
+    add_column :maizuo_hallseats, :cinemaId, :string
+    add_column :maizuo_hallseats, :hallId, :string
+    add_column :maizuo_hallseats, :seatId, :string
+    add_column :maizuo_hallseats, :sectionId, :string
+    add_column :maizuo_hallseats, :rowId, :string
+    add_column :maizuo_hallseats, :rowNum, :string
+    add_column :maizuo_hallseats, :columnId, :string
+    add_column :maizuo_hallseats, :columnNum, :string
+    add_column :maizuo_hallseats, :damagedFlag, :string
+    add_column :maizuo_hallseats, :loveIndex, :string
   end
 end
