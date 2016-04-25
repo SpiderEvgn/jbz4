@@ -1,6 +1,6 @@
 class AddColumnToJbzforetells < ActiveRecord::Migration
   def change
-  	add_column :jbzlocal_foretells, :cinemaId, :string
+    add_column :jbzlocal_foretells, :cinemaId, :string
     add_column :jbzlocal_foretells, :showDate, :string
     add_column :jbzlocal_foretells, :showTime, :string
     add_column :jbzlocal_foretells, :hallId, :string
