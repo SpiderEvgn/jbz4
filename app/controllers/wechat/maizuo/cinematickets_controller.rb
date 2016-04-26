@@ -10,6 +10,7 @@ class Wechat::Maizuo::CinematicketsController < ApplicationController
 
   private 
     def getCinemaTicketInfo
+      Wechat::Maizuo::Cinematicket.delete_all
       @cinemas = Wechat::Maizuo::Cinema.all
       @cinemas.each do |cinema|
         @cinemaTickets = Wechat::Maizuo::Cinematicket.getCinemaTickets(cinema.cinemaId)

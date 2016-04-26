@@ -1,5 +1,6 @@
 class Wechat::Maizuo::ForetellsController < ApplicationController
   before_action :getForetellInfo
+  # 大约20分钟
   # 还没想明白怎么很好地从api拉取数据并导入本地数据库，暂且临时激活一个 action 将数据一次性导入，
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
 
@@ -13,6 +14,7 @@ class Wechat::Maizuo::ForetellsController < ApplicationController
 
   private 
     def getForetellInfo
+      Wechat::Maizuo::Foretell.delete_all
       @cinemas = Wechat::Maizuo::Cinema.all
       @cinemas.each do |cinema|
         @foretells = Wechat::Maizuo::Foretell.getForetells(cinema.cinemaId)
@@ -20,6 +22,7 @@ class Wechat::Maizuo::ForetellsController < ApplicationController
         # 如果返回为nil，即本次查询失败，进入下一个循环
           @foretells.each do |ft|
             sd = ft['showDate'].gsub(/-/,'')
+            # 原来卖座的 showDate 是 YY-mm-dd 的格式，后来“－”去掉了
             ft['foretells'].each do |ftrow|
               f = Wechat::Maizuo::Foretell.new
 

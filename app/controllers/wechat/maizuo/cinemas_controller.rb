@@ -10,7 +10,7 @@ class Wechat::Maizuo::CinemasController < ApplicationController
 
   private 
     def getCinemaInfo
-      # Maizuo::Cinema.delete_all
+      Wechat::Maizuo::Cinema.delete_all
       @cinemas = Wechat::Maizuo::Cinema.getCinemas
       if @cinemas != nil 
         # 如果返回为nil，即本次查询失败，进入下一个循环

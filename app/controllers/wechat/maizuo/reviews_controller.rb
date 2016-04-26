@@ -11,6 +11,7 @@ class Wechat::Maizuo::ReviewsController < ApplicationController
 
   private 
     def getReviewInfo
+      Wechat::Maizuo::Review.delete_all
       @films = Wechat::Jbzlocal::Hotfilm.all
       @films.each do |film|
         @reviews = Wechat::Maizuo::Review.getReviews(film.filmId)
