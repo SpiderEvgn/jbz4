@@ -1,7 +1,7 @@
 class Wechat::BoardsController < ApplicationController
   layout 'wechat'
 
-  before_action :getJbzforetellInfo
+  # before_action :getJbzforetellInfo
   # 这个 action 用来从 maizuoforetells 获取最近三天的排期数据并存入 jbzforetells 表
   # before_action :getJbzhotfilmInfo
   # 这个 action 用来自动获取最近三天热映的电影信息并存入 jbzhotfilms 表
@@ -11,7 +11,7 @@ class Wechat::BoardsController < ApplicationController
   def jbz_hotfilm
     session[:cinemaId] = nil
     session[:filmId] = nil
-    @films = Jbzlocal::Hotfilm.all
+    @films = Wechat::Jbzlocal::Hotfilm.all
   end
 
   def jbz_filtercinema
@@ -22,7 +22,7 @@ class Wechat::BoardsController < ApplicationController
     session[:cinemaId] = nil
     session[:filmId] = nil
   	# @cinemas = Maizuocinema.all
-    @cinemas = Jbzlocal::Cinema.all.paginate(:page => params[:page], :per_page => 30)
+    @cinemas = Wechat::Jbzlocal::Cinema.all.paginate(:page => params[:page], :per_page => 30)
   	# 还没建立 Jbzcinema, 暂用 Maizuocinema
   end
 
@@ -40,11 +40,11 @@ class Wechat::BoardsController < ApplicationController
     D3 = (D2.to_i + 1).to_s
 
     def getJbzforetellInfo
-      Jbzlocal::Foretell.delete_all
-      @maizuoforetells = Maizuo::Foretell.where("showDate = ? OR showDate = ? OR showDate = ?", "#{D1}", "#{D2}", "#{D3}").all
+      Wechat::Jbzlocal::Foretell.delete_all
+      @maizuoforetells = Wechat::Maizuo::Foretell.where("showDate = ? OR showDate = ? OR showDate = ?", "#{D1}", "#{D2}", "#{D3}").all
       # 先通过今、明、后三天的日期筛选出排期表中所有在最近三天排期数据，存入到本地 jbzforetell 排期
       @maizuoforetells.each do |mzft|
-        f = Jbzlocal::Foretell.new
+        f = Wechat::Jbzlocal::Foretell.new
 
         f.cinemaId = mzft.cinemaId
         f.showDate = mzft.showDate
@@ -72,13 +72,13 @@ class Wechat::BoardsController < ApplicationController
     end
     
     def getJbzhotfilmInfo
-      Jbzlocal::Hotfilm.delete_all
-      @jbzhotfilmIds = Jbzlocal::Foretell.select(:filmId).uniq
+      Wechat::Jbzlocal::Hotfilm.delete_all
+      @jbzhotfilmIds = Wechat::Jbzlocal::Foretell.select(:filmId).uniq
       # 从已有的 Jbzforetells 表中取出所有在最近三天热映的电影，然后对 filmId 取 uniq 值，得到一个数组
       @jbzhotfilmIds.each do |mzfid|
         jbzfid = mzfid.filmId   # 将数组中的 filmId 值取出，用作以下到电影库中比对并存入 jbzhotfilm 表
-        @maizuofilm = Maizuo::Film.find_by_filmId("#{jbzfid}")
-        f = Jbzlocal::Hotfilm.new
+        @maizuofilm = Wechat::Maizuo::Film.find_by_filmId("#{jbzfid}")
+        f = Wechat::Jbzlocal::Hotfilm.new
 
         f.filmId = jbzfid
         f.name = @maizuofilm.name

@@ -7,21 +7,21 @@ class Wechat::Maizuo::ForetellsController < ApplicationController
   # 这个 action 用来自动获取最近三天热映的电影信息并存入 jbzhotfilms 表
   
   def index
-    @foretells = Maizuo::Foretell.all.paginate(:page => params[:page], :per_page => 12)
-    # @foretells = Foretell.getForetells(1016) # 测试用
+    @foretells = Wechat::Maizuo::Foretell.all.paginate(:page => params[:page], :per_page => 12)
+    # @foretells = Wechat::Maizuo::Foretell.getForetells(1016) # 测试用
   end
 
   private 
     def getForetellInfo
-      @cinemas = Maizuo::Cinema.all
+      @cinemas = Wechat::Maizuo::Cinema.all
       @cinemas.each do |cinema|
-        @foretells = Maizuo::Foretell.getForetells(cinema.cinemaId)
+        @foretells = Wechat::Maizuo::Foretell.getForetells(cinema.cinemaId)
         if @foretells != nil 
         # 如果返回为nil，即本次查询失败，进入下一个循环
           @foretells.each do |ft|
             sd = ft['showDate'].gsub(/-/,'')
             ft['foretells'].each do |ftrow|
-              f = Maizuo::Foretell.new
+              f = Wechat::Maizuo::Foretell.new
 
               f.cinemaId = cinema.cinemaId
               f.showDate = sd

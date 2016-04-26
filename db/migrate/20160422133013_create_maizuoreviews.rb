@@ -1,6 +1,6 @@
 class CreateMaizuoreviews < ActiveRecord::Migration
   def change
-    create_table :maizuo_reviews do |t|
+    create_table :wechat_maizuo_reviews do |t|
 
       t.timestamps null: false
     end

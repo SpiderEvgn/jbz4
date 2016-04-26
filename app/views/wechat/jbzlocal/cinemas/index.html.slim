@@ -33,12 +33,12 @@
           .col-xs-12.col-sm-12
             h4.filmname 
               = link_to wechat_jbzlocal_foretellcinema_path(foretell.cinemaId) do
-                = foretell.jbzcinema.cinemaName
+                = foretell.wechat_jbzlocal_cinema.cinemaName
               |（
-              = foretell.jbzcinema.cityName
+              = foretell.wechat_jbzlocal_cinema.cityName
               |）
             .filmdetails
-              = foretell.jbzcinema.address
+              = foretell.wechat_jbzlocal_cinema.address
               br
-              = foretell.jbzcinema.phone
+              = foretell.wechat_jbzlocal_cinema.phone
         hr

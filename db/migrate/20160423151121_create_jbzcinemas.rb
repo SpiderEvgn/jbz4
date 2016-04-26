@@ -1,6 +1,6 @@
 class CreateJbzcinemas < ActiveRecord::Migration
   def change
-    create_table :jbzlocal_cinemas do |t|
+    create_table :wechat_jbzlocal_cinemas do |t|
 
       t.timestamps null: false
     end

@@ -5,17 +5,17 @@ class Wechat::Maizuo::CinemasController < ApplicationController
   layout 'wechat'
   
   def index
-    @cinemas = Maizuo::Cinema.all.paginate(:page => params[:page], :per_page => 4)
+    @cinemas = Wechat::Maizuo::Cinema.all.paginate(:page => params[:page], :per_page => 4)
   end
 
   private 
     def getCinemaInfo
       # Maizuo::Cinema.delete_all
-      @cinemas = Maizuo::Cinema.getCinemas
+      @cinemas = Wechat::Maizuo::Cinema.getCinemas
       if @cinemas != nil 
         # 如果返回为nil，即本次查询失败，进入下一个循环
         @cinemas.each do |cinema|
-          c = Maizuo::Cinema.new
+          c = Wechat::Maizuo::Cinema.new
           
           c.cityId = cinema['cityId']
           c.cityName = cinema['cityName']
@@ -43,10 +43,10 @@ class Wechat::Maizuo::CinemasController < ApplicationController
       # if @cinemas != nil
       end
       
-      # 以下将从卖座拿来的影院数据，从 maizuocinemas 导入到 jbzcinemas
-      @mzcinemas = Maizuo::Cinema.all
+      # 以下将从卖座拿来的影院数据，从 Wechat::Maizuo::Cinemas 导入到 jbzcinemas
+      @mzcinemas = Wechat::Maizuo::Cinema.all
       @mzcinemas.each do |cinema|
-        c = Jbzlocal::Cinema.new
+        c = Wechat::Jbzlocal::Cinema.new
 
         c.cityId = cinema.cityId
         c.cityName = cinema.cityName

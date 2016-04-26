@@ -4,19 +4,19 @@ class Wechat::Maizuo::CinematicketsController < ApplicationController
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
   
   def index
-    @cinemaTickets = Maizuo::Cinematicket.all.paginate(:page => params[:page], :per_page => 12)
-    # @cinemaTickets = Maizuocinematicket.getCinemaTickets(2471)
+    @cinemaTickets = Wechat::Maizuo::Cinematicket.all.paginate(:page => params[:page], :per_page => 12)
+    # @cinemaTickets = Wechat::Maizuo::Cinematicket.getCinemaTickets(2471)
   end
 
   private 
     def getCinemaTicketInfo
-      @cinemas = Maizuo::Cinema.all
+      @cinemas = Wechat::Maizuo::Cinema.all
       @cinemas.each do |cinema|
-        @cinemaTickets = Maizuo::Cinematicket.getCinemaTickets(cinema.cinemaId)
+        @cinemaTickets = Wechat::Maizuo::Cinematicket.getCinemaTickets(cinema.cinemaId)
         if @cinemaTickets != nil 
         # 如果返回为nil，即本次查询失败，进入下一个循环
           @cinemaTickets.each do |ct|
-            c = Maizuo::Cinematicket.new
+            c = Wechat::Maizuo::Cinematicket.new
 
             c.cinemaId = cinema.cinemaId
             c.ticketId = ct['ticketId']

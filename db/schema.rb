@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160424083848) do
 
-  create_table "jbzlocal_cinemas", force: :cascade do |t|
+  create_table "wechat_jbzlocal_cinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "cityId",         limit: 255
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 20160424083848) do
     t.string   "latitude",       limit: 255
   end
 
-  add_index "jbzlocal_cinemas", ["cinemaId"], name: "index_jbzlocal_cinemas_on_cinemaId", using: :btree
+  add_index "wechat_jbzlocal_cinemas", ["cinemaId"], name: "index_wechat_jbzlocal_cinemas_on_cinemaId", using: :btree
 
-  create_table "jbzlocal_foretells", force: :cascade do |t|
+  create_table "wechat_jbzlocal_foretells", force: :cascade do |t|
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "cinemaId",       limit: 255
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20160424083848) do
     t.string   "lockNeedMobile", limit: 255
   end
 
-  create_table "jbzlocal_hotfilms", force: :cascade do |t|
+  create_table "wechat_jbzlocal_hotfilms", force: :cascade do |t|
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "filmId",      limit: 255
@@ -83,9 +83,9 @@ ActiveRecord::Schema.define(version: 20160424083848) do
     t.string   "grade",       limit: 255
   end
 
-  add_index "jbzlocal_hotfilms", ["filmId"], name: "index_jbzlocal_hotfilms_on_filmId", using: :btree
+  add_index "wechat_jbzlocal_hotfilms", ["filmId"], name: "index_wechat_jbzlocal_hotfilms_on_filmId", using: :btree
 
-  create_table "maizuo_cinemas", force: :cascade do |t|
+  create_table "wechat_maizuo_cinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "cityId",         limit: 255
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20160424083848) do
     t.string   "latitude",       limit: 255
   end
 
-  create_table "maizuo_cinematickets", force: :cascade do |t|
+  create_table "wechat_maizuo_cinematickets", force: :cascade do |t|
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "cinemaId",           limit: 255
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20160424083848) do
     t.string   "effectiveBeginTime", limit: 255
   end
 
-  create_table "maizuo_films", force: :cascade do |t|
+  create_table "wechat_maizuo_films", force: :cascade do |t|
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "filmId",      limit: 255
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 20160424083848) do
     t.string   "grade",       limit: 255
   end
 
-  create_table "maizuo_foretells", force: :cascade do |t|
+  create_table "wechat_maizuo_foretells", force: :cascade do |t|
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "cinemaId",       limit: 255
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20160424083848) do
     t.string   "lockNeedMobile", limit: 255
   end
 
-  create_table "maizuo_hallseats", force: :cascade do |t|
+  create_table "wechat_maizuo_hallseats", force: :cascade do |t|
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "cinemaId",    limit: 255
@@ -183,7 +183,7 @@ ActiveRecord::Schema.define(version: 20160424083848) do
     t.string   "loveIndex",   limit: 255
   end
 
-  create_table "maizuo_locks", force: :cascade do |t|
+  create_table "wechat_maizuo_locks", force: :cascade do |t|
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "orderId",    limit: 255
@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(version: 20160424083848) do
     t.string   "result",     limit: 255
   end
 
-  create_table "maizuo_reviews", force: :cascade do |t|
+  create_table "wechat_maizuo_reviews", force: :cascade do |t|
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "filmId",        limit: 255

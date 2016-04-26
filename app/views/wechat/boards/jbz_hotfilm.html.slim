@@ -6,7 +6,7 @@
       - @films.each do |film|
         .row
           .col-xs-4.col-sm-4
-            = link_to wechat_jbzlocal_jbzhotfilm_path(film.filmId) do
+            = link_to wechat_jbzlocal_hotfilm_path(film.filmId) do
               = image_tag(film.picAddr, height: '150%', width: '110%')
             br
             p.pull-right
@@ -16,7 +16,7 @@
               = film.grade
           .col-xs-8.col-sm-8
             p.filmname 
-              = link_to wechat_jbzlocal_jbzhotfilm_path(film.filmId) do
+              = link_to wechat_jbzlocal_hotfilm_path(film.filmId) do
                 = film.name
             .filmdetails 
               |类型:

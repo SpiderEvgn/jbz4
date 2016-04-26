@@ -4,17 +4,17 @@ class Wechat::Maizuo::FilmsController < ApplicationController
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
   
   # def index
-  #   @films = Maizuofilm.all.paginate(:page => params[:page], :per_page => 20)
+  #   @films = Wechat::Maizuo::Film.all.paginate(:page => params[:page], :per_page => 20)
   # end
 
   private 
     def getFilmInfo
-      # Maizuo::Film.delete_all
-      @films = Maizuo::Film.getFilms
+      # Wechat::Maizuo::Film.delete_all
+      @films = Wechat::Maizuo::Film.getFilms
       if @films != nil 
         # 如果返回为nil，即本次查询失败，进入下一个循环
         @films.each do |film|
-          f = Maizuo::Film.new
+          f = Wechat::Maizuo::Film.new
 
           f.filmId = film['id']
           f.name = film['name']

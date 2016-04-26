@@ -1,6 +1,6 @@
 class CreateMaizuoLocks < ActiveRecord::Migration
   def change
-    create_table :maizuo_locks do |t|
+    create_table :wechat_maizuo_locks do |t|
 
       t.timestamps null: false
     end

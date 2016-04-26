@@ -4,21 +4,21 @@ class Wechat::Maizuo::HallseatsController < ApplicationController
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
 
   def index
-    @hallseats = Maizuo::Hallseat.all.paginate(:page => params[:page], :per_page => 12)
+    @hallseats = Wechat::Maizuo::Hallseat.all.paginate(:page => params[:page], :per_page => 12)
   end
 
   private 
     def getHallseatInfo
-      Maizuo::Hallseat.destroy_all
-      @cinemas = Maizuo::Cinema.all
+      Wechat::Maizuo::Hallseat.destroy_all
+      @cinemas = Wechat::Maizuo::Cinema.all
       @cinemas.each do |cinema|
         if cinema.hallId
           cinema.hallId.split('-').each do |hallId|
-            @hallseats = Maizuo::Hallseat.getHallseats(cinema.cinemaId, hallId)
+            @hallseats = Wechat::Maizuo::Hallseat.getHallseats(cinema.cinemaId, hallId)
             if @hallseats != nil 
             # 如果返回为nil，即本次查询失败，进入下一个循环
               @hallseats.each do |hs|
-                h = Maizuo::Hallseat.new
+                h = Wechat::Maizuo::Hallseat.new
                 
                 h.cinemaId = cinema.cinemaId
                 h.hallId = hallId

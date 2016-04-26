@@ -4,20 +4,20 @@ class Wechat::Maizuo::ReviewsController < ApplicationController
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
   
   def index
-    # @reviews = Maizuo::Review.all.paginate(:page => params[:page], :per_page => 20)
-    # @reviews = Maizuo::Review.getReviews(2872)  # 测试用
-    @reviews = Maizuo::Review.all
+    # @reviews = Wechat::Maizuo::Review.all.paginate(:page => params[:page], :per_page => 20)
+    # @reviews = Wechat::Maizuo::Review.getReviews(2872)  # 测试用
+    @reviews = Wechat::Maizuo::Review.all
   end
 
   private 
     def getReviewInfo
-      @films = Jbzlocal::Hotfilm.all
+      @films = Wechat::Jbzlocal::Hotfilm.all
       @films.each do |film|
-        @reviews = Maizuo::Review.getReviews(film.filmId)
+        @reviews = Wechat::Maizuo::Review.getReviews(film.filmId)
         if @reviews != nil 
           # 如果返回为nil，即本次查询失败，进入下一个循环
           @reviews.each do |review|
-            r = Maizuo::Review.new
+            r = Wechat::Maizuo::Review.new
 
             r.filmId = film.filmId
             r.reviewId = review['feedId']
