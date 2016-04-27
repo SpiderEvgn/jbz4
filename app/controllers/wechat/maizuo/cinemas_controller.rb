@@ -44,6 +44,7 @@ class Wechat::Maizuo::CinemasController < ApplicationController
       end
       
       # 以下将从卖座拿来的影院数据，从 Wechat::Maizuo::Cinemas 导入到 jbzcinemas
+      Wechat::Jbzlocal::Cinema.delete_all
       @mzcinemas = Wechat::Maizuo::Cinema.all
       @mzcinemas.each do |cinema|
         c = Wechat::Jbzlocal::Cinema.new

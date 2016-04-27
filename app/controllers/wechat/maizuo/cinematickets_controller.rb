@@ -1,5 +1,5 @@
 class Wechat::Maizuo::CinematicketsController < ApplicationController
-  # before_action :getCinemaTicketInfo
+  before_action :getCinemaTicketInfo
   # 还没想明白怎么很好的将数据导入本地数据库，暂且临时激活一个 action 将数据一次性导入，
   # 然后就注释掉不用了，之后 index 数据就直接从本地数据库读
   
@@ -10,7 +10,7 @@ class Wechat::Maizuo::CinematicketsController < ApplicationController
 
   private 
     def getCinemaTicketInfo
-      Wechat::Maizuo::Cinematicket.delete_all
+      # Wechat::Maizuo::Cinematicket.delete_all
       @cinemas = Wechat::Maizuo::Cinema.all
       @cinemas.each do |cinema|
         @cinemaTickets = Wechat::Maizuo::Cinematicket.getCinemaTickets(cinema.cinemaId)

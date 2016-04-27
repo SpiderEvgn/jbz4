@@ -5,7 +5,7 @@ class Wechat::Maizuo::Lock < ActiveRecord::Base
   base_uri "http://open.maizuo.com"
   
   # default_params  暂且没有默认参数，注释掉以备将来之用
-  format :json
+  # format :json
   
   # debug_output 用来在 console 输出 api 调用过程
   debug_output $stdout
@@ -44,7 +44,7 @@ class Wechat::Maizuo::Lock < ActiveRecord::Base
     time = Time.new
     timestamp = time.strftime("%Y%m%d%H%M%S")
     sign_value = Digest::MD5.hexdigest("client_id=#{client_id}&orderId=#{orderId}&timestamp=#{timestamp}&key=#{key}")
-    response = get("/rest/ticket3.0/unlock", query: { client_id: "#{client_id}",
+    response = get("/rest/ticket3.0/unLock", query: { client_id: "#{client_id}",
                                                       orderId: "#{orderId}",
                                                       sign: "#{sign_value}",
                                                       timestamp: "#{timestamp}"

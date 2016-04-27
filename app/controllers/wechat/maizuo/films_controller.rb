@@ -9,7 +9,7 @@ class Wechat::Maizuo::FilmsController < ApplicationController
 
   private 
     def getFilmInfo
-      Wechat::Maizuo::Film.delete_all
+      # Wechat::Maizuo::Film.delete_all
       @films = Wechat::Maizuo::Film.getFilms
       if @films != nil 
         # 如果返回为nil，即本次查询失败，进入下一个循环

@@ -5,7 +5,7 @@ class Wechat::Maizuo::Realtimeseat < ActiveRecord::Base
   base_uri "http://open.maizuo.com"
   
   # default_params  暂且没有默认参数，注释掉以备将来之用
-  format :json
+  # format :json
   
   # debug_output 用来在 console 输出 api 调用过程
   debug_output $stdout
@@ -25,7 +25,7 @@ class Wechat::Maizuo::Realtimeseat < ActiveRecord::Base
                                                            })
     # 判断返回值是否正确
     # if response['result'] == 0 || response['result'] == "0"
-    #   return response['data']
+    #   return response.to_json
     # else
     #   return nil
     # end
