@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :cinemas, only: [:index, :show]  # 显示所有影院，列出某院在映影片列表
       resources :foretellfilms, only: [:show]  # 电影 －》 影片 －》 排期
       resources :foretellcinemas, only: [:show]  # 影片 －》 电影 －》 排期
+      get 'realtimeseats/index'
     end
 
   end
