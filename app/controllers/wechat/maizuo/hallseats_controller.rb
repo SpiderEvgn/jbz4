@@ -10,7 +10,7 @@ class Wechat::Maizuo::HallseatsController < ApplicationController
 
   private 
     def getHallseatInfo
-      Wechat::Maizuo::Hallseat.destroy_all
+      # Wechat::Maizuo::Hallseat.destroy_all
       @cinemas = Wechat::Maizuo::Cinema.all
       @cinemas.each do |cinema|
         if cinema.hallId
