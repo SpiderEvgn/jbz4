@@ -4,9 +4,12 @@
 <html>
 <head>
     <title></title>
-<!--      <script src="/app/assets/javascripts/jquery-1.4.1.js" type="text/javascript"></script>
-     <script src="/app/assets/javascripts/json.js" type="text/javascript"></script> -->
+     <!--  <script src="/app/assets/javascripts/jquery-1.4.1.js" type="text/javascript"></script> -->
+     <!--  <script src="/app/assets/javascripts/json.js" type="text/javascript"></script> -->
     <script type="text/javascript">
+        var p1jsonStr='<%=j @seatresource%>';
+        var p2jsonStr=p1jsonStr.replace(/&quot;/g, '"');
+        var jsonStr=JSON.parse(p2jsonStr);
         var ary=new Array();
         var ids=new Array();
         var count=0;
@@ -51,23 +54,20 @@
 
         //显示出座位
         function gg(i,x,y,islock,r,c) {
-          //var num=x*y;
           var im = new Image();
             var temp = 0;
             if(islock==1){
-              im.src = "red.png";
+              im.src = "/app/assets/images/red.png";
             }else{
-              im.src = "white.png";
+              im.src = "/app/assets/images/white.png";
             }
             var row = Math.floor(i / y) + 1;
             var line = (i % y + 1) ;
             im.id = (row) + "-" + line;
-            //im.title = im.id;
             im.title=r+"-"+c;
             dv.append(im);
             temp = Math.floor((i % y) / 5) * 24            
             var top = Math.floor(i / y) * 24 ;
-            //var left = Math.floor(i % y) * 24 + temp;去掉中间空隙
             var left = Math.floor(i % y) * 24 ;
         $("#" + im.id).css({ 'position': 'absolute', 'left': (parseInt(left)+33) + 'px', 'top': (parseInt(top)+29) + 'px', 'width': 24, 'height': 20 });
         $('#' + im.id).mouseenter(function () {
@@ -75,35 +75,31 @@
         }).bind("click", function (e) {
 
             if(islock==1){
-                    if (this.src.indexOf("red.png") == -1) {
-                    this.src = "red.png";
+                    if (this.src.indexOf("/app/assets/images/red.png") == -1) {
+                    this.src = "/app/assets/images/red.png";
                     }
                 
                 }else{
-                    if (this.src.indexOf("red.png") == -1) {
+                    if (this.src.indexOf("/app/assets/images/red.png") == -1) {
                         if(count>4){
                             alert("最多选5个座位！");
                             return;
                         }
-                        this.src = "red.png";
+                        this.src = "/app/assets/images/red.png";
                         
                         ary.push(this.id);
                         ids.push(this.title);
                         HtmlAppend(ary,ids);
                         count++;
                     } else {
-                        this.src = "white.png";
+                        this.src = "/app/assets/images/white.png";
                         
                         for (var i = 0; i < ary.length; i++) {
                             if (ary[i] == this.id) { 
                             ary.splice(i,1); 
                             ids.splice(i,1);
-                            //ids[i] = null;
                           }
                         }
-                        // for (var i = 0; i < ids.length; i++) {
-                        //     if (ids[i] == this.id) { ids[i] = ""; }
-                        // }
                         HtmlAppend(ary,ids);
                         count--;
                     }
@@ -122,13 +118,13 @@
              }
           });
           
-        if ($('#'+(rowNum) + "-" + colNum).attr('src').indexOf("red.png") == -1) {
-          $('#'+(rowNum) + "-" + colNum).attr('src',"red.png");
+        if ($('#'+(rowNum) + "-" + colNum).attr('src').indexOf("/app/assets/images/red.png") == -1) {
+          $('#'+(rowNum) + "-" + colNum).attr('src',"/app/assets/images/red.png");
             ary.push($('#'+(rowNum) + "-" + colNum).id);
             ids.push($('#'+(rowNum) + "-" + colNum).title);
             HtmlAppend(ary,ids);
         } else {
-          $('#'+(rowNum) + "-" + colNum).attr('src',"white.png");
+          $('#'+(rowNum) + "-" + colNum).attr('src',"/app/assets/images/white.png");
             for (var i = 0; i < ary.length; i++) {
                 if (ary[i] == $('#'+(rowNum) + "-" + colNum).id) { ary[i] = ""; }
             }

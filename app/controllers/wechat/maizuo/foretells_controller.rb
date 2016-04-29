@@ -21,7 +21,8 @@ class Wechat::Maizuo::ForetellsController < ApplicationController
         if @foretells != nil 
         # 如果返回为nil，即本次查询失败，进入下一个循环
           @foretells.each do |ft|
-            sd = ft['showDate'].gsub(/-/,'')
+            # sd = ft['showDate'].gsub(/-/,'')
+            sd = ft['showDate']
             # 原来卖座的 showDate 是 YY-mm-dd 的格式，后来“－”去掉了
             ft['foretells'].each do |ftrow|
               f = Wechat::Maizuo::Foretell.new

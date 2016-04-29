@@ -13,7 +13,8 @@ html lang="en"
     = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
     = javascript_include_tag "application"
-
+    / 新加了一个 jquery 库文件，但没确定到底要不要用，目前座位图是画出来了，不过图片读取有点问题，待修复
+    / = javascript_include_tag "jquery-1.4.1"
 
   body
     .container
