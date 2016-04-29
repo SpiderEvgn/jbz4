@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'maizuoapi' => 'wechat/maizuo/cinemas#index'
+  # 卖座的 api 接口
 
   namespace :wechat do
 
@@ -7,12 +9,15 @@ Rails.application.routes.draw do
     get 'boards/jbz_cinema'   # 最外层中底部“影院”界面，显示所有影院
 
     namespace :maizuo do
-      get 'cinemas/index'
-      get 'films/index'
-      get 'cinematickets/index'
-      get 'foretells/index'
-      get 'hallseats/index'
-      get 'reviews/index'
+      get 'cinemas/getCinemaInfo'
+      get 'films/getFilmInfo'
+      get 'foretells/getMaizuoForetellInfo'
+      get 'foretells/getJbzForetellInfo'
+      get 'foretells/getJbzHotfilmInfo'
+      get 'reviews/getReviewInfo'
+
+      # get 'hallseats/index'  # 影厅信息实时获取，目前设计用不到这个api
+      # get 'cinematickets/index'  # 目前只负责订座票，暂且用不到票品信息
     end
 
     namespace :jbzlocal do

@@ -10,7 +10,6 @@ class Wechat::Maizuo::HallseatsController < ApplicationController
 
   private 
     def getHallseatInfo
-      # Wechat::Maizuo::Hallseat.destroy_all
       @cinemas = Wechat::Maizuo::Cinema.all
       @cinemas.each do |cinema|
         if cinema.hallId
@@ -45,13 +44,5 @@ class Wechat::Maizuo::HallseatsController < ApplicationController
       end
     # def getHallseatInfo
     end
-
-    # 应该用不到 strong params，因为数据不可本地改写
-    # def cinema_params
-    #   params.require(:cinema).permit(:cityId, :cityName, :cinemaId, :cinemaName,
-    #                                  :logo, :address, :region, :phone, :hallId,
-    #                                  :hallNames, :seatCounts, :vipflags, :ticketFlag,
-    #                                  :seatFlag, :busPath, :subway, :businessCircle,
-    #                                  :longitude, :latitude)
-    # end
+    
 end
