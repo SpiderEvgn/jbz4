@@ -11,7 +11,7 @@ class Wechat::Maizuo::Confirmorder < ActiveRecord::Base
   debug_output $stdout
   # default_timeout 5
 
-  def self.confirmOrder(orderId, ticketId, count, price, totalprice, mobile)
+  def self.confirmOrder(orderId, count, price, totalprice, mobile, orderType)
     # 3. 拉取影院票品
     client_id = ENV['JBZ4_MAIZUO_CLIENT_ID']  # 测试ID: 52642103681
     key = ENV['JBZ4_MAIZUO_KEY']  # 测试key: xkGEr244(((<HAee4346fg
@@ -22,12 +22,11 @@ class Wechat::Maizuo::Confirmorder < ActiveRecord::Base
                                                             orderId: "#{orderId}",
                                                             totalPrice: "#{totalprice}",
                                                             mobile: "#{mobile}",
-                                                            ticketId: "#{ticketId}",
                                                             price: "#{price}",
                                                             count: "#{count}",
                                                             sign: "#{sign_value}",
-                                                            timestamp: "#{timestamp}"
-                                                            # orderType: "#{orderType}"
+                                                            timestamp: "#{timestamp}",
+                                                            orderType: "#{orderType}"
                                                           })
     # 判断返回值是否正确
     # if response['result'] == 0 || response['result'] == "0"

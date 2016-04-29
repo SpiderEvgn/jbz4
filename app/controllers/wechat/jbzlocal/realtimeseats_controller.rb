@@ -7,8 +7,7 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
   end
 
   def index
-  	@seatresource = Wechat::Maizuo::Realtimeseat.getRealTimeSeats("1428929343").to_json
-  	
+  	@seatresource = Wechat::Maizuo::Realtimeseat.getRealTimeSeats("1053015060").to_json
   end
 
 end
