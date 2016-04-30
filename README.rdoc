@@ -8,27 +8,17 @@ Things you may want to cover:
 * Ruby version 
 2.2.3
 
-* System dependencies
-
-* Configuration
-
 * Database creation
 MySql2
 
-* Database initialization
+Configuration steps:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* Movies
-
-在本地设置连接商家所需的 client_id 和 key:
+1. 在本地设置连接商家所需的 client_id 和 key:
 export JBZ4_MAIZUO_CLIENT_ID=***
 export JBZ4_MAIZUO_KEY=***
 
+2. rake db:create / migrate
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+3. go to "/maizuoapi" to download data from Maizuo
+
+4. go to "/" start the program

@@ -1,11 +1,10 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<!-- <html xmlns="http://www.w3.org/1999/xhtml"> -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <html>
 <head>
     <title></title>
-     <!--  <script src="/app/assets/javascripts/jquery-1.4.1.js" type="text/javascript"></script> -->
-     <!--  <script src="/app/assets/javascripts/json.js" type="text/javascript"></script> -->
+    <!-- <script src="app/assets/javascripts/jquery-1.4.1.js" type="text/javascript"></script> -->
     <script type="text/javascript">
         var p1jsonStr='<%=j @seatresource%>';
         var p2jsonStr=p1jsonStr.replace(/&quot;/g, '"');
@@ -57,9 +56,9 @@
           var im = new Image();
             var temp = 0;
             if(islock==1){
-              im.src = "/app/assets/images/red.png";
+              im.src = "images/red.png";
             }else{
-              im.src = "/app/assets/images/white.png";
+              im.src = "images/white.png";
             }
             var row = Math.floor(i / y) + 1;
             var line = (i % y + 1) ;
@@ -75,24 +74,24 @@
         }).bind("click", function (e) {
 
             if(islock==1){
-                    if (this.src.indexOf("/app/assets/images/red.png") == -1) {
-                    this.src = "/app/assets/images/red.png";
+                    if (this.src.indexOf("images/red.png") == -1) {
+                    this.src = "images/red.png";
                     }
                 
                 }else{
-                    if (this.src.indexOf("/app/assets/images/red.png") == -1) {
+                    if (this.src.indexOf("images/red.png") == -1) {
                         if(count>4){
                             alert("最多选5个座位！");
                             return;
                         }
-                        this.src = "/app/assets/images/red.png";
+                        this.src = "images/red.png";
                         
                         ary.push(this.id);
                         ids.push(this.title);
                         HtmlAppend(ary,ids);
                         count++;
                     } else {
-                        this.src = "/app/assets/images/white.png";
+                        this.src = "images/white.png";
                         
                         for (var i = 0; i < ary.length; i++) {
                             if (ary[i] == this.id) { 
@@ -118,13 +117,13 @@
              }
           });
           
-        if ($('#'+(rowNum) + "-" + colNum).attr('src').indexOf("/app/assets/images/red.png") == -1) {
-          $('#'+(rowNum) + "-" + colNum).attr('src',"/app/assets/images/red.png");
+        if ($('#'+(rowNum) + "-" + colNum).attr('src').indexOf("images/red.png") == -1) {
+          $('#'+(rowNum) + "-" + colNum).attr('src',"images/red.png");
             ary.push($('#'+(rowNum) + "-" + colNum).id);
             ids.push($('#'+(rowNum) + "-" + colNum).title);
             HtmlAppend(ary,ids);
         } else {
-          $('#'+(rowNum) + "-" + colNum).attr('src',"/app/assets/images/white.png");
+          $('#'+(rowNum) + "-" + colNum).attr('src',"images/white.png");
             for (var i = 0; i < ary.length; i++) {
                 if (ary[i] == $('#'+(rowNum) + "-" + colNum).id) { ary[i] = ""; }
             }
