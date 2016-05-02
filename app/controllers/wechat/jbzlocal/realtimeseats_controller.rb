@@ -6,4 +6,8 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
     @seatresource = Wechat::Maizuo::Realtimeseat.getRealTimeSeats(params[:id]).to_json
   end
 
+  def create
+    # @seats.seatId.gsub(/ /,'|')
+  end
+
 end

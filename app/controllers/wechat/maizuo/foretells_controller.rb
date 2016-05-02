@@ -43,17 +43,9 @@ class Wechat::Maizuo::ForetellsController < ApplicationController
   # def getForetellInfo
   end
 
-  # 考虑将以下自动获取热映电影代码放入 jbzhotfilm 的 model 里面去，下次 commit
-  d1 = Time.new.strftime("%d")     # 当日的天数
-  d2 = (d1.to_i + 1).to_s          # 明日的天数
-  d3 = (d2.to_i + 1).to_s          # 后日的天数
-  D1 = String.new("2016-04-#{d1}") # 当天的日期
-  D2 = String.new("2016-04-#{d2}") # 明天的日期
-  D3 = String.new("2016-04-#{d3}") # 后天的日期（查最近三天的热映电影）
-  # 卖座改了日期的格式，没有－了,f***
-  # D1 = Time.new.strftime("%Y%m%d")
-  # D2 = (D1.to_i + 1).to_s
-  # D3 = (D2.to_i + 1).to_s
+  D1 = Time.now.to_s[0,10]             # 当天的日期
+  D2 = (Time.now + 86400).to_s[0,10]   # 明天的日期
+  D3 = (Time.now + 86400*2).to_s[0,10] # 后天的日期（查最近三天的热映电影）
 
   def getJbzForetellInfo
     # 优先级：2
