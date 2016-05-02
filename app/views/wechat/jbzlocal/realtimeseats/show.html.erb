@@ -47,7 +47,7 @@
             var maxRowNum=max(rowNumArr);
             var maxColNum=max(colNumArr);
             //根据最大行列画图
-            showXY(maxRowNum,maxColNum);
+            // showXY(maxRowNum,maxColNum);
             
         });
 
@@ -62,10 +62,10 @@
             }
             var row = Math.floor(i / y) + 1;
             var line = (i % y + 1) ;
-            im.id = (row) + "-" + line;
-            im.title=r+"-"+c;
+            im.id = row + "排" + line + "座";
+            im.title = r + "-" + c;
             dv.append(im);
-            temp = Math.floor((i % y) / 5) * 24            
+            temp = Math.floor((i % y) / 5) * 24
             var top = Math.floor(i / y) * 24 ;
             var left = Math.floor(i % y) * 24 ;
         $("#" + im.id).css({ 'position': 'absolute', 'left': (parseInt(left)+33) + 'px', 'top': (parseInt(top)+29) + 'px', 'width': 24, 'height': 20 });
@@ -125,7 +125,7 @@
         } else {
           $('#'+(rowNum) + "-" + colNum).attr('src',"white.png");
             for (var i = 0; i < ary.length; i++) {
-                if (ary[i] == $('#'+(rowNum) + "-" + colNum).id) { ary[i] = ""; }
+                if (ary[i] == $('#'+(rowNum) + "排" + colNum).id) { ary[i] = ""; }
             }
              for (var i = 0; i < ids.length; i++) {
                 if (ids[i] == $('#'+(rowNum) + "-" + colNum).title) { ids[i] = ""; }
@@ -173,14 +173,14 @@
        return max1;
      }
      //显示坐标
-     function showXY(row,col){
-       for(var i=0;i<row;i++){
-        $("#height").append('<div style="border-top:1px solid;height:23px;">'+(i+1)+'</div>');
-      }
-      for(var i=0;i<col;i++){
-        $("#width").append('<div style="border-left:1px solid;height:22px;width:23px;float:left;">'+(i+1)+'</div>');
-      }
-     }
+     // function showXY(row,col){
+     //   for(var i=0;i<row;i++){
+     //    $("#height").append('<div style="border-top:1px solid;height:23px;">'+(i+1)+'</div>');
+     //  }
+     //  for(var i=0;i<col;i++){
+     //    $("#width").append('<div style="border-left:1px solid;height:22px;width:23px;float:left;">'+(i+1)+'</div>');
+     //  }
+     // }
      
     </script>
 </head>
@@ -191,9 +191,9 @@
 </div>
 <div id="dv">
 </div>
-<input type="text" id='seatNo' style="width:300px;"/>
+<input type="text" id='seatNo' label= "座位" style="width:300px;"/>
 <%= simple_form_for :lock, url: wechat_jbzlocal_realtimeseats_path do |f| %>
-  <%= f.input :seatId, id: 'seatId', style: 'width:300px;' %>
+  <%= f.input :seatId, input_html: { id: 'seatId'}, input_html: { type: 'hidden'} %>
   <%= f.button :submit %>
 <% end %>
 <!-- <input type="text" id='seatId' style="width:300px;"/> -->
