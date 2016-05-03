@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :foretellfilms, only: [:show]  # 影院 －》 电影 －》 排期
       resources :foretellcinemas, only: [:show]  # 电影 －》 影院 －》 排期
       resources :realtimeseats, only: [:show, :create] # 座位图
+      resources :orders, only: [:show] # 确认订单
       
     end
 
