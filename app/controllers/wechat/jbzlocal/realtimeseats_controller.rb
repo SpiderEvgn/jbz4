@@ -15,14 +15,30 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
   end
 
   def create
-    
-    @seats = params[:seats]['seatId'].gsub(/ /, '|')
-    # @seats.gsub(/ /,'')
+    session[:seatNo] = params[:seats]['seatNo']
+    # 记录座位名称，以备之后确认订单使用
+    session[:mobile] = params[:seats]['mobile']
+    # 记录手机号，以备之后确认订单使用
+    @seats = params[:seats]['seatId'][0..-2].gsub(/ /, '|')
+    # 调整座位号的格式
+    session[:seatId] = @seats
+    # 记录座位Id，以备将来 unlock 座位用
+    @count = @seats.count('|') + 1
+    session[:count] = @count
+    # 计算座位数量
     @foretell = Wechat::Jbzlocal::Foretell.find_by_foretellId(session[:foretellId])
-
-    if Wechat::Maizuo::Lock.lockSeats("odNum0060", session[:foretellId], @seats, "1", @foretell.price, "13916247381")
+    # 取出选定的场次信息
+    time = Time.new.strftime("%Y%m%d%H%M")
+    keys = ""
+    4.times{
+      key = Random.rand(9).to_s
+      keys += key
+    }
+    @orderId = "jbz" + time + "SN" + keys
+    session[:orderId] = @orderId
+    if Wechat::Maizuo::Lock.lockSeats(@orderId, session[:foretellId], @seats, @count, @foretell.price, session[:mobile])
       # 座位锁定
-      redirect_to wechat_jbzlocal_order_url(@seats)
+      redirect_to wechat_jbzlocal_orders_url
     else
       redirect_to :back, notice: "锁座失败，请重新选择，谢谢！"
     end

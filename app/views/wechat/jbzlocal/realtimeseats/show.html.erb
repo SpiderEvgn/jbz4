@@ -63,7 +63,7 @@
             var row = Math.floor(i / y) + 1;
             var line = (i % y + 1) ;
             im.id = row + "排" + line + "座";
-            im.title = r + "-" + c;
+            im.title = r + ":" + c;
             dv.append(im);
             temp = Math.floor((i % y) / 5) * 24
             var top = Math.floor(i / y) * 24 ;
@@ -119,8 +119,8 @@
           
         if ($('#'+(rowNum) + "-" + colNum).attr('src').indexOf("red.png") == -1) {
           $('#'+(rowNum) + "-" + colNum).attr('src',"red.png");
-            ary.push($('#'+(rowNum) + "-" + colNum).id);
-            ids.push($('#'+(rowNum) + "-" + colNum).title);
+            ary.push($('#'+(rowNum) + ":" + colNum).id);
+            ids.push($('#'+(rowNum) + ":" + colNum).title);
             HtmlAppend(ary,ids);
         } else {
           $('#'+(rowNum) + "-" + colNum).attr('src',"white.png");
@@ -128,7 +128,7 @@
                 if (ary[i] == $('#'+(rowNum) + "排" + colNum).id) { ary[i] = ""; }
             }
              for (var i = 0; i < ids.length; i++) {
-                if (ids[i] == $('#'+(rowNum) + "-" + colNum).title) { ids[i] = ""; }
+                if (ids[i] == $('#'+(rowNum) + ":" + colNum).title) { ids[i] = ""; }
             }
             HtmlAppend(ary,ids);
         }
@@ -191,9 +191,11 @@
 </div>
 <div id="dv">
 </div>
-<input type="text" id='seatNo' label= "座位" style="width:300px;"/>
+<!-- <input type="text" id='seatNo' label= "座位" style="width:300px;" readonly="true"/> -->
 <%= simple_form_for :seats, url: wechat_jbzlocal_realtimeseats_path do |f| %>
-  <%= f.input :seatId, input_html: { id: 'seatId'} %>
+  <%= f.input :seatNo, input_html: { id: 'seatNo'}, readonly: true %>
+  <%= f.input :seatId, input_html: { id: 'seatId'}, readonly: true %>
+  <%= f.input :mobile %>
   <%= f.button :submit %>
 <% end %>
 <!-- <input type="text" id='seatId' style="width:300px;"/> -->

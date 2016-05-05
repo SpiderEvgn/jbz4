@@ -10,6 +10,7 @@ class Wechat::Jbzlocal::ForetellfilmsController < ApplicationController
     @jbzcinema = Wechat::Jbzlocal::Cinema.find_by_cinemaId(session[:cinemaId])
     # 页面中部显示当前选中的影片
     @jbzhotfilm = Wechat::Jbzlocal::Hotfilm.find_by_filmId(params[:id])
+    session[:filmId] = params[:id]
     # 影院在映影片中点击一部影片后，把该电影ID传过来，启用 show 来显示完整三天排期信息
     @Day1 = D1[5,5]
     @Day2 = D2[5,5]
