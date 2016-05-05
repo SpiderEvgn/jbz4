@@ -4,7 +4,17 @@ class Wechat::Maizuo::CinemasController < ApplicationController
   def index
     
   end
-
+ 
+  def delete
+    Wechat::Maizuo::Cinema.delete_all
+    Wechat::Maizuo::Film.delete_all
+    Wechat::Maizuo::Foretell.delete_all
+    Wechat::Maizuo::Review.delete_all
+    Wechat::Jbzlocal::Cinema.delete_all
+    Wechat::Jbzlocal::Hotfilm.delete_all
+    Wechat::Jbzlocal::Foretell.delete_all
+  end
+  
   def getCinemaInfo
     # Wechat::Maizuo::Cinema.delete_all
     # 这个 delete_all 包括 destroy_all 会导致以下接口无效，很奇怪

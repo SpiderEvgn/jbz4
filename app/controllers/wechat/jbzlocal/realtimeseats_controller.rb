@@ -15,7 +15,17 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
   end
 
   def create
-    # @seats.seatId.gsub(/ /,'|')
+    
+    @seats = params[:seats]['seatId'].gsub(/ /, '|')
+    # @seats.gsub(/ /,'')
+    @foretell = Wechat::Jbzlocal::Foretell.find_by_foretellId(session[:foretellId])
+
+    if Wechat::Maizuo::Lock.lockSeats("odNum0060", session[:foretellId], @seats, "1", @foretell.price, "13916247381")
+      # 座位锁定
+      redirect_to wechat_jbzlocal_order_url(@seats)
+    else
+      redirect_to :back, notice: "锁座失败，请重新选择，谢谢！"
+    end
   end
 
 end

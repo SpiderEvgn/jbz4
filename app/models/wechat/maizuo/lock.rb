@@ -29,11 +29,11 @@ class Wechat::Maizuo::Lock < ActiveRecord::Base
                                                     mobile: "#{mobile}"
                                                   })
     # 判断返回值是否正确
-    # if response['result'] == 0 || response['result'] == "0"
-    #   return "Successfully"
-    # else
-    #   return nil
-    # end
+    if response['result'] == 0 || response['result'] == "0"
+      return true
+    else
+      return false
+    end
 
   end
 
