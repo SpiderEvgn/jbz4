@@ -31,45 +31,46 @@
     .col-xs-12.col-sm-12
       - if @jbzforetells != nil
         - @jbzforetells.each do |foretell|
-          .row
-            .col-xs-4.col-sm-4
-              = link_to wechat_jbzlocal_foretellfilm_path(foretell.filmId) do
-                = image_tag(foretell.wechat_jbzlocal_hotfilm.picAddr, height: '150%', width: '110%')
-              br
-              p.pull-right
-                |评分:
-                '
-                |
-                = foretell.wechat_jbzlocal_hotfilm.grade
-            .col-xs-8.col-sm-8
-              p.filmname 
+          - if foretell.wechat_jbzlocal_hotfilm
+            .row
+              .col-xs-4.col-sm-4
                 = link_to wechat_jbzlocal_foretellfilm_path(foretell.filmId) do
-                  = foretell.wechat_jbzlocal_hotfilm.name
-              .filmdetails 
-                |类型:
-                '
-                |
-                = foretell.wechat_jbzlocal_hotfilm.filmType
+                  = image_tag(foretell.wechat_jbzlocal_hotfilm.picAddr, height: '150%', width: '110%')
                 br
-                |地区:
-                '
-                |
-                = foretell.wechat_jbzlocal_hotfilm.area
-                '
-                ||
-                '
-                |
-                = foretell.wechat_jbzlocal_hotfilm.language
-                br
-                |简介:
-                '
-                |
-                = foretell.wechat_jbzlocal_hotfilm.shortInfo
-                br
-                |导演:
-                '
-                |
-                = foretell.wechat_jbzlocal_hotfilm.director
+                p.pull-right
+                  |评分:
+                  '
+                  |
+                  = foretell.wechat_jbzlocal_hotfilm.grade
+              .col-xs-8.col-sm-8
+                p.filmname 
+                  = link_to wechat_jbzlocal_foretellfilm_path(foretell.filmId) do
+                    = foretell.wechat_jbzlocal_hotfilm.name
+                .filmdetails 
+                  |类型:
+                  '
+                  |
+                  = foretell.wechat_jbzlocal_hotfilm.filmType
+                  br
+                  |地区:
+                  '
+                  |
+                  = foretell.wechat_jbzlocal_hotfilm.area
+                  '
+                  ||
+                  '
+                  |
+                  = foretell.wechat_jbzlocal_hotfilm.language
+                  br
+                  |简介:
+                  '
+                  |
+                  = foretell.wechat_jbzlocal_hotfilm.shortInfo
+                  br
+                  |导演:
+                  '
+                  |
+                  = foretell.wechat_jbzlocal_hotfilm.director
           hr
       - else
         p 没有上映信息

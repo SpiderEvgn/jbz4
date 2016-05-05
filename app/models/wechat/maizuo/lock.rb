@@ -12,7 +12,7 @@ class Wechat::Maizuo::Lock < ActiveRecord::Base
   # default_timeout 5
 
   def self.lockSeats(orderId, foretellId, seatIds, count, price, mobile)
-    # 3. 拉取影院票品
+    # 6. 锁定座位
     client_id = ENV['JBZ4_MAIZUO_CLIENT_ID']  # 测试ID: 52642103681
     key = ENV['JBZ4_MAIZUO_KEY']  # 测试key: xkGEr244(((<HAee4346fg
     time = Time.new
@@ -38,7 +38,7 @@ class Wechat::Maizuo::Lock < ActiveRecord::Base
   end
 
   def self.unlockSeats(orderId)
-    # 3. 拉取影院票品
+    # 7. 取消锁定的座位
     client_id = ENV['JBZ4_MAIZUO_CLIENT_ID']  # 测试ID: 52642103681
     key = ENV['JBZ4_MAIZUO_KEY']  # 测试key: xkGEr244(((<HAee4346fg
     time = Time.new

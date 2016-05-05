@@ -9,6 +9,7 @@ class Wechat::Jbzlocal::OrdersController < ApplicationController
     @mobile = session[:mobile]
     @seatNo = session[:seatNo]
     @price = @foretell.price
+    session[:price] = @price
     @totalprice = @price.to_i * session[:count]
     session[:totalprice] = @totalprice
   end
@@ -17,10 +18,9 @@ class Wechat::Jbzlocal::OrdersController < ApplicationController
 
     if @response = Wechat::Maizuo::Confirmorder.confirmOrder(params[:id], 
                                                              session[:count], 
-                                                             session[:price], 
-                                                             session[:totalprice], 
+                                                             session[:price],
+                                                             session[:totalprice],
                                                              session[:mobile])
-      
     else
       redirect_to :back, notice: "下单失败，请再次确认，谢谢！"
     end
