@@ -5,12 +5,7 @@ class Wechat::BoardsController < ApplicationController
     session[:cinemaId] = nil
     session[:filmId] = nil
     session[:foretellId] = nil
-    session[:seatNo] = nil
-    session[:mobile] = nil
-    session[:count] = nil
     session[:orderId] = nil
-    session[:price] = nil
-    session[:totalprice] = nil
     @films = Wechat::Jbzlocal::Hotfilm.all
   end
 
@@ -22,12 +17,7 @@ class Wechat::BoardsController < ApplicationController
     session[:cinemaId] = nil
     session[:filmId] = nil
     session[:foretellId] = nil
-    session[:seatNo] = nil
-    session[:mobile] = nil
-    session[:count] = nil
     session[:orderId] = nil
-    session[:price] = nil
-    session[:totalprice] = nil
     @cinemas = Wechat::Jbzlocal::Cinema.all.paginate(:page => params[:page], :per_page => 30)
   end
 

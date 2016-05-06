@@ -125,19 +125,18 @@ ActiveRecord::Schema.define(version: 20160427125933) do
   end
 
   create_table "wechat_maizuo_confirmorders", force: :cascade do |t|
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "orderId",           limit: 255
     t.string   "offerId",           limit: 255
     t.string   "confirmId",         limit: 255
     t.string   "offerOrderId",      limit: 255
     t.string   "thirdConfirmId",    limit: 255
     t.string   "takeTicketPostion", limit: 255
-    t.string   "smsTemplate",       limit: 255
-    t.string   "effectDate",        limit: 255
-    t.string   "invalidationDate",  limit: 255
+    t.text     "smTemplate",        limit: 65535
     t.string   "isCheckGround",     limit: 255
     t.string   "seatType",          limit: 255
+    t.string   "mobile",            limit: 255
   end
 
   create_table "wechat_maizuo_films", force: :cascade do |t|
@@ -207,9 +206,8 @@ ActiveRecord::Schema.define(version: 20160427125933) do
     t.string   "seatId",     limit: 255
     t.string   "count",      limit: 255
     t.string   "price",      limit: 255
-    t.string   "timestamp",  limit: 255
+    t.string   "totalprice", limit: 255
     t.string   "mobile",     limit: 255
-    t.string   "result",     limit: 255
   end
 
   create_table "wechat_maizuo_realtimeseats", force: :cascade do |t|

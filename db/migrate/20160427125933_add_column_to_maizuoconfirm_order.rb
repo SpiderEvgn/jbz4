@@ -6,10 +6,9 @@ class AddColumnToMaizuoconfirmOrder < ActiveRecord::Migration
     add_column :wechat_maizuo_confirmorders, :offerOrderId, :string
     add_column :wechat_maizuo_confirmorders, :thirdConfirmId, :string
     add_column :wechat_maizuo_confirmorders, :takeTicketPostion, :string
-    add_column :wechat_maizuo_confirmorders, :smsTemplate, :string
-    add_column :wechat_maizuo_confirmorders, :effectDate, :string
-    add_column :wechat_maizuo_confirmorders, :invalidationDate, :string
+    add_column :wechat_maizuo_confirmorders, :smTemplate, :text
     add_column :wechat_maizuo_confirmorders, :isCheckGround, :string
     add_column :wechat_maizuo_confirmorders, :seatType, :string
+    add_column :wechat_maizuo_confirmorders, :mobile, :string
   end
 end

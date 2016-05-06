@@ -4,23 +4,32 @@ class Wechat::Jbzlocal::OrdersController < ApplicationController
   def index
     @jbzcinema = Wechat::Jbzlocal::Cinema.find_by_cinemaId(session[:cinemaId])
     @jbzhotfilm = Wechat::Jbzlocal::Hotfilm.find_by_filmId(session[:filmId])
-    @foretell = Wechat::Jbzlocal::Foretell.find_by_foretellId(session[:foretellId])
-    @orderId = session[:orderId]
-    @mobile = session[:mobile]
-    @seatNo = session[:seatNo]
-    @price = @foretell.price
-    session[:price] = @price
-    @totalprice = @price.to_i * session[:count]
-    session[:totalprice] = @totalprice
+    @lock = Wechat::Maizuo::Lock.find_by_orderId(session[:orderId])
   end
 
   def show
+    @lock = Wechat::Maizuo::Lock.find_by_orderId(params[:id])
+    if response = Wechat::Maizuo::Confirmorder.confirmOrder(@lock.orderId, 
+                                                            @lock.count, 
+                                                            @lock.price,
+                                                            @lock.totalprice,
+                                                            @lock.mobile)
+      order = Wechat::Maizuo::Confirmorder.new
+      order.orderId = @lock.orderId
+      order.offerId = response['offerId']
+      order.confirmId = response['confirmId']
+      order.offerOrderId = response['offerOrderId']
+      order.thirdConfirmId = response['thirdConfirmId']
+      order.takeTicketPostion = response['takeTicketPostion']
+      order.smTemplate = response['smTemplate']
+      order.isCheckGround = response['isCheckGround']
+      order.seatType = response['seatType']
+      order.mobile = @lock.mobile
 
-    if @response = Wechat::Maizuo::Confirmorder.confirmOrder(params[:id], 
-                                                             session[:count], 
-                                                             session[:price],
-                                                             session[:totalprice],
-                                                             session[:mobile])
+      order.save
+      # 以后会做 orderId 的查重，做 save 的判断，防止用户重复确认订单
+
+      @order = Wechat::Maizuo::Confirmorder.find_by_orderId(params[:id])
     else
       redirect_to :back, notice: "下单失败，请再次确认，谢谢！"
     end

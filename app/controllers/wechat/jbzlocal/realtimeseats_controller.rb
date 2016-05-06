@@ -15,19 +15,7 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
   end
 
   def create
-    session[:seatNo] = params[:seats]['seatNo']
-    # 记录座位名称，以备之后确认订单使用
-    session[:mobile] = params[:seats]['mobile']
-    # 记录手机号，以备之后确认订单使用
-    @seats = params[:seats]['seatId'][0..-2].gsub(/ /, '|')
-    # 调整座位号的格式
-    session[:seatId] = @seats
-    # 记录座位Id，以备将来 unlock 座位用
-    @count = @seats.count('|') + 1
-    session[:count] = @count
-    # 计算座位数量
-    @foretell = Wechat::Jbzlocal::Foretell.find_by_foretellId(session[:foretellId])
-    # 取出选定的场次信息
+    # 生成jbz订单号
     time = Time.new.strftime("%Y%m%d%H%M")
     keys = ""
     4.times{
@@ -35,13 +23,31 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
       keys += key
     }
     @orderId = "jbz" + time + "SN" + keys
-    session[:orderId] = @orderId
-    if Wechat::Maizuo::Lock.lockSeats(@orderId, session[:foretellId], @seats, @count, @foretell.price, session[:mobile])
-      # 座位锁定
+    # 调整座位号的格式
+    @seats = params[:seats]['seatId'][0..-2].gsub(/ /, '|')
+    # 计算座位数量
+    @count = @seats.count('|') + 1
+    # 取出选定的场次信息
+    @foretell = Wechat::Jbzlocal::Foretell.find_by_foretellId(session[:foretellId])
+    # 判断锁座结果
+    if Wechat::Maizuo::Lock.lockSeats(@orderId, session[:foretellId], @seats, @count, @foretell.price, params[:seats]['mobile'])
+      session[:orderId] = @orderId
+      lock = Wechat::Maizuo::Lock.new
+      lock.orderId = @orderId
+      lock.foretellId = session[:foretellId]
+      lock.seatId = params[:seats]['seatNo'] # 这个 seatId是座位名，不是和卖座交互的座位ID
+      lock.count = @count
+      lock.price = @foretell.price
+      lock.totalprice = @foretell.price.to_i * @count
+      lock.mobile = params[:seats]['mobile']
+      lock.save
+
       redirect_to wechat_jbzlocal_orders_url
+      # 这个有问题，要把 orderID 传过去才可以！
     else
       redirect_to :back, notice: "锁座失败，请重新选择，谢谢！"
     end
+
   end
 
 end

@@ -55,7 +55,16 @@ class Wechat::Maizuo::Lock < ActiveRecord::Base
     # else
     #   return nil
     # end
-
   end
+    
+# t.string   "orderId",    limit: 255 # 订单号，jbz自己设计生成
+# t.string   "foretellId", limit: 255 # 排期ID
+# t.string   "seatId",     limit: 255 # 座位ID
+# t.string   "count",      limit: 255 # 座位数
+# t.string   "price",      limit: 255 # 单价
+# t.string   "totalprice", limit: 255 # 总价
+# t.string   "mobile",     limit: 255 # 手机号
+
+
 
 end
