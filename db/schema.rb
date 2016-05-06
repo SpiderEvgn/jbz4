@@ -208,6 +208,7 @@ ActiveRecord::Schema.define(version: 20160427125933) do
     t.string   "price",      limit: 255
     t.string   "totalprice", limit: 255
     t.string   "mobile",     limit: 255
+    t.string   "isOrder",    limit: 255
   end
 
   create_table "wechat_maizuo_realtimeseats", force: :cascade do |t|

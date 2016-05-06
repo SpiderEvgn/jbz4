@@ -55,15 +55,27 @@
         |单价:
         '
         |
-        = @lock.price
+        = @lock.price.to_i / 100
+        '
+        |元
       p 
         |总价:
         '
         |
-        = @lock.totalprice
+        = @lock.totalprice.to_i / 100
+        '
+        |元
       br
-      = link_to wechat_jbzlocal_order_path(@lock.orderId), class: "btn btn-info" do
+      = link_to wechat_jbzlocal_order_path(@lock.orderId), class: "btn btn-success" do
         |确定订单
+      '
+      |
+      = link_to wechat_jbzlocal_realtimeseat_path(session[:foretellId]), class: "btn btn-warning" do
+        |重新选座
+      '
+      |
+      = link_to wechat_boards_jbz_hotfilm_path, class: "btn btn-danger" do
+        |取消订单
 
 
 

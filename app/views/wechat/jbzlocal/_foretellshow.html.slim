@@ -78,7 +78,9 @@
                       = jbzforetell_D1.hallName
                 .col-xs-2.col-sm-2
                   h4
-                    = jbzforetell_D1.price
+                    = jbzforetell_D1.price.to_i / 100
+                    '
+                    |元
                 .col-xs-3.col-sm-3
                   = link_to wechat_jbzlocal_realtimeseat_path(jbzforetell_D1.foretellId), class: "btn btn-info" do
                     |购票
@@ -114,7 +116,9 @@
                       = jbzforetell_D2.hallName
                 .col-xs-2.col-sm-2
                   h4
-                    = jbzforetell_D2.price
+                    = jbzforetell_D2.price.to_i / 100
+                    '
+                    |元
                 .col-xs-3.col-sm-3
                   = link_to wechat_jbzlocal_realtimeseat_path(jbzforetell_D2.foretellId), class: "btn btn-info" do
                     |购票
@@ -150,7 +154,9 @@
                       = jbzforetell_D3.hallName
                 .col-xs-2.col-sm-2
                   h4
-                    = jbzforetell_D3.price
+                    = jbzforetell_D3.price.to_i / 100
+                    '
+                    |元
                 .col-xs-3.col-sm-3
                   = link_to wechat_jbzlocal_realtimeseat_path(jbzforetell_D3.foretellId), class: "btn btn-info" do
                     |购票

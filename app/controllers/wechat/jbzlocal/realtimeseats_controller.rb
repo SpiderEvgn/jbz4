@@ -2,6 +2,13 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
   layout 'wechat'
 
   def show
+    # 判定是否座位锁但未确认订单的，如果是则解锁座位
+    if @lock = Wechat::Maizuo::Lock.find_by_foretellId(params[:id])
+      if @lock.isOrder == nil
+        Wechat::Maizuo::Lock.unlockSeats(@lock.orderId)
+      end
+    end
+
     # 把 foretellId 传进来，调用 realTimeSeat 接口获取实时座位 JSON
     response = Wechat::Maizuo::Realtimeseat.getRealTimeSeats(params[:id])
 
@@ -45,7 +52,7 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
       redirect_to wechat_jbzlocal_orders_url
       # 这个有问题，要把 orderID 传过去才可以！
     else
-      redirect_to :back, notice: "锁座失败，请重新选择，谢谢！"
+      redirect_to :back, notice: "选座失败，请重新选择，谢谢！"
     end
 
   end

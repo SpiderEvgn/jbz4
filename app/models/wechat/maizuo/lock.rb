@@ -50,11 +50,11 @@ class Wechat::Maizuo::Lock < ActiveRecord::Base
                                                       timestamp: "#{timestamp}"
                                                     })
     # 判断返回值是否正确
-    # if response['result'] == 0 || response['result'] == "0"
-    #   return true
-    # else
-    #   return nil
-    # end
+    if response['result'] == 0 || response['result'] == "0"
+      return true
+    else
+      return nil
+    end
   end
     
 # t.string   "orderId",    limit: 255 # 订单号，jbz自己设计生成
