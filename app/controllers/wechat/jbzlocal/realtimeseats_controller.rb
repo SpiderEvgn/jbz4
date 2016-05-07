@@ -3,7 +3,7 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
 
   def show
     # 判定是否座位锁但未确认订单的，如果是则解锁座位
-    if @lock = Wechat::Maizuo::Lock.find_by_foretellId(params[:id])
+    if @lock = Wechat::Maizuo::Lock.find_by_orderId(session[:orderId])
       if @lock.isOrder == nil
         Wechat::Maizuo::Lock.unlockSeats(@lock.orderId)
       end

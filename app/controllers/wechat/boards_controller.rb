@@ -3,8 +3,8 @@ class Wechat::BoardsController < ApplicationController
 
   def jbz_hotfilm
     # 判定是否座位锁但未确认订单的，如果是则解锁座位
-    if @lock = Wechat::Maizuo::Lock.find_by_foretellId(session[:foretellId])
-      if @lock.isOrder != "Y"
+    if @lock = Wechat::Maizuo::Lock.find_by_orderId(session[:orderId])
+      if @lock.isOrder == nil
         Wechat::Maizuo::Lock.unlockSeats(@lock.orderId)
       end
     end
@@ -21,8 +21,8 @@ class Wechat::BoardsController < ApplicationController
 
   def jbz_cinema
     # 判定是否座位锁但未确认订单的，如果是则解锁座位
-    if @lock = Wechat::Maizuo::Lock.find_by_foretellId(session[:foretellId])
-      if @lock.isOrder != "Y"
+    if @lock = Wechat::Maizuo::Lock.find_by_orderId(session[:orderId])
+      if @lock.isOrder == nil
         Wechat::Maizuo::Lock.unlockSeats(@lock.orderId)
       end
     end
