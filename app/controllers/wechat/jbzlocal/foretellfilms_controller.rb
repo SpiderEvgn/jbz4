@@ -18,6 +18,8 @@ class Wechat::Jbzlocal::ForetellfilmsController < ApplicationController
     @jbzforetells_D1 = Wechat::Jbzlocal::Foretell.where(cinemaId: session[:cinemaId], filmId: params[:id], showDate: "#{D1}").order("showTime").all
     @jbzforetells_D2 = Wechat::Jbzlocal::Foretell.where(cinemaId: session[:cinemaId], filmId: params[:id], showDate: "#{D2}").order("showTime").all
     @jbzforetells_D3 = Wechat::Jbzlocal::Foretell.where(cinemaId: session[:cinemaId], filmId: params[:id], showDate: "#{D3}").order("showTime").all
+    # 取出当前时间，和 showTime 比较
+    @timeNow = Time.new.strftime("%H%M")
   end
-    
+
 end

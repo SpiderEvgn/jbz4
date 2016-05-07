@@ -29,11 +29,6 @@ class Wechat::Jbzlocal::OrdersController < ApplicationController
       order.save
       # 订单确认后，将该订单对应的 lock 记录 isOrder 字段更新为 Y
       @lock.update(isOrder:"Y")
-      
-      session[:cinemaId] = nil
-      session[:filmId] = nil
-      session[:foretellId] = nil
-      session[:orderId] = nil
 
       @order = Wechat::Maizuo::Confirmorder.find_by_orderId(params[:id])
     else

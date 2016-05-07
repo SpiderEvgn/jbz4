@@ -25,7 +25,7 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
     # 生成jbz订单号
     time = Time.new.strftime("%Y%m%d%H%M")
     keys = ""
-    4.times{
+    5.times{
       key = Random.rand(9).to_s
       keys += key
     }
@@ -50,7 +50,6 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
       lock.save
 
       redirect_to wechat_jbzlocal_orders_url
-      # 这个有问题，要把 orderID 传过去才可以！
     else
       redirect_to :back, notice: "选座失败，请重新选择，谢谢！"
     end

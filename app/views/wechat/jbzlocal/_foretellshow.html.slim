@@ -54,37 +54,39 @@
           br
           - if @jbzforetells_D1.first
             - @jbzforetells_D1.each do |jbzforetell_D1|
-              .row
-                .col-xs-7.col-sm-7
-                  .row
-                    .col-xs-5.col-sm-5
-                      h3
-                        = jbzforetell_D1.showTime
-                    .col-xs-5.col-sm-5
-                      = jbzforetell_D1.language
+              / 只显示排在当前时间之后的场次，过时的场次是无效的
+              - if jbzforetell_D1.showTime > @timeNow
+                .row
+                  .col-xs-7.col-sm-7
+                    .row
+                      .col-xs-5.col-sm-5
+                        h3
+                          = jbzforetell_D1.showTime
+                      .col-xs-5.col-sm-5
+                        = jbzforetell_D1.language
+                        '
+                        ||
+                        '
+                        = jbzforetell_D1.dimensional
+                    .row
+                      .col-xs-5.col-sm-5
+                        |时长
+                        '
+                        |
+                        = jbzforetell_D1.duration
+                        '
+                        |分
+                      .col-xs-5.col-sm-5
+                        = jbzforetell_D1.hallName
+                  .col-xs-2.col-sm-2
+                    h4
+                      = jbzforetell_D1.price.to_i / 100
                       '
-                      ||
-                      '
-                      = jbzforetell_D1.dimensional
-                  .row
-                    .col-xs-5.col-sm-5
-                      |时长
-                      '
-                      |
-                      = jbzforetell_D1.duration
-                      '
-                      |分
-                    .col-xs-5.col-sm-5
-                      = jbzforetell_D1.hallName
-                .col-xs-2.col-sm-2
-                  h4
-                    = jbzforetell_D1.price.to_i / 100
-                    '
-                    |元
-                .col-xs-3.col-sm-3
-                  = link_to wechat_jbzlocal_realtimeseat_path(jbzforetell_D1.foretellId), class: "btn btn-info" do
-                    |购票
-              hr
+                      |元
+                  .col-xs-3.col-sm-3
+                    = link_to wechat_jbzlocal_realtimeseat_path(jbzforetell_D1.foretellId), class: "btn btn-info" do
+                      |购票
+                hr
           - else
             p 当日无排期
 
