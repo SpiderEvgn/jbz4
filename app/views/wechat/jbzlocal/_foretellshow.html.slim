@@ -52,12 +52,14 @@
       .tab-content
         .tab-pane.active id="D1" role="tabpanel"
           br
+          - check = 0
           - if @jbzforetells_D1.first
             - @jbzforetells_D1.each do |jbzforetell_D1|
               / 只显示排在当前时间之后的场次，过时的场次是无效的
               - if jbzforetell_D1.showTime > @timeNow
+                - check = 1
                 .row
-                  .col-xs-7.col-sm-7
+                  .col-xs-6.col-sm-6
                     .row
                       .col-xs-5.col-sm-5
                         h3
@@ -78,7 +80,7 @@
                         |分
                       .col-xs-5.col-sm-5
                         = jbzforetell_D1.hallName
-                  .col-xs-2.col-sm-2
+                  .col-xs-3.col-sm-3
                     h4
                       = jbzforetell_D1.price.to_i / 100
                       '
@@ -87,6 +89,8 @@
                     = link_to wechat_jbzlocal_realtimeseat_path(jbzforetell_D1.foretellId), class: "btn btn-info" do
                       |购票
                 hr
+            - if check == 0
+              p 今天所有场次已结束
           - else
             p 当日无排期
 
@@ -95,7 +99,7 @@
           - if @jbzforetells_D2.first
             - @jbzforetells_D2.each do |jbzforetell_D2|
               .row
-                .col-xs-7.col-sm-7
+                .col-xs-6.col-sm-6
                   .row
                     .col-xs-5.col-sm-5
                       h3
@@ -116,7 +120,7 @@
                       |分
                     .col-xs-5.col-sm-5
                       = jbzforetell_D2.hallName
-                .col-xs-2.col-sm-2
+                .col-xs-3.col-sm-3
                   h4
                     = jbzforetell_D2.price.to_i / 100
                     '
@@ -133,7 +137,7 @@
           - if @jbzforetells_D3.first
             - @jbzforetells_D3.each do |jbzforetell_D3|
               .row
-                .col-xs-7.col-sm-7
+                .col-xs-6.col-sm-6
                   .row
                     .col-xs-5.col-sm-5
                       h3
@@ -154,7 +158,7 @@
                       |分
                     .col-xs-5.col-sm-5
                       = jbzforetell_D3.hallName
-                .col-xs-2.col-sm-2
+                .col-xs-3.col-sm-3
                   h4
                     = jbzforetell_D3.price.to_i / 100
                     '
