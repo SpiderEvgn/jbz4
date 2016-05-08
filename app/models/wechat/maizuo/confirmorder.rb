@@ -1,5 +1,6 @@
 class Wechat::Maizuo::Confirmorder < ActiveRecord::Base
   include HTTParty
+  require 'chilkat'
 
   # 测试地址需要改变地址 /etc/hosts:  115.29.236.48  open.maizuo.com
   base_uri "http://open.maizuo.com"
@@ -10,6 +11,31 @@ class Wechat::Maizuo::Confirmorder < ActiveRecord::Base
   # debug_output 用来在 console 输出 api 调用过程
   debug_output $stdout
   # default_timeout 5
+
+  # 3DES 解密
+  def self.decryptMode(decryptData)
+    #新建一个加密算法
+    crypt = Chilkat::CkCrypt2.new()
+    #试用
+    success = crypt.UnlockComponent("ucfrnu.CB10517_DqNzQepHN69y")
+    if (success != true)
+        print crypt.lastErrorText() + "\n";
+        exit
+    end
+    #算法3DES，工作模式CBC，填充模式PKCS5Padding(NoPadding)，向量iv
+    #CBC工作模式下，同样的密钥，同样的明文，使用不同的向量iv加密 会生成不同的密文
+    crypt.put_CryptAlgorithm("3des")
+    crypt.put_CipherMode("cbc")
+    crypt.put_KeyLength(192)
+    crypt.put_PaddingScheme(0)
+    crypt.put_EncodingMode("hex")
+    ivHex = "\0\0\0\0\0\0\0\0"
+    crypt.SetEncodedIV(ivHex,"hex")
+    keyHex = "5E2579752835343535393926265E5E6C3434353500000000"  # 测试用，通过java手动转来的
+    crypt.SetEncodedKey(keyHex,"hex")
+    #解密，返回加密的值
+    decStr = crypt.decryptStringENC(decryptData)
+  end
 
   def self.confirmOrder(orderId, count, price, totalprice, mobile)
     # 3. 拉取影院票品
@@ -27,8 +53,11 @@ class Wechat::Maizuo::Confirmorder < ActiveRecord::Base
                                                             sign: "#{sign_value}",
                                                             timestamp: "#{timestamp}",
                                                             orderType: "2"
-                                                            # 只允许电子票，即选座才能购票
+                                                            # 目前我们只接受订座票，即选座才能购票
                                                           })
+    response['data']['confirmId'] = Wechat::Maizuo::Confirmorder.decryptMode(response['data']['confirmId'])
+    response['data']['offerOrderId'] = Wechat::Maizuo::Confirmorder.decryptMode(response['data']['offerOrderId'])
+
     # 判断返回值是否正确
     if response['result'] == 0 || response['result'] == "0"
       return response['data']

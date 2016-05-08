@@ -41,6 +41,7 @@ gem 'will_paginate-bootstrap'
 gem 'simple_form'
 
 gem 'chilkat'
+# 加密解密的 gem 包
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
