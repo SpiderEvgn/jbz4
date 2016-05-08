@@ -2,44 +2,47 @@
 .container-fluid
   / 界面的上半部分，展示影片详细信息
   .row
+    br
     .col-xs-4.col-sm-4
-      = image_tag(@jbzhotfilm.picAddr, height: '50%', width: '80%')
+      = image_tag @jbzhotfilm.picAddr, width: '100%', class: 'thumbnail slim-bottom-margin'
     .col-xs-8.col-sm-8
-      h1.filmname 
+      h5.text-primary
         = @jbzhotfilm.name
-      br
+      hr
       .filmdetails
-        |类型:
-        '
-        |
-        = @jbzhotfilm.filmType
+        |类型: 
+        = divide_text @jbzhotfilm.filmType
         br
-        |地区:
-        '
-        |
+        |地区: 
         = @jbzhotfilm.area
-        '
+        ' 
         ||
-        '
-        |
+        ' 
         = @jbzhotfilm.language
   hr
   / 上层的影院信息将来放到 fixed-top 里面，不会随着下面的信息拖动
 .container-fluid
   / 影院列表
   .row
-    .col-xs-12.col-sm-12
+    .col-xs-12.col-sm-12.cenima
       - @jbzforetells.each do |foretell|
-        .row
-          .col-xs-12.col-sm-12
-            h4.filmname 
-              = link_to wechat_jbzlocal_foretellcinema_path(foretell.cinemaId) do
-                = foretell.wechat_jbzlocal_cinema.cinemaName
-              |（
-              = foretell.wechat_jbzlocal_cinema.cityName
-              |）
-            .filmdetails
-              = foretell.wechat_jbzlocal_cinema.address
-              br
-              = foretell.wechat_jbzlocal_cinema.phone
-        hr
+        h6
+          span.alert.alert-info style="padding: 0px 4px;"
+            = foretell.wechat_jbzlocal_cinema.cityName
+          ' 
+          = link_to wechat_jbzlocal_foretellcinema_path(foretell.cinemaId) do
+            = foretell.wechat_jbzlocal_cinema.cinemaName
+          
+          = link_to wechat_jbzlocal_foretellcinema_path(foretell.cinemaId), class: "btn btn-sm btn-warning pull-right" do
+            = fa_icon 'video-camera'
+            ' 
+            |选这家
+        p 
+          = fa_icon 'taxi fw'
+          ' 
+          = foretell.wechat_jbzlocal_cinema.address
+        p
+          = fa_icon 'phone fw'
+          ' 
+          = foretell.wechat_jbzlocal_cinema.phone
+        hr style="margin: 2px 0px;"
