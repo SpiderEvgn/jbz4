@@ -53,6 +53,7 @@
         .tab-pane.active id="D1" role="tabpanel"
           br
           - check = 0
+          / 今日过时场次的标记
           - if @jbzforetells_D1.first
             - @jbzforetells_D1.each do |jbzforetell_D1|
               / 只显示排在当前时间之后的场次，过时的场次是无效的
