@@ -15,6 +15,8 @@ class Wechat::Maizuo::Cinema < ActiveRecord::Base
     # 1. 拉取城市和影院列表
     client_id = ENV['JBZ4_MAIZUO_CLIENT_ID']  # 测试ID: 52642103681
     key = ENV['JBZ4_MAIZUO_KEY']  # 测试key: xkGEr244(((<HAee4346fg
+    # 可以copy下列命令。以下为测试的id与key。
+    # export JBZ4_MAIZUO_CLIENT_ID=52642103681 export JBZ4_MAIZUO_KEY='xkGEr244(((<HAee4346fg'
     time = Time.new
     timestamp = time.strftime("%Y%m%d%H%M%S")
     sign_value = Digest::MD5.hexdigest("client_id=#{client_id}&timestamp=#{timestamp}&key=#{key}")
