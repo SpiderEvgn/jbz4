@@ -1,6 +1,8 @@
 class Wechat::Maizuo::Lock < ActiveRecord::Base
   include HTTParty
 
+  # validates_presence_of :mobile, length: { is: 11 }
+  validates :mobile, presence: true, length: { is: 11 }
   # 测试地址需要改变地址 /etc/hosts:  115.29.236.48  open.maizuo.com
   base_uri "http://open.maizuo.com"
   

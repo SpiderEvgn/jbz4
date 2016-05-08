@@ -47,9 +47,12 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
       lock.price = @foretell.price
       lock.totalprice = @foretell.price.to_i * @count
       lock.mobile = params[:seats]['mobile']
-      lock.save
-
-      redirect_to wechat_jbzlocal_orders_url
+      if lock.save
+        redirect_to wechat_jbzlocal_orders_url
+      else
+        Wechat::Maizuo::Lock.unlockSeats(@orderId)
+        redirect_to :back, notice: "手机号不正确，请重新输入，谢谢！"
+      end
     else
       redirect_to :back, notice: "选座失败，请重新选择，谢谢！"
     end

@@ -45,6 +45,9 @@ gem 'font-awesome-rails'
 gem 'will_paginate-bootstrap'
 gem 'simple_form'
 
+# 加密解密的gem包
+gem 'chilkat'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

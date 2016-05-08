@@ -17,8 +17,10 @@ Configuration steps:
 export JBZ4_MAIZUO_CLIENT_ID=***
 export JBZ4_MAIZUO_KEY=***
 
-2. rake db:create / migrate
+2. 测试地址需要改变地址 /etc/hosts:  115.29.236.48  open.maizuo.com
 
-3. go to "/maizuoapi" to download data from Maizuo
+3. rake db:create / migrate
 
-4. go to "/" start the program
+4. go to "/maizuoapi" to download data from Maizuo
+
+5. go to "/" start the program
