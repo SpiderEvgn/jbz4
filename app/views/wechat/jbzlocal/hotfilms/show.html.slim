@@ -64,11 +64,12 @@
             h4.panel-title
               a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
                 Collapsible
-                  = fa_icon 'users', class: 'fa-fx'
-                  ' 
-                  |演职员表
-                  span.pull-right
-                    = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
+                  .block
+                    = fa_icon 'users', class: 'fa-fx'
+                    ' 
+                    |演职员表
+                    span.pull-right
+                      = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
           #collapseOne.panel-collapse.collapse role="tabpanel" aria-labelledby="headingOne"
             .panel-body.wechat-small = divide_text @jbzhotfilm.actors
         / 滑块二
@@ -77,11 +78,12 @@
             h4.panel-title
               a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
                 Collapsible
-                  = fa_icon 'newspaper-o', class: 'fa-fw'
-                  ' 
-                  |内容简介
-                  span.pull-right
-                    = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
+                  .block
+                    = fa_icon 'newspaper-o', class: 'fa-fw'
+                    ' 
+                    |内容简介
+                    span.pull-right
+                      = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
           #collapseTwo.panel-collapse.collapse role="tabpanel" aria-labelledby="headingTwo"
             .panel-body.wechat-small = @jbzhotfilm.info
         / 滑块三
@@ -90,11 +92,12 @@
             h4.panel-title
               a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
                 Collapsible
-                  = fa_icon 'comments', class: 'fa-fw'
-                  ' 
-                  |更多评论
-                  span.pull-right
-                      = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
+                  .block
+                    = fa_icon 'comments', class: 'fa-fw'
+                    ' 
+                    |更多评论
+                    span.pull-right
+                        = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
           #collapseThree.panel-collapse.collapse role="tabpanel" aria-labelledby="headingThree"
             .panel-body
               p
