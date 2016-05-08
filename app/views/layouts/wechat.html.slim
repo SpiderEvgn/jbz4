@@ -16,7 +16,7 @@ html lang="en"
     / 新加了一个 jquery 库文件，但没确定到底要不要用，目前座位图是画出来了，不过图片读取有点问题，待修复
     / = javascript_include_tag "jquery-1.4.1"
 
-  body
+  body style="margin-bottom: 50px;"
     .container
       .row
         .col-xs-12.col-sm-12
@@ -35,18 +35,18 @@ html lang="en"
   .navbar.navbar-default.navbar-fixed-bottom
     .container
       .row
-        .col-xs-4.col-sm-4
-          = link_to wechat_boards_jbz_hotfilm_path, class: "btn btn-primary navbar-btn btn-block" do 
+        .col-xs-4.col-sm-4 style="padding: 0px 5px;"
+          = link_to wechat_boards_jbz_hotfilm_path, class: "btn btn-primary navbar-btn btn-block btn-small" do 
             = fa_icon 'film'
             ' 
-            |热映
-        .col-xs-4.col-sm-4
-          = link_to wechat_boards_jbz_cinema_path, class: "btn btn-success navbar-btn btn-block" do 
+            |当前热映
+        .col-xs-4.col-sm-4 style="padding: 0px 5px;"
+          = link_to wechat_boards_jbz_cinema_path, class: "btn btn-success navbar-btn btn-block btn-small" do 
             = fa_icon 'video-camera'
             ' 
-            |影院
-        .col-xs-4.col-sm-4
-          = link_to "" , class: "btn btn-warning navbar-btn btn-block" do
+            |寻找影院
+        .col-xs-4.col-sm-4 style="padding: 0px 5px;"
+          = link_to "" , class: "btn btn-warning navbar-btn btn-block btn-small" do
             = fa_icon 'ticket'
             ' 
-            |订单
+            |我的订单

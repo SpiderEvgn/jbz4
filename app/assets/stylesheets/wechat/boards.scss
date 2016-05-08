@@ -7,6 +7,21 @@
 }
 
 .filmdetails {
-  font-size: 0.6em;
+  font-size: 0.9em;
   color: #111;
+  .content-font-size {
+    font-size: 0.9em;
+  }
+}
+
+.film-score {
+  padding: 0px 4px;
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.no-image-bottom-margin {
+  margin-bottom: 2px;
 }
