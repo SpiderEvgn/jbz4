@@ -1,33 +1,27 @@
-/ .navbar.navbar-default.navbar-fixed-top
 .container-fluid
   / 界面的上半部分，展示影院详细信息
   .row
     .col-xs-12.col-sm-12
-      h1.filmname 
+      h4.text-primary 
         = @jbzcinema.cinemaName
-      '
-      |地址:
-      '
-      |
-      = @jbzcinema.address
+      p.cenima
+        = fa_icon 'taxi'
+        ' 
+        = @jbzcinema.address
   hr
   / 上层的影院信息将来放到 fixed-top 里面，不会随着下面的信息拖动
   .row
     .col-xs-4.col-sm-4
-      = image_tag(@jbzhotfilm.picAddr, height: '50%', width: '80%')
+      = image_tag @jbzhotfilm.picAddr, width: '100%', class: 'thumbnail slim-bottom-margin'
     .col-xs-8.col-sm-8
-      h1.filmname 
+      h5.text-primary
         = @jbzhotfilm.name
       br
       .filmdetails
-        |类型:
-        '
-        |
-        = @jbzhotfilm.filmType
+        |类型: 
+        = divide_text @jbzhotfilm.filmType
         br
-        |地区:
-        '
-        |
+        |地区: 
         = @jbzhotfilm.area
         '
         ||
@@ -66,11 +60,13 @@
                         h3
                           = transfer_to_hhmm(jbzforetell_D1.showTime)
                       .col-xs-5.col-sm-5
-                        = jbzforetell_D1.language
+                        span.tag
+                          = jbzforetell_D1.language
                         '
                         ||
                         '
-                        = jbzforetell_D1.dimensional
+                        span.tag
+                          = jbzforetell_D1.dimensional
                     .row
                       .col-xs-5.col-sm-5
                         |时长
@@ -91,83 +87,94 @@
                       |购票
                 hr
             - if check == 0
-              p 今天所有场次已结束
+              p.alert.alert-danger
+                = fa_icon 'eye'
+                ' 
+                |抱歉！今天所有场次已结束。
+                br
+                |亲，请选择明后天的吧~
           - else
-            p 当日无排期
+            p.alert.alert-danger
+              = fa_icon 'eye'
+              ' 
+              |抱歉！当日无排期！！
 
         .tab-pane id="D2" role="tabpanel"
           br
           - if @jbzforetells_D2.first
             - @jbzforetells_D2.each do |jbzforetell_D2|
               .row
-                .col-xs-6.col-sm-6
-                  .row
-                    .col-xs-5.col-sm-5
-                      h3
-                        = transfer_to_hhmm(jbzforetell_D2.showTime)
-                    .col-xs-5.col-sm-5
-                      = jbzforetell_D2.language
-                      '
-                      ||
-                      '
-                      = jbzforetell_D2.dimensional
-                  .row
-                    .col-xs-5.col-sm-5
-                      |时长
-                      '
-                      |
-                      = jbzforetell_D2.duration
-                      '
-                      |分
-                    .col-xs-5.col-sm-5
-                      = jbzforetell_D2.hallName
-                .col-xs-3.col-sm-3
+                .col-xs-2.col-sm-2
+                  h4 = transfer_to_hhmm(jbzforetell_D2.showTime)
+                .col-xs-4.col-sm-4
                   h4
-                    = jbzforetell_D2.price.to_i / 100
-                    '
-                    |元
-                .col-xs-3.col-sm-3
-                  = link_to wechat_jbzlocal_realtimeseat_path(jbzforetell_D2.foretellId), class: "btn btn-info" do
-                    |购票
+                    = to_money jbzforetell_D2.price.to_i/100
+                .col-xs-6.col-sm-4
+                  = link_to wechat_jbzlocal_realtimeseat_path(jbzforetell_D2.foretellId), class: "btn btn-info btn-block" do
+                    = fa_icon 'credit-card'
+                    ' 
+                    |刷卡购票
+                .col-xs-12.col-sm-12
+                  span.tag
+                    = jbzforetell_D2.language
+                  ' 
+                  span.tag
+                    = jbzforetell_D2.dimensional
+                  ' 
+                  span.tag
+                    = jbzforetell_D2.duration
+                    ' 
+                    |分钟
+                  ' 
+                  span.tag
+                    = jbzforetell_D2.hallName
               hr
           - else
-            p 当日无排期
+            p.alert.alert-danger
+              = fa_icon 'eye'
+              ' 
+              |抱歉！当日无排期！！
 
         .tab-pane id="D3" role="tabpanel"
           br
           - if @jbzforetells_D3.first
             - @jbzforetells_D3.each do |jbzforetell_D3|
               .row
-                .col-xs-6.col-sm-6
-                  .row
-                    .col-xs-5.col-sm-5
-                      h3
-                        = transfer_to_hhmm(jbzforetell_D3.showTime)
-                    .col-xs-5.col-sm-5
-                      = jbzforetell_D3.language
-                      '
-                      ||
-                      '
-                      = jbzforetell_D3.dimensional
-                  .row
-                    .col-xs-5.col-sm-5
-                      |时长
-                      '
-                      |
-                      = jbzforetell_D3.duration
-                      '
-                      |分
-                    .col-xs-5.col-sm-5
-                      = jbzforetell_D3.hallName
-                .col-xs-3.col-sm-3
-                  h4
-                    = jbzforetell_D3.price.to_i / 100
-                    '
-                    |元
-                .col-xs-3.col-sm-3
-                  = link_to wechat_jbzlocal_realtimeseat_path(jbzforetell_D3.foretellId), class: "btn btn-info" do
-                    |购票
-              hr
+                .col-xs-12.col-sm-12
+                  = link_to wechat_jbzlocal_realtimeseat_path(jbzforetell_D3.foretellId), class: "btn btn-default btn-block" do
+                    .container
+                      .row
+                        .col-xs-6.col-sm-6
+                          h5.pull-left
+                            = transfer_to_hhmm(jbzforetell_D3.showTime)
+                        .col-xs-3.col-sm-3
+                          h5.market-price.text-danger
+                            = to_money jbzforetell_D3.marketPrice.to_i/100
+                        .col-xs-3.col-sm-3
+                          h5.text-success
+                            = to_money jbzforetell_D3.price.to_i/100
+                        .col-xs-3.col-sm-3
+                          span.alert.alert-info.tag
+                            |13:08 散场 
+                        .col-xs-9.col-sm-9
+                          span.tag
+                            = jbzforetell_D3.language
+                          ' 
+                          span.tag
+                            = jbzforetell_D3.dimensional
+                          ' 
+                          span.tag
+                            = jbzforetell_D3.duration
+                            ' 
+                            |分钟
+                          ' 
+                          span.tag
+                            = jbzforetell_D3.hallName
+
+              br
           - else
-            p 当日无排期
+            p.alert.alert-danger
+              = fa_icon 'eye'
+              ' 
+              |抱歉！当日无排期！！
             
