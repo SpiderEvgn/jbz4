@@ -1,8 +1,8 @@
-class Wechat::Zhizhu::City < ActiveRecord::Base
-  self.primary_key = "cityId"
-  has_many :wechat_zhizhu_regions, class_name: 'Wechat::Zhizhu::Region', foreign_key: :cityId
-  has_many :wechat_zhizhu_cinemas, class_name: 'Wechat::Zhizhu::Cinema', foreign_key: :cityId
-
+class Wechat::Zhizhu::Region < ActiveRecord::Base
+  self.primary_key = "regionId"
+  has_many :wechat_zhizhu_cinemas, class_name: 'Wechat::Zhizhu::Cinema', foreign_key: :regionId
+  belongs_to :wechat_zhizhu_city, class_name: 'Wechat::Zhizhu::City', foreign_key: :cityId
+  
   include HTTParty
 
   # 测试环境:http 请求:http://test.spider.com.cn:9391/v2/{商户 key}/{method}.html 
@@ -17,17 +17,18 @@ class Wechat::Zhizhu::City < ActiveRecord::Base
   debug_output $stdout
   # default_timeout 5  还没想好怎么用timeout
 
-  def self.getCity
-    # 1. 拉取城市列表
+  def self.getRegion(cityId)
+    # 2. 拉取地区列表
     client_key = ENV['JBZ4_ZHIZHU_CLIENT_KEY']
     private_key = ENV['JBZ4_ZHIZHU_PRIVATE_KEY']
-    sign_value = Digest::MD5.hexdigest("#{client_key}#{private_key}")
-    response = get("/cityList.html", query: { key: "#{client_key}", 
-                                              sign: "#{sign_value}"
-                                              })['cityList']
+    sign_value = Digest::MD5.hexdigest("#{cityId}#{client_key}#{private_key}")
+    response = get("/regionList.html", query: { key: "#{client_key}", 
+                                                cityId: "#{cityId}",
+                                                sign: "#{sign_value}"
+                                                })['regionList']
     # 判断返回值是否正确
     if response['result'].to_s == "0"
-      return response['cityInfo']
+      return response['regionInfo']
     else
       return nil
     end
