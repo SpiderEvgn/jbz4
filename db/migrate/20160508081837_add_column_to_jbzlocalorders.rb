@@ -1,17 +1,17 @@
 class AddColumnToJbzlocalorders < ActiveRecord::Migration
   def change
-    add_column :wechat_jbzlocal_Orders, :orderId, :string
-    add_column :wechat_jbzlocal_Orders, :offerId, :string
-    add_column :wechat_jbzlocal_Orders, :confirmId, :string
-    add_column :wechat_jbzlocal_Orders, :offerOrderId, :string
-    add_column :wechat_jbzlocal_Orders, :thirdConfirmId, :string
-    add_column :wechat_jbzlocal_Orders, :takeTicketPostion, :string
-    add_column :wechat_jbzlocal_Orders, :smTemplate, :text
-    add_column :wechat_jbzlocal_Orders, :isCheckGround, :string
-    add_column :wechat_jbzlocal_Orders, :seatType, :string
-    add_column :wechat_jbzlocal_Orders, :mobile, :string
-    add_column :wechat_jbzlocal_Orders, :card, :string
-    add_column :wechat_jbzlocal_Orders, :payMethod, :string
-    add_column :wechat_jbzlocal_Orders, :platformId, :string
+    add_column :wechat_jbzlocal_orders, :orderId, :string
+    add_column :wechat_jbzlocal_orders, :offerId, :string
+    add_column :wechat_jbzlocal_orders, :confirmId, :string
+    add_column :wechat_jbzlocal_orders, :offerOrderId, :string
+    add_column :wechat_jbzlocal_orders, :thirdConfirmId, :string
+    add_column :wechat_jbzlocal_orders, :takeTicketPostion, :string
+    add_column :wechat_jbzlocal_orders, :smTemplate, :text
+    add_column :wechat_jbzlocal_orders, :isCheckGround, :string
+    add_column :wechat_jbzlocal_orders, :seatType, :string
+    add_column :wechat_jbzlocal_orders, :mobile, :string
+    add_column :wechat_jbzlocal_orders, :card, :string
+    add_column :wechat_jbzlocal_orders, :payMethod, :string
+    add_column :wechat_jbzlocal_orders, :platformId, :string
   end
 end

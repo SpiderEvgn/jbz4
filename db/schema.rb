@@ -13,24 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160508081837) do
 
-  create_table "wechat_jbzlocal_Orders", force: :cascade do |t|
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "orderId",           limit: 255
-    t.string   "offerId",           limit: 255
-    t.string   "confirmId",         limit: 255
-    t.string   "offerOrderId",      limit: 255
-    t.string   "thirdConfirmId",    limit: 255
-    t.string   "takeTicketPostion", limit: 255
-    t.text     "smTemplate",        limit: 65535
-    t.string   "isCheckGround",     limit: 255
-    t.string   "seatType",          limit: 255
-    t.string   "mobile",            limit: 255
-    t.string   "card",              limit: 255
-    t.string   "payMethod",         limit: 255
-    t.string   "platformId",        limit: 255
-  end
-
   create_table "wechat_jbzlocal_cinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -102,6 +84,24 @@ ActiveRecord::Schema.define(version: 20160508081837) do
   end
 
   add_index "wechat_jbzlocal_hotfilms", ["filmId"], name: "index_wechat_jbzlocal_hotfilms_on_filmId", using: :btree
+
+  create_table "wechat_jbzlocal_orders", force: :cascade do |t|
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "orderId",           limit: 255
+    t.string   "offerId",           limit: 255
+    t.string   "confirmId",         limit: 255
+    t.string   "offerOrderId",      limit: 255
+    t.string   "thirdConfirmId",    limit: 255
+    t.string   "takeTicketPostion", limit: 255
+    t.text     "smTemplate",        limit: 65535
+    t.string   "isCheckGround",     limit: 255
+    t.string   "seatType",          limit: 255
+    t.string   "mobile",            limit: 255
+    t.string   "card",              limit: 255
+    t.string   "payMethod",         limit: 255
+    t.string   "platformId",        limit: 255
+  end
 
   create_table "wechat_maizuo_cinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
