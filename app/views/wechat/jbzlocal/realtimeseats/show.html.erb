@@ -1,11 +1,11 @@
 ﻿<div class="col-xs-12 col-sm-12" data-spy="affix" data-offset-top="40" style="z-index: 2000; background-color: #fff">
   <h4 class="text-primary" style="text-align: center;">这里是屏幕</h4>
   <p style="text-align: center;">
-    <span><%= image_tag 'red.png' %></span>
+    <span><%= image_tag 'occupied.jpg', width: '24px', height: '20px' %></span>
     <span>已卖</span>
-    <span><%= image_tag 'white.png' %></span>
+    <span><%= image_tag 'available.jpg', width: '24px', height: '20px' %></span>
     <span>可选</span>
-    <span><%= image_tag 'white.png' %></span>
+    <span><%= image_tag 'selected.jpg', width: '24px', height: '20px' %></span>
     <span>已选</span>
   </p>
   <hr style="margin-bottom: 0px"/>
@@ -95,9 +95,9 @@
       var im = new Image();
         var temp = 0;
         if(islock==1){
-          im.src = "red.png";
+          im.src = "occupied.jpg";
         }else{
-          im.src = "white.png";
+          im.src = "available.jpg";
         }
         var row = Math.floor(i / y) + 1;
         var line = (i % y + 1) ;
@@ -113,24 +113,24 @@
     }).bind("click", function (e) {
 
         if(islock==1){
-                if (this.src.indexOf("red.png") == -1) {
-                this.src = "red.png";
+                if (this.src.indexOf("occupied.jpg") == -1) {
+                this.src = "occupied.jpg";
                 }
             
             }else{
-                if (this.src.indexOf("red.png") == -1) {
+                if (this.src.indexOf("selected.jpg") == -1) {
                     if(count>3){
                         alert("最多选4个座位！");
                         return;
                     }
-                    this.src = "red.png";
+                    this.src = "selected.jpg";
                     
                     ary.push(this.id);
                     ids.push(this.title);
                     HtmlAppend(ary,ids);
                     count++;
                 } else {
-                    this.src = "white.png";
+                    this.src = "available.jpg";
                     
                     for (var i = 0; i < ary.length; i++) {
                         if (ary[i] == this.id) { 
@@ -156,13 +156,13 @@
          }
       });
       
-    if ($('#'+(rowNum) + "-" + colNum).attr('src').indexOf("red.png") == -1) {
-      $('#'+(rowNum) + "-" + colNum).attr('src',"red.png");
+    if ($('#'+(rowNum) + "-" + colNum).attr('src').indexOf("selected.jpg") == -1) {
+      $('#'+(rowNum) + "-" + colNum).attr('src',"selected.jpg");
         ary.push($('#'+(rowNum) + ":" + colNum).id);
         ids.push($('#'+(rowNum) + ":" + colNum).title);
         HtmlAppend(ary,ids);
     } else {
-      $('#'+(rowNum) + "-" + colNum).attr('src',"white.png");
+      $('#'+(rowNum) + "-" + colNum).attr('src',"available.png");
         for (var i = 0; i < ary.length; i++) {
             if (ary[i] == $('#'+(rowNum) + "排" + colNum).id) { ary[i] = ""; }
         }
