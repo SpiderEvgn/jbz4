@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def to_money(amount)
+    number_to_currency(amount, unit: "￥")
+  end
+
   # 如果传入的字符串用|分隔且没有空格时，可用这个helper来重新生成一段有空格的string。
   def divide_text(text)
     result = []

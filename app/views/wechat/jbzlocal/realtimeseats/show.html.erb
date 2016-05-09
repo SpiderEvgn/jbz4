@@ -1,198 +1,28 @@
-﻿<html>
-<head>
-    <title></title>
-    <!-- <script src="app/assets/javascripts/jquery-1.4.1.js" type="text/javascript"></script> -->
-    <script type="text/javascript">
-        var p1jsonStr='<%=j @seatresource%>';
-        var p2jsonStr=p1jsonStr.replace(/&quot;/g, '"');
-        var jsonStr=JSON.parse(p2jsonStr);
-        var ary=new Array();
-        var ids=new Array();
-        var count=0;
-        var rowIdArr=new Array();
-        var rowNumArr=new Array();
-        var colIdArr=new Array();
-        var colNumArr=new Array();
-        var rowIdStr='',rowNumStr='',colIdStr='',colNumStr='';
-        var obj='';
-        $(document).ready(function () {
-            dv = $('#dv');
-            $('#change').bind("click", function (e) {
-              btnClick();
-            });
-            //获取json对象
-            obj=eval(jsonStr);
-            
-            $.each( obj.data.seatList, function(index, content){  
-              rowIdStr+=content.rowId+',';
-              rowNumStr+=content.rowNum+',';
-              colIdStr+=content.columnId+',';
-              colNumStr+=content.columnNum+',';
-              gg(parseInt(content.rowNum)*parseInt(content.columnNum)-1,content.rowNum,content.columnNum,content.isLock,content.rowId,content.columnId);
-          });
-            rowIdArr=rowIdStr.split(',');
-            rowNumArr=rowNumStr.split(',');
-            colIdArr=colIdStr.split(',');
-            colNumArr=colNumStr.split(',');
-            rowIdArr=unique(rowIdArr
+﻿<div class="col-xs-12 col-sm-12" data-spy="affix" data-offset-top="40" style="z-index: 2000; background-color: #fff">
+  <h4 class="text-primary" style="text-align: center;">这里是屏幕</h4>
+  <p style="text-align: center;">
+    <span><%= image_tag 'occupied.jpg', width: '24px', height: '20px' %></span>
+    <span>已卖</span>
+    <span><%= image_tag 'available.jpg', width: '24px', height: '20px' %></span>
+    <span>可选</span>
+    <span><%= image_tag 'selected.jpg', width: '24px', height: '20px' %></span>
+    <span>已选</span>
+  </p>
+  <hr style="margin-bottom: 0px"/>
+</div>
 
-            
-            );
-            rowNumArr=unique(rowNumArr);
-            colIdArr=unique(colIdArr);
-            colNumArr=unique(colNumArr);
-            var maxRowNum=max(rowNumArr);
-            var maxColNum=max(colNumArr);
-            //根据最大行列画图
-            showXY(maxRowNum,maxColNum);
-            
-        });
 
-        //显示出座位
-        function gg(i,x,y,islock,r,c) {
-          var im = new Image();
-            var temp = 0;
-            if(islock==1){
-              im.src = "red.png";
-            }else{
-              im.src = "white.png";
-            }
-            var row = Math.floor(i / y) + 1;
-            var line = (i % y + 1) ;
-            im.id = row + "排" + line + "座";
-            im.title = r + ":" + c;
-            dv.append(im);
-            temp = Math.floor((i % y) / 5) * 24
-            var top = Math.floor(i / y) * 24 ;
-            var left = Math.floor(i % y) * 24 ;
-        $("#" + im.id).css({ 'position': 'absolute', 'left': (parseInt(left)+33) + 'px', 'top': (parseInt(top)+29) + 'px', 'width': 24, 'height': 20 });
-        $('#' + im.id).mouseenter(function () {
-            this.style.cursor = 'pointer';
-        }).bind("click", function (e) {
-
-            if(islock==1){
-                    if (this.src.indexOf("red.png") == -1) {
-                    this.src = "red.png";
-                    }
-                
-                }else{
-                    if (this.src.indexOf("red.png") == -1) {
-                        if(count>3){
-                            alert("最多选4个座位！");
-                            return;
-                        }
-                        this.src = "red.png";
-                        
-                        ary.push(this.id);
-                        ids.push(this.title);
-                        HtmlAppend(ary,ids);
-                        count++;
-                    } else {
-                        this.src = "white.png";
-                        
-                        for (var i = 0; i < ary.length; i++) {
-                            if (ary[i] == this.id) { 
-                            ary.splice(i,1); 
-                            ids.splice(i,1);
-                          }
-                        }
-                        HtmlAppend(ary,ids);
-                        count--;
-                    }
-                }
-        }); 
-         }
-        //点击变色
-        function btnClick(){
-          var rowth=$("#rowth").val();
-          var colth=$("#colth").val();
-          var rowNum,colNum;
-           $.each( obj.data.seatList, function(index, content){  
-             if(content.rowId==parseInt(rowth) && content.columnId==parseInt(colth)){
-               rowNum=content.rowNum;
-               colNum=content.columnNum;
-             }
-          });
-          
-        if ($('#'+(rowNum) + "-" + colNum).attr('src').indexOf("red.png") == -1) {
-          $('#'+(rowNum) + "-" + colNum).attr('src',"red.png");
-            ary.push($('#'+(rowNum) + ":" + colNum).id);
-            ids.push($('#'+(rowNum) + ":" + colNum).title);
-            HtmlAppend(ary,ids);
-        } else {
-          $('#'+(rowNum) + "-" + colNum).attr('src',"white.png");
-            for (var i = 0; i < ary.length; i++) {
-                if (ary[i] == $('#'+(rowNum) + "排" + colNum).id) { ary[i] = ""; }
-            }
-             for (var i = 0; i < ids.length; i++) {
-                if (ids[i] == $('#'+(rowNum) + ":" + colNum).title) { ids[i] = ""; }
-            }
-            HtmlAppend(ary,ids);
-        }
-        }
-       //追加座位号
-       function HtmlAppend(div,ids)
-       {
-         //var row=$("#row").val();
-         $('#ary').html("");
-         $('#ids').html("");
-          for(var i=0;i<div.length;i++)
-          {
-              $('#ary').append(div[i]+" ");
-          }
-          for(var i=0;i<ids.length;i++)
-          {
-              $('#ids').append(ids[i]+" ");
-          }
-          $("#seatNo").val($('#ary').html());
-          $("#seatId").val($('#ids').html());
-           
-        }
-     //数组去重,求最大值会用到
-     function unique(s){
-         var dic = {};
-         for (var i = s.length; i--; ) {
-             dic[s[i]]=s[i];
-         }
-         var r = [];
-         for (var v in dic) {
-          r.push(dic[v]);
-         }
-         return r;
-     }
-     //求最大值
-     function max(tmp){
-       var max1 = parseInt(tmp[0]);
-       for(var i=1;i<tmp.length;i++){ 
-         if(max1<parseInt(tmp[i]))
-           max1=parseInt(tmp[i]);
-       }
-       return max1;
-     }
-     //显示坐标
-     function showXY(row,col){
-       for(var i=0;i<row;i++){
-        $("#height").append('<div style="height:24px;">'+(i+1)+'</div>');
-      }
-      for(var i=0;i<col;i++){
-        $("#width").append('<div style="border-left:1px solid;height:22px;width:23px;float:left;">'+(i+1)+'</div>');
-      }
-     }
-     
-    </script>
-</head>
-<body>
 <!-- <div style="display:block;width:1000px;margin-left:24px;height:22px;padding:0px;" id="width">
 </div> -->
 <!-- 顶上一排座位标号不用 -->
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-xs-1 col-sm-1">
       <div style="padding-top:30px;" id="height"></div>
     </div>
-
     <div class="col-xs-10 col-sm-10">
-      <div id="dv"></div>
+      <div id="dv">
+      </div>
     </div>
   </div>
   <br>
@@ -200,16 +30,195 @@
   <div class="row">
     <div class="col-xs-12 col-sm-12">
       <%= simple_form_for :seats, url: wechat_jbzlocal_realtimeseats_path do |f| %>
-        <%= f.input :seatNo, label: '座位号', input_html: { id: 'seatNo'}, readonly: true %>
-        <%= f.input :seatId, input_html: { id: 'seatId'}, readonly: true %>
-        <%= f.input :mobile, label: '手机号' %>
-        <%= f.submit '确认', class: "btn btn-info" %>
+        <%= f.input :seatNo, label: false, placeholder: "选择的座位", input_html: { id: 'seatNo'}, readonly: true %>
+        <%= f.hidden_field :seatId, input_html: { id: 'seatId' }, readonly: true %>
+        <%= f.input :mobile, label: false, placeholder: "请输入您的手机号码" %>
+        <%= f.submit '前往确认', class: "btn btn-info btn-lg btn-block" %>
       <% end %>
     </div>
   </div>
 </div>
+<br>
 <div id="ary" style="display:none;" ></div>
 <div id="ids" style="display:none;" ></div>
 <!-- 这两个东西不能注释，不知道为什么 -->
-</body>
-</html>
+
+<!-- <script src="app/assets/javascripts/jquery-1.4.1.js" type="text/javascript"></script> -->
+<script type="text/javascript">
+    var p1jsonStr='<%=j @seatresource%>';
+    var p2jsonStr=p1jsonStr.replace(/&quot;/g, '"');
+    var jsonStr=JSON.parse(p2jsonStr);
+    var ary=new Array();
+    var ids=new Array();
+    var count=0;
+    var rowIdArr=new Array();
+    var rowNumArr=new Array();
+    var colIdArr=new Array();
+    var colNumArr=new Array();
+    var rowIdStr='',rowNumStr='',colIdStr='',colNumStr='';
+    var obj='';
+    $(document).ready(function () {
+        dv = $('#dv');
+        $('#change').bind("click", function (e) {
+          btnClick();
+        });
+        //获取json对象
+        obj=eval(jsonStr);
+        
+        $.each( obj.data.seatList, function(index, content){  
+          rowIdStr+=content.rowId+',';
+          rowNumStr+=content.rowNum+',';
+          colIdStr+=content.columnId+',';
+          colNumStr+=content.columnNum+',';
+          gg(parseInt(content.rowNum)*parseInt(content.columnNum)-1,content.rowNum,content.columnNum,content.isLock,content.rowId,content.columnId);
+      });
+        rowIdArr=rowIdStr.split(',');
+        rowNumArr=rowNumStr.split(',');
+        colIdArr=colIdStr.split(',');
+        colNumArr=colNumStr.split(',');
+        rowIdArr=unique(rowIdArr
+
+        
+        );
+        rowNumArr=unique(rowNumArr);
+        colIdArr=unique(colIdArr);
+        colNumArr=unique(colNumArr);
+        var maxRowNum=max(rowNumArr);
+        var maxColNum=max(colNumArr);
+        //根据最大行列画图
+        showXY(maxRowNum,maxColNum);
+        
+    });
+
+    //显示出座位
+    function gg(i,x,y,islock,r,c) {
+      var im = new Image();
+        var temp = 0;
+        if(islock==1){
+          im.src = "occupied.jpg";
+        }else{
+          im.src = "available.jpg";
+        }
+        var row = Math.floor(i / y) + 1;
+        var line = (i % y + 1) ;
+        im.id = row + "排" + line + "座";
+        im.title = r + ":" + c;
+        dv.append(im);
+        temp = Math.floor((i % y) / 5) * 24
+        var top = Math.floor(i / y) * 24 ;
+        var left = Math.floor(i % y) * 24 ;
+    $("#" + im.id).css({ 'position': 'absolute', 'left': (parseInt(left)+33) + 'px', 'top': (parseInt(top)+29) + 'px', 'width': 24, 'height': 20 });
+    $('#' + im.id).mouseenter(function () {
+        this.style.cursor = 'pointer';
+    }).bind("click", function (e) {
+
+        if(islock==1){
+                if (this.src.indexOf("occupied.jpg") == -1) {
+                this.src = "occupied.jpg";
+                }
+            
+            }else{
+                if (this.src.indexOf("selected.jpg") == -1) {
+                    if(count>3){
+                        alert("最多选4个座位！");
+                        return;
+                    }
+                    this.src = "selected.jpg";
+                    
+                    ary.push(this.id);
+                    ids.push(this.title);
+                    HtmlAppend(ary,ids);
+                    count++;
+                } else {
+                    this.src = "available.jpg";
+                    
+                    for (var i = 0; i < ary.length; i++) {
+                        if (ary[i] == this.id) { 
+                        ary.splice(i,1); 
+                        ids.splice(i,1);
+                      }
+                    }
+                    HtmlAppend(ary,ids);
+                    count--;
+                }
+            }
+    }); 
+     }
+    //点击变色
+    function btnClick(){
+      var rowth=$("#rowth").val();
+      var colth=$("#colth").val();
+      var rowNum,colNum;
+       $.each( obj.data.seatList, function(index, content){  
+         if(content.rowId==parseInt(rowth) && content.columnId==parseInt(colth)){
+           rowNum=content.rowNum;
+           colNum=content.columnNum;
+         }
+      });
+      
+    if ($('#'+(rowNum) + "-" + colNum).attr('src').indexOf("selected.jpg") == -1) {
+      $('#'+(rowNum) + "-" + colNum).attr('src',"selected.jpg");
+        ary.push($('#'+(rowNum) + ":" + colNum).id);
+        ids.push($('#'+(rowNum) + ":" + colNum).title);
+        HtmlAppend(ary,ids);
+    } else {
+      $('#'+(rowNum) + "-" + colNum).attr('src',"available.png");
+        for (var i = 0; i < ary.length; i++) {
+            if (ary[i] == $('#'+(rowNum) + "排" + colNum).id) { ary[i] = ""; }
+        }
+         for (var i = 0; i < ids.length; i++) {
+            if (ids[i] == $('#'+(rowNum) + ":" + colNum).title) { ids[i] = ""; }
+        }
+        HtmlAppend(ary,ids);
+    }
+    }
+   //追加座位号
+   function HtmlAppend(div,ids)
+   {
+     //var row=$("#row").val();
+     $('#ary').html("");
+     $('#ids').html("");
+      for(var i=0;i<div.length;i++)
+      {
+          $('#ary').append(div[i]+" ");
+      }
+      for(var i=0;i<ids.length;i++)
+      {
+          $('#ids').append(ids[i]+" ");
+      }
+      $("#seatNo").val($('#ary').html());
+      $("#seatId").val($('#ids').html());
+       
+    }
+ //数组去重,求最大值会用到
+ function unique(s){
+     var dic = {};
+     for (var i = s.length; i--; ) {
+         dic[s[i]]=s[i];
+     }
+     var r = [];
+     for (var v in dic) {
+      r.push(dic[v]);
+     }
+     return r;
+ }
+ //求最大值
+ function max(tmp){
+   var max1 = parseInt(tmp[0]);
+   for(var i=1;i<tmp.length;i++){ 
+     if(max1<parseInt(tmp[i]))
+       max1=parseInt(tmp[i]);
+   }
+   return max1;
+ }
+ //显示坐标
+ function showXY(row,col){
+   for(var i=0;i<row;i++){
+    $("#height").append('<div style="height:24px;">'+(i+1)+'</div>');
+  }
+  for(var i=0;i<col;i++){
+    $("#width").append('<div style="border-left:1px solid;height:22px;width:23px;float:left;">'+(i+1)+'</div>');
+  }
+ }
+ 
+</script>
