@@ -1,12 +1,15 @@
 // Place all the styles related to the wechat/board controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// .filmdetails {
+//   font-size: 0.9em;
+//   color: #777;
+// }
 
-.filmname {
-  font-size: 8em;
+.tag {
+  color: #777777;
+  font-size: 0.6em;
+  border: 1px solid #777777;
+  padding: 2px 4px;
 }
 
-.filmdetails {
-  font-size: 0.8em;
-  color: #777;
-}

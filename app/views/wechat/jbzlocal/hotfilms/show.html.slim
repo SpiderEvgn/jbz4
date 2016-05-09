@@ -1,54 +1,54 @@
 .container-fluid
   / 界面的上半部分，展示影片海报和详情
   .row
-    .col-xs-4.col-sm-4
+    br
+    .col-xs-5.col-sm-5
+      = image_tag @jbzhotfilm.picAddr, width: '100%', class: "thumbnail slim-bottom-margin"
+      - if @jbzhotfilm.releaseDate
+      span.tag
+        = @jbzhotfilm.releaseDate
+        ' 
+        |上映
       br
-      = image_tag(@jbzhotfilm.picAddr, height: '180%', width: '120%')
-    .col-xs-8.col-sm-8
-      h1.filmname 
-        = @jbzhotfilm.name
-      br
+      - if @jbzhotfilm.length
+      span.tag
+        = @jbzhotfilm.length
+        ' 
+        |分钟
+      - if @jbzhotfilm.dimensional
+        span.tag style="margin-left: 2px;"
+          = @jbzhotfilm.dimensional
+
+    .col-xs-7.col-sm-7
+      h5.text-primary = @jbzhotfilm.name
+      span.alert.alert-info style="padding: 2px 4px;"
+        - get_stars(@jbzhotfilm.grade).each do |star|
+          - if star == 0
+            = fa_icon "star-o"
+          - elsif star == 1
+            = fa_icon "star-half-o"
+          - else
+            = fa_icon "star"
+      ' 
+      span.alert.alert-danger style="padding: 2px 4px;"
+        =@jbzhotfilm.grade
+      hr
       .filmdetails
-        |类型:
-        '
-        |
-        = @jbzhotfilm.filmType
+        |类型: 
+        = divide_text @jbzhotfilm.filmType
         br
-        |地区:
-        '
-        |
+        |地区: 
         = @jbzhotfilm.area
-        '
-        ||
-        '
-        |
+        br
+        |语言: 
         = @jbzhotfilm.language
         br
-        |上映时间:
-        '
-        |
-        = @jbzhotfilm.releaseDate
-        br
-        |片长:
-        '
-        |
-        = @jbzhotfilm.length
-        '
-        |分钟
-        '
-        ||
-        '
-        |
-        = @jbzhotfilm.dimensional
-        br
-        |导演:
-        '
-        |
+        |导演: 
         = @jbzhotfilm.director
   .row
     .col-xs-12.col-sm-12
       br
-      = link_to wechat_jbzlocal_cinemas_path, class: "btn btn-info btn-lg btn-block" do 
+      = link_to wechat_jbzlocal_cinemas_path, class: "btn btn-warning btn-lg btn-block" do 
         = fa_icon 'ticket'
         ' 
         |选座购票
@@ -56,21 +56,53 @@
   / 界面的中间部分，展示演员列表 和 剧情介绍
   .row
     .col-xs-12.col-sm-12
-      |主演:
-      '
-      |
-      = @jbzhotfilm.actors
-      br
-      br
-      |剧情介绍:
-      '
-      |
-      = @jbzhotfilm.info
-  hr
-  / 界面的下半部分，展示电影评论
-  .row
-    .col-xs-12.col-sm-12
-      |敬请期待影评（卖座网测试没提供影评）
+      / 此处开始show页面的滑块
+      .panel-group.wechat-sku id="accordion" role="tablist" aria-multiselectable="true"
+        / 滑块一
+        .panel.panel-default
+          .panel-heading role="tab" id="headingOne"
+            h4.panel-title
+              a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                Collapsible
+                  .block
+                    = fa_icon 'users', class: 'fa-fx'
+                    ' 
+                    |演职员表
+                    span.pull-right
+                      = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
+          #collapseOne.panel-collapse.collapse role="tabpanel" aria-labelledby="headingOne"
+            .panel-body.wechat-small = divide_text @jbzhotfilm.actors
+        / 滑块二
+        .panel.panel-default
+          .panel-heading role="tab" id="headingTwo"
+            h4.panel-title
+              a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                Collapsible
+                  .block
+                    = fa_icon 'newspaper-o', class: 'fa-fw'
+                    ' 
+                    |内容简介
+                    span.pull-right
+                      = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
+          #collapseTwo.panel-collapse.collapse role="tabpanel" aria-labelledby="headingTwo"
+            .panel-body.wechat-small = @jbzhotfilm.info
+        / 滑块三
+        .panel.panel-default
+          .panel-heading role="tab" id="headingThree"
+            h4.panel-title
+              a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                Collapsible
+                  .block
+                    = fa_icon 'comments', class: 'fa-fw'
+                    ' 
+                    |更多评论
+                    span.pull-right
+                        = fa_icon 'chevron-down', class: 'fa-fx icon-mid'
+          #collapseThree.panel-collapse.collapse role="tabpanel" aria-labelledby="headingThree"
+            .panel-body
+              p
+                |敬请期待影评（卖座网测试没提供影评）
+    / 此处结束show页面的滑块
 
 
 

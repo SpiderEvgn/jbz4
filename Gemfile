@@ -1,5 +1,10 @@
-source 'https://rubygems.org'
-
+# 默认采用国内的淘宝镜像。否则采用以下方式：
+# bundle install ENV=USE_OFFICIAL_GEM_SOURCE
+if ENV['USE_OFFICIAL_GEM_SOURCE']
+  source 'https://rubygems.org'
+else
+  source 'https://ruby.taobao.org'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -40,8 +45,8 @@ gem 'font-awesome-rails'
 gem 'will_paginate-bootstrap'
 gem 'simple_form'
 
-gem 'chilkat'
-# 加密解密的 gem 包
+# 加密解密的gem包
+# gem 'chilkat'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

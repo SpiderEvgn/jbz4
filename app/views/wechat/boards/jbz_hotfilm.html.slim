@@ -1,21 +1,20 @@
 .container-fluid
   .row
     .col-xs-12.col-sm-12
-      h2 最近三天的热映电影［测试］
+      h4 最近三天的热映电影［测试］
       hr
       - @films.each do |film|
         .row
           .col-xs-4.col-sm-4
             = link_to wechat_jbzlocal_hotfilm_path(film.filmId) do
-              = image_tag(film.picAddr, height: '150%', width: '110%')
-            br
-            p.pull-right
+              = image_tag film.picAddr, width: '100%', class:"thumbnail slim-bottom-margin"
+            alert.alert-info.film-score
               |评分:
               '
               |
               = film.grade
           .col-xs-8.col-sm-8
-            p.filmname 
+            h4 style="margin-top: 0px" 
               = link_to wechat_jbzlocal_hotfilm_path(film.filmId) do
                 = film.name
             .filmdetails 
@@ -34,13 +33,15 @@
               |
               = film.language
               br
-              |简介:
-              '
-              |
-              = film.shortInfo
-              br
               |导演:
               '
               |
               = film.director
-        hr
+              hr style="margin: 6px 0px;"
+              a role="button" class="btn btn-info btn-block btn-sm content-font-size" data-toggle="collapse" aria-expanded="false" aria-controls="shortinfo" href== "#{"#"+film.id}"
+                = fa_icon 'file-video-o'
+                ' 
+                |内容简介
+              .collapse id== film.id
+                .well.well-sm style= "margin-bottom: 0px;" = film.shortInfo
+        hr style="margin: 10px 0px"
