@@ -1,6 +1,10 @@
 class Wechat::Zhizhu::ApisController < ApplicationController
   layout 'wechat'
   
+  D1 = Time.now.to_s[0,10]             # 当天的日期
+  D2 = (Time.now + 86400).to_s[0,10]   # 明天的日期
+  D3 = (Time.now + 86400*2).to_s[0,10] # 后天的日期
+
   def index
 
   end
@@ -156,43 +160,204 @@ class Wechat::Zhizhu::ApisController < ApplicationController
       if @films.class == Array
         @films.each do |film|
           f = Wechat::Zhizhu::Film.new
-          f.filmId   = film['filmId']
-          f.filmName = film['filmName']
+          f.filmId      = film['filmId']
+          f.filmName    = film['filmName']
           f.englishName = film['englishName']
-          f.language   = film['language']
-          f.duration   = film['duration']
-          f.dimensional   = film['dimensional']
-          f.country   = film['country']
-          f.director   = film['director']
-          f.actor   = film['actor']
-          f.openingDate   = film['openingDate']
-          f.catalog   = film['catalog']
-          f.picture   = film['picture']
-          f.description   = film['description']
+          f.language    = film['language']
+          f.duration    = film['duration']
+          f.dimensional = film['dimensional']
+          f.country     = film['country']
+          f.director    = film['director']
+          f.actor       = film['actor']
+          f.openingDate = film['openingDate']
+          f.catalog     = film['catalog']
+          f.picture     = film['picture']
+          f.description = film['description']
           f.save
         # @films.each
         end
       else
         f = Wechat::Zhizhu::Film.new
-        f.filmId   = @films['filmId']
-        f.filmName = @films['filmName']
-        f.englishName = @films['englishName']
-        f.language   = @films['language']
-        f.duration   = @films['duration']
-        f.dimensional   = @films['dimensional']
-        f.country   = @films['country']
-        f.director   = @films['director']
-        f.actor   = @films['actor']
-        f.openingDate   = @films['openingDate']
-        f.catalog   = @films['catalog']
-        f.picture   = @films['picture']
-        f.description   = @films['description']
+        f.filmId       = @films['filmId']
+        f.filmName     = @films['filmName']
+        f.englishName  = @films['englishName']
+        f.language     = @films['language']
+        f.duration     = @films['duration']
+        f.dimensional  = @films['dimensional']
+        f.country      = @films['country']
+        f.director     = @films['director']
+        f.actor        = @films['actor']
+        f.openingDate  = @films['openingDate']
+        f.catalog      = @films['catalog']
+        f.picture      = @films['picture']
+        f.description  = @films['description']
         f.save
       # if @films.class
       end
     # if @films
     end
   # def getFilmInfo
+  end
+
+  def getShowInfo
+    @cinemas = Wechat::Zhizhu::Cinema.all
+    @cinemas.each do |cinema|
+      # 导最近3天的数据。本想用循环，试了好多方法都不行，controller对constant限制很大
+      @shows = Wechat::Zhizhu::Show.getShow(cinema.cinemaId, D1)
+      if @shows != nil
+        # 小心！判断返回值类型，如果只有一条记录，class就是Hash，多条记录就是Array
+        if @shows.class == Array
+          @shows.each do |show|
+            s = Wechat::Zhizhu::Show.new
+            s.showId      = show['showId']
+            s.cinemaId    = show['cinemaId']
+            s.cinemaName  = show['cinemaName']
+            s.hallId      = show['hallId']
+            s.hallName    = show['hallName']
+            s.filmId      = show['filmId']
+            s.filmName    = show['filmName']
+            s.showDate    = show['showDate']
+            s.showTime    = show['showTime']
+            s.staPrice    = show['staPrice']
+            s.userPrice   = show['userPrice']
+            s.merPrice    = show['merPrice']
+            s.feePrice    = show['feePrice']
+            s.language    = show['language']
+            s.duration    = show['duration']
+            s.dimensional = show['dimensional']
+            s.activityId  = show['activityId']
+            s.save
+          # @shows.each
+          end
+        else
+          s = Wechat::Zhizhu::Show.new
+          s.showId      = @shows['showId']
+          s.cinemaId    = @shows['cinemaId']
+          s.cinemaName  = @shows['cinemaName']
+          s.hallId      = @shows['hallId']
+          s.hallName    = @shows['hallName']
+          s.filmId      = @shows['filmId']
+          s.filmName    = @shows['filmName']
+          s.showDate    = @shows['showDate']
+          s.showTime    = @shows['showTime']
+          s.staPrice    = @shows['staPrice']
+          s.userPrice   = @shows['userPrice']
+          s.merPrice    = @shows['merPrice']
+          s.feePrice    = @shows['feePrice']
+          s.language    = @shows['language']
+          s.duration    = @shows['duration']
+          s.dimensional = @shows['dimensional']
+          s.activityId  = @shows['activityId']
+          s.save
+        # if @shows
+        end
+      # if @shows
+      end
+      # 明天的场次 ##################################
+      @shows = Wechat::Zhizhu::Show.getShow(cinema.cinemaId, D2)
+      if @shows != nil
+        # 小心！判断返回值类型，如果只有一条记录，class就是Hash，多条记录就是Array
+        if @shows.class == Array
+          @shows.each do |show|
+            s = Wechat::Zhizhu::Show.new
+            s.showId      = show['showId']
+            s.cinemaId    = show['cinemaId']
+            s.cinemaName  = show['cinemaName']
+            s.hallId      = show['hallId']
+            s.hallName    = show['hallName']
+            s.filmId      = show['filmId']
+            s.filmName    = show['filmName']
+            s.showDate    = show['showDate']
+            s.showTime    = show['showTime']
+            s.staPrice    = show['staPrice']
+            s.userPrice   = show['userPrice']
+            s.merPrice    = show['merPrice']
+            s.feePrice    = show['feePrice']
+            s.language    = show['language']
+            s.duration    = show['duration']
+            s.dimensional = show['dimensional']
+            s.activityId  = show['activityId']
+            s.save
+          # @shows.each
+          end
+        else
+          s = Wechat::Zhizhu::Show.new
+          s.showId      = @shows['showId']
+          s.cinemaId    = @shows['cinemaId']
+          s.cinemaName  = @shows['cinemaName']
+          s.hallId      = @shows['hallId']
+          s.hallName    = @shows['hallName']
+          s.filmId      = @shows['filmId']
+          s.filmName    = @shows['filmName']
+          s.showDate    = @shows['showDate']
+          s.showTime    = @shows['showTime']
+          s.staPrice    = @shows['staPrice']
+          s.userPrice   = @shows['userPrice']
+          s.merPrice    = @shows['merPrice']
+          s.feePrice    = @shows['feePrice']
+          s.language    = @shows['language']
+          s.duration    = @shows['duration']
+          s.dimensional = @shows['dimensional']
+          s.activityId  = @shows['activityId']
+          s.save
+        # if @shows
+        end
+      # if @shows
+      end
+      # 后天的场次 ##################################
+      @shows = Wechat::Zhizhu::Show.getShow(cinema.cinemaId, D3)
+      if @shows != nil
+        # 小心！判断返回值类型，如果只有一条记录，class就是Hash，多条记录就是Array
+        if @shows.class == Array
+          @shows.each do |show|
+            s = Wechat::Zhizhu::Show.new
+            s.showId      = show['showId']
+            s.cinemaId    = show['cinemaId']
+            s.cinemaName  = show['cinemaName']
+            s.hallId      = show['hallId']
+            s.hallName    = show['hallName']
+            s.filmId      = show['filmId']
+            s.filmName    = show['filmName']
+            s.showDate    = show['showDate']
+            s.showTime    = show['showTime']
+            s.staPrice    = show['staPrice']
+            s.userPrice   = show['userPrice']
+            s.merPrice    = show['merPrice']
+            s.feePrice    = show['feePrice']
+            s.language    = show['language']
+            s.duration    = show['duration']
+            s.dimensional = show['dimensional']
+            s.activityId  = show['activityId']
+            s.save
+          # @shows.each
+          end
+        else
+          s = Wechat::Zhizhu::Show.new
+          s.showId      = @shows['showId']
+          s.cinemaId    = @shows['cinemaId']
+          s.cinemaName  = @shows['cinemaName']
+          s.hallId      = @shows['hallId']
+          s.hallName    = @shows['hallName']
+          s.filmId      = @shows['filmId']
+          s.filmName    = @shows['filmName']
+          s.showDate    = @shows['showDate']
+          s.showTime    = @shows['showTime']
+          s.staPrice    = @shows['staPrice']
+          s.userPrice   = @shows['userPrice']
+          s.merPrice    = @shows['merPrice']
+          s.feePrice    = @shows['feePrice']
+          s.language    = @shows['language']
+          s.duration    = @shows['duration']
+          s.dimensional = @shows['dimensional']
+          s.activityId  = @shows['activityId']
+          s.save
+        # if @shows
+        end
+      # if @shows
+      end
+    # @cinemas.each
+    end
+  # def getShowInfo
   end
 
 end
