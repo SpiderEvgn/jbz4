@@ -272,13 +272,12 @@ ActiveRecord::Schema.define(version: 20160510075125) do
   end
 
   create_table "wechat_zhizhu_halls", force: :cascade do |t|
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "cinemaId",     limit: 255
-    t.string   "hallId",       limit: 255
-    t.string   "hallName",     limit: 255
-    t.string   "hallType",     limit: 255
-    t.string   "hallTypeName", limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "cinemaId",   limit: 255
+    t.string   "hallId",     limit: 255
+    t.string   "hallName",   limit: 255
+    t.string   "hallType",   limit: 255
   end
 
   create_table "wechat_zhizhu_regions", force: :cascade do |t|

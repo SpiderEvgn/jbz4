@@ -9,6 +9,8 @@ class Wechat::Zhizhu::ApisController < ApplicationController
     Wechat::Zhizhu::City.delete_all
     Wechat::Zhizhu::Region.delete_all
     Wechat::Zhizhu::Cinema.delete_all
+    # Hall 的接口非常长，而且不大会变，暂且注释不用
+    # Wechat::Zhizhu::Hall.delete_all
   end
 
   def getCityInfo
