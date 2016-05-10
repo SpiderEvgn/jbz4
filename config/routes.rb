@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       get 'apis/getRegionInfo'
       get 'apis/getCinemaInfo'
       get 'apis/getHallInfo'
+      get 'apis/getFilmInfo'
 
     end
 

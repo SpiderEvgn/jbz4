@@ -149,4 +149,50 @@ class Wechat::Zhizhu::ApisController < ApplicationController
   # def getHallInfo
   end
 
+  def getFilmInfo
+    @films = Wechat::Zhizhu::Film.getFilm
+    if @films != nil
+      # 小心！判断返回值类型，如果只有一条记录，class就是Hash，多条记录就是Array
+      if @films.class == Array
+        @films.each do |film|
+          f = Wechat::Zhizhu::Film.new
+          f.filmId   = film['filmId']
+          f.filmName = film['filmName']
+          f.englishName = film['englishName']
+          f.language   = film['language']
+          f.duration   = film['duration']
+          f.dimensional   = film['dimensional']
+          f.country   = film['country']
+          f.director   = film['director']
+          f.actor   = film['actor']
+          f.openingDate   = film['openingDate']
+          f.catalog   = film['catalog']
+          f.picture   = film['picture']
+          f.description   = film['description']
+          f.save
+        # @films.each
+        end
+      else
+        f = Wechat::Zhizhu::Film.new
+        f.filmId   = @films['filmId']
+        f.filmName = @films['filmName']
+        f.englishName = @films['englishName']
+        f.language   = @films['language']
+        f.duration   = @films['duration']
+        f.dimensional   = @films['dimensional']
+        f.country   = @films['country']
+        f.director   = @films['director']
+        f.actor   = @films['actor']
+        f.openingDate   = @films['openingDate']
+        f.catalog   = @films['catalog']
+        f.picture   = @films['picture']
+        f.description   = @films['description']
+        f.save
+      # if @films.class
+      end
+    # if @films
+    end
+  # def getFilmInfo
+  end
+
 end
