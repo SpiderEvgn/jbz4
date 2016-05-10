@@ -34,3 +34,7 @@ class Wechat::Zhizhu::City < ActiveRecord::Base
   end
 
 end
+
+# t.string   "cityId",     limit: 255 # 城市编号（其实就是英文全拼）
+# t.string   "cityName",   limit: 255 # 城市名称
+# t.string   "cityType",   limit: 255 # 城市类型（1: 直辖市； 2: 非直辖市）

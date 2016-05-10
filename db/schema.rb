@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508081837) do
+ActiveRecord::Schema.define(version: 20160509132352) do
 
   create_table "wechat_jbzlocal_cinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -244,6 +244,39 @@ ActiveRecord::Schema.define(version: 20160508081837) do
     t.string   "filmPic",       limit: 255
     t.string   "reviewTime",    limit: 255
     t.string   "reviewContent", limit: 255
+  end
+
+  create_table "wechat_zhizhu_cinemas", force: :cascade do |t|
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "cityId",       limit: 255
+    t.string   "regionId",     limit: 255
+    t.string   "cinemaId",     limit: 255
+    t.string   "cinemaName",   limit: 255
+    t.string   "cinemaLogo",   limit: 255
+    t.string   "cinemaAdd",    limit: 255
+    t.string   "contact",      limit: 255
+    t.string   "getTicketWay", limit: 255
+    t.string   "endbuyDate",   limit: 255
+    t.string   "presaleDay",   limit: 255
+    t.string   "longitude",    limit: 255
+    t.string   "latitude",     limit: 255
+  end
+
+  create_table "wechat_zhizhu_cities", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "cityId",     limit: 255
+    t.string   "cityName",   limit: 255
+    t.string   "cityType",   limit: 255
+  end
+
+  create_table "wechat_zhizhu_regions", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "cityId",     limit: 255
+    t.string   "regionId",   limit: 255
+    t.string   "regionName", limit: 255
   end
 
 end

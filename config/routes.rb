@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'maizuoapi' => 'wechat/maizuo/cinemas#index'
   # 卖座的 api 接口
+  get 'zhizhuapi' => 'wechat/zhizhu/cinemas#index'
+  # 蜘蛛的 api 接口
 
   namespace :wechat do
 
@@ -19,6 +21,14 @@ Rails.application.routes.draw do
 
       # get 'hallseats/index'  # 影厅信息实时获取，目前设计用不到这个api
       # get 'cinematickets/index'  # 目前只负责订座票，暂且用不到票品信息
+    end
+
+    namespace :zhizhu do
+      get 'cinemas/delete'
+      get 'cinemas/getCityInfo'
+      get 'cinemas/getRegionInfo'
+      get 'cinemas/getCinemaInfo'
+
     end
 
     namespace :jbzlocal do

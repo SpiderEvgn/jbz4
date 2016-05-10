@@ -34,3 +34,18 @@ class Wechat::Zhizhu::Cinema < ActiveRecord::Base
   end
 
 end
+
+# t.string   "cityId",       limit: 255 # 城市编号（其实就是英文全拼）
+# t.string   "regionId",     limit: 255 # 区域编号（changnq）
+# t.string   "cinemaId",     limit: 255 # 影院编号
+# t.string   "cinemaName",   limit: 255 # 影院名称
+# t.string   "cinemaLogo",   limit: 255 # 影院 logo
+# t.string   "cinemaAdd",    limit: 255 # 影院地址
+# t.string   "contact",      limit: 255 # 联系电话
+# t.string   "getTicketWay", limit: 255 # 取票方式
+# t.string   "endbuyDate",   limit: 255 # 场次提前截至售票时间
+# t.string   "presaleDay",   limit: 255 # 预售天数
+# t.string   "longitude",    limit: 255 # 经度
+# t.string   "latitude",     limit: 255 # 纬度
+
+

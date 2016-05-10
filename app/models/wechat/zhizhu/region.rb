@@ -35,3 +35,7 @@ class Wechat::Zhizhu::Region < ActiveRecord::Base
   end
 
 end
+
+# t.string   "cityId",     limit: 255 # 城市编号（其实就是英文全拼）
+# t.string   "regionId",   limit: 255 # 区域编号（changnq）
+# t.string   "regionName", limit: 255 # 区域名称（长宁区）
