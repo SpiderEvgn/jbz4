@@ -38,7 +38,7 @@ class Wechat::Maizuo::Confirmorder < ActiveRecord::Base
   end
 
   def self.confirmOrder(orderId, count, price, totalprice, mobile)
-    # 3. 拉取影院票品
+    # 8. 确认订单
     client_id = ENV['JBZ4_MAIZUO_CLIENT_ID']  # 测试ID: 52642103681
     key = ENV['JBZ4_MAIZUO_KEY']  # 测试key: xkGEr244(((<HAee4346fg
     time = Time.new
