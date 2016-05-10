@@ -1,4 +1,6 @@
 class Wechat::Zhizhu::Cinema < ActiveRecord::Base
+  self.primary_key = "cinemaId"
+  has_many :wechat_zhizhu_halls, class_name: 'Wechat::Zhizhu::Hall', foreign_key: :cinemaId
   belongs_to :wechat_zhizhu_city, class_name: 'Wechat::Zhizhu::City', foreign_key: :cityId
   belongs_to :wechat_zhizhu_region, class_name: 'Wechat::Zhizhu::Region', foreign_key: :regionId
 
@@ -17,7 +19,7 @@ class Wechat::Zhizhu::Cinema < ActiveRecord::Base
   # default_timeout 5  还没想好怎么用timeout
 
   def self.getCinema(cityId)
-    # 2. 拉取地区列表
+    # 2.2.1 拉取影院列表
     client_key = ENV['JBZ4_ZHIZHU_CLIENT_KEY']
     private_key = ENV['JBZ4_ZHIZHU_PRIVATE_KEY']
     sign_value = Digest::MD5.hexdigest("#{cityId}#{client_key}#{private_key}")

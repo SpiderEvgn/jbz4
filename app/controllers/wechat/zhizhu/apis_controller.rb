@@ -1,4 +1,4 @@
-class Wechat::Zhizhu::CinemasController < ApplicationController
+class Wechat::Zhizhu::ApisController < ApplicationController
   layout 'wechat'
   
   def index
@@ -113,6 +113,38 @@ class Wechat::Zhizhu::CinemasController < ApplicationController
     # @citys.each
     end
   # def getCinemaInfo
+  end
+
+  def getHallInfo
+    @cinemas = Wechat::Zhizhu::Cinema.all
+    @cinemas.each do |cinema|
+      @halls = Wechat::Zhizhu::Hall.getHall(cinema.cinemaId)
+      if @halls != nil
+        # 小心！判断返回值类型，如果只有一条记录，class就是Hash，多条记录就是Array
+        if @halls.class == Array
+          @halls.each do |hall|
+            h = Wechat::Zhizhu::Hall.new
+            h.cinemaId  = hall['cinemaId']
+            h.hallId    = hall['hallId']
+            h.hallName  = hall['hallName']
+            h.hallType  = hall['hallType']
+            h.save
+          # @halls.each
+          end
+        else
+          h = Wechat::Zhizhu::Hall.new
+          h.cinemaId   = @halls['cinemaId']
+          h.hallId     = @halls['hallId']
+          h.hallName   = @halls['hallName']
+          h.hallType   = @halls['hallType']
+          h.save
+        # if @halls
+        end
+      # if @halls
+      end
+    # @cinemas.each
+    end
+  # def getHallInfo
   end
 
 end

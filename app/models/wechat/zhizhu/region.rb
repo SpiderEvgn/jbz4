@@ -18,7 +18,7 @@ class Wechat::Zhizhu::Region < ActiveRecord::Base
   # default_timeout 5  还没想好怎么用timeout
 
   def self.getRegion(cityId)
-    # 2. 拉取地区列表
+    # 2.1.2 地区
     client_key = ENV['JBZ4_ZHIZHU_CLIENT_KEY']
     private_key = ENV['JBZ4_ZHIZHU_PRIVATE_KEY']
     sign_value = Digest::MD5.hexdigest("#{cityId}#{client_key}#{private_key}")

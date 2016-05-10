@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'maizuoapi' => 'wechat/maizuo/cinemas#index'
   # 卖座的 api 接口
-  get 'zhizhuapi' => 'wechat/zhizhu/cinemas#index'
+  get 'zhizhuapi' => 'wechat/zhizhu/apis#index'
   # 蜘蛛的 api 接口
 
   namespace :wechat do
@@ -24,10 +24,11 @@ Rails.application.routes.draw do
     end
 
     namespace :zhizhu do
-      get 'cinemas/delete'
-      get 'cinemas/getCityInfo'
-      get 'cinemas/getRegionInfo'
-      get 'cinemas/getCinemaInfo'
+      get 'apis/delete'
+      get 'apis/getCityInfo'
+      get 'apis/getRegionInfo'
+      get 'apis/getCinemaInfo'
+      get 'apis/getHallInfo'
 
     end
 

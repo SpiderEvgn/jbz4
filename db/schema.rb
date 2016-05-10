@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509132352) do
+ActiveRecord::Schema.define(version: 20160510075125) do
 
   create_table "wechat_jbzlocal_cinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -269,6 +269,16 @@ ActiveRecord::Schema.define(version: 20160509132352) do
     t.string   "cityId",     limit: 255
     t.string   "cityName",   limit: 255
     t.string   "cityType",   limit: 255
+  end
+
+  create_table "wechat_zhizhu_halls", force: :cascade do |t|
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "cinemaId",     limit: 255
+    t.string   "hallId",       limit: 255
+    t.string   "hallName",     limit: 255
+    t.string   "hallType",     limit: 255
+    t.string   "hallTypeName", limit: 255
   end
 
   create_table "wechat_zhizhu_regions", force: :cascade do |t|
