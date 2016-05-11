@@ -18,9 +18,9 @@ class Wechat::Maizuo::Realtimeseat < ActiveRecord::Base
     time = Time.new
     timestamp = time.strftime("%Y%m%d%H%M%S")
     sign_value = Digest::MD5.hexdigest("client_id=#{client_id}&foretellId=#{foretellId}&timestamp=#{timestamp}&key=#{key}")
-    response = get("/rest/ticket3.0/realTimeSeats", query: { client_id: "#{client_id}",  
-                                                             sign: "#{sign_value}",
-                                                             timestamp: "#{timestamp}",
+    response = get("/rest/ticket3.0/realTimeSeats", query: { client_id:  "#{client_id}",  
+                                                             sign:       "#{sign_value}",
+                                                             timestamp:  "#{timestamp}",
                                                              foretellId: "#{foretellId}"
                                                            })
     # 判断返回值是否正确

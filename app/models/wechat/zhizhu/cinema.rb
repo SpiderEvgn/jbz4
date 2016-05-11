@@ -24,9 +24,9 @@ class Wechat::Zhizhu::Cinema < ActiveRecord::Base
     client_key = ENV['JBZ4_ZHIZHU_CLIENT_KEY']
     private_key = ENV['JBZ4_ZHIZHU_PRIVATE_KEY']
     sign_value = Digest::MD5.hexdigest("#{cityId}#{client_key}#{private_key}")
-    response = get("/cinemaList.html", query: { key: "#{client_key}", 
-                                                cityId: "#{cityId}",
-                                                sign: "#{sign_value}"
+    response = get("/cinemaList.html", query: { key:     "#{client_key}", 
+                                                cityId:  "#{cityId}",
+                                                sign:    "#{sign_value}"
                                                 })['cinemaList']
     # 判断返回值是否正确
     if response['result'].to_s == "0"

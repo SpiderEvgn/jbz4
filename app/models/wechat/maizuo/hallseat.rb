@@ -18,11 +18,11 @@ class Wechat::Maizuo::Hallseat < ActiveRecord::Base
     time = Time.new
     timestamp = time.strftime("%Y%m%d%H%M%S")
     sign_value = Digest::MD5.hexdigest("cinemaId=#{cinemaId}&client_id=#{client_id}&hallId=#{hallId}&timestamp=#{timestamp}&key=#{key}")
-    response = get("/rest/ticket3.0/hallSeat", query: { client_id: "#{client_id}",
-                                                        sign: "#{sign_value}",
-                                                        timestamp: "#{timestamp}", 
-                                                        cinemaId: "#{cinemaId}",
-                                                        hallId: "#{hallId}"
+    response = get("/rest/ticket3.0/hallSeat", query: { client_id:  "#{client_id}",
+                                                        sign:       "#{sign_value}",
+                                                        timestamp:  "#{timestamp}", 
+                                                        cinemaId:   "#{cinemaId}",
+                                                        hallId:     "#{hallId}"
                                                         })
     # 判断返回值是否正确
     if response['result'] == 0 || response['result'] == "0"

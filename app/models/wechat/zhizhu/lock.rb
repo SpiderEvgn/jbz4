@@ -24,19 +24,36 @@ class Wechat::Zhizhu::Lock < ActiveRecord::Base
                                                   cinemaId:    "#{cinemaId}",
                                                   hallId:      "#{hallId}",
                                                   filmId:      "#{filmId}",
-                                                  seatId:      "#{seatId}",
-                                                  merPrice:    "#{merPrice}",
-                                                  feePrice:    "#{feePrice}",
-                                                  parorderId:  "#{parorderId}",
+                                                  seatId:      "#{seatId}",       # "5:07|5:08"
+                                                  merPrice:    "#{merPrice}",     # 结算给影院价格,可用于价格验证,规避影 院调价
+                                                  feePrice:    "#{feePrice}",     # 每张不得大于影院底价的 20% &&12 元 锁定 2 个座位服务费即 (例如:5.0|5.0)
+                                                  parorderId:  "#{parorderId}",   # 商户订单号，保证唯一
                                                   mobile:      "#{mobile}",
-                                                  activityId:  "#{activityId}",
-                                                  notifyUrl:   "#{notifyUrl}",
+                                                  activityId:  "#{activityId}",   # 为空或未传该参数,表示未参加活动; 否则表示参加了活动,值为蜘蛛网活动 id
+                                                  notifyUrl:   "#{notifyUrl}",    # 商户接收订单成功报文地址, 可为空
                                                   sign:        "#{sign_value}"
-                                                  })["lockSeatList"]
+                                                  })['lockSeatList']
     # 判断返回值是否正确
     # "result"=>"3001", "message"=>"选座时，请尽量选连在一起的座位，不要留下单个的空闲座位!"
     # if response['result'].to_s == "0"
     #   return response['orderInfo']
+    # else
+    #   return nil
+    # end
+  end
+
+  def self.getUnlock(orderId, cinemaId)
+    # 2.3.2 解锁座位
+    client_key = ENV['JBZ4_ZHIZHU_CLIENT_KEY']
+    private_key = ENV['JBZ4_ZHIZHU_PRIVATE_KEY']
+    sign_value = Digest::MD5.hexdigest("#{orderId}#{cinemaId}#{client_key}#{private_key}")
+    response = get("/unLockList.html", query: { key:      "#{client_key}", 
+                                                orderId:  "#{orderId}",
+                                                sign:     "#{sign_value}"
+                                              })
+    # 判断返回值是否正确
+    # if response['result'].to_s == "0"
+    #   return response['hallInfo']
     # else
     #   return nil
     # end

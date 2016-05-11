@@ -21,10 +21,10 @@ class Wechat::Zhizhu::Show < ActiveRecord::Base
     client_key = ENV['JBZ4_ZHIZHU_CLIENT_KEY']
     private_key = ENV['JBZ4_ZHIZHU_PRIVATE_KEY']
     sign_value = Digest::MD5.hexdigest("#{cinemaId}#{showDate}#{client_key}#{private_key}")
-    response = get("/showList.html", query: { key: "#{client_key}", 
-                                              cinemaId: "#{cinemaId}",
-                                              showDate: "#{showDate}",
-                                              sign: "#{sign_value}"
+    response = get("/showList.html", query: { key:       "#{client_key}", 
+                                              cinemaId:  "#{cinemaId}",
+                                              showDate:  "#{showDate}",
+                                              sign:      "#{sign_value}"
                                               })['showList']
     # 判断返回值是否正确
     if response['result'].to_s == "0"

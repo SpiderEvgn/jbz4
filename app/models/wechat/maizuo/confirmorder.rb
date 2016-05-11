@@ -44,15 +44,15 @@ class Wechat::Maizuo::Confirmorder < ActiveRecord::Base
     time = Time.new
     timestamp = time.strftime("%Y%m%d%H%M%S")
     sign_value = Digest::MD5.hexdigest("client_id=#{client_id}&orderId=#{orderId}&timestamp=#{timestamp}&totalPrice=#{totalprice}&key=#{key}")
-    response = get("/rest/ticket3.0/confirmOrder", query: { client_id: "#{client_id}",
-                                                            orderId: "#{orderId}",
-                                                            totalPrice: "#{totalprice}",
-                                                            mobile: "#{mobile}",
-                                                            price: "#{price}",
-                                                            count: "#{count}",
-                                                            sign: "#{sign_value}",
-                                                            timestamp: "#{timestamp}",
-                                                            orderType: "2"
+    response = get("/rest/ticket3.0/confirmOrder", query: { client_id:   "#{client_id}",
+                                                            orderId:     "#{orderId}",
+                                                            totalPrice:  "#{totalprice}",
+                                                            mobile:      "#{mobile}",
+                                                            price:       "#{price}",
+                                                            count:       "#{count}",
+                                                            sign:        "#{sign_value}",
+                                                            timestamp:   "#{timestamp}",
+                                                            orderType:   "2"
                                                             # 目前我们只接受订座票，即选座才能购票
                                                           })
     response['data']['confirmId'] = Wechat::Maizuo::Confirmorder.decryptMode(response['data']['confirmId'])
