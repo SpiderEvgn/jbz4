@@ -1,6 +1,7 @@
 class Wechat::Zhizhu::Cinema < ActiveRecord::Base
   self.primary_key = "cinemaId"
   has_many :wechat_zhizhu_halls, class_name: 'Wechat::Zhizhu::Hall', foreign_key: :cinemaId
+  has_many :wechat_zhizhu_shows, class_name: 'Wechat::Zhizhu::Show', foreign_key: :cinemaId
   belongs_to :wechat_zhizhu_city, class_name: 'Wechat::Zhizhu::City', foreign_key: :cityId
   belongs_to :wechat_zhizhu_region, class_name: 'Wechat::Zhizhu::Region', foreign_key: :regionId
 

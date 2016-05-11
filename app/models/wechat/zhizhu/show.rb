@@ -1,5 +1,6 @@
 class Wechat::Zhizhu::Show < ActiveRecord::Base
-
+  belongs_to :wechat_zhizhu_cinema, class_name: 'Wechat::Zhizhu::Cinema', foreign_key: :cinemaId
+  belongs_to :wechat_zhizhu_film, class_name: 'Wechat::Zhizhu::Film', foreign_key: :filmId
   
   include HTTParty
 

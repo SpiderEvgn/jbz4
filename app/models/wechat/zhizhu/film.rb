@@ -1,5 +1,7 @@
 class Wechat::Zhizhu::Film < ActiveRecord::Base
-
+  self.primary_key = "filmId"
+  has_many :wechat_zhizhu_shows, class_name: 'Wechat::Zhizhu::Show', foreign_key: :filmId
+  
   
   include HTTParty
 
