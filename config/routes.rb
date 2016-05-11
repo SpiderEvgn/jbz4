@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'maizuoapi' => 'wechat/maizuo/apis#index'
   # 卖座的 api 接口
-  get 'zhizhuapi' => 'wechat/zhizhu/apis#index'
+  get 'maizuoapi' => 'wechat/maizuo/apis#index'
   # 蜘蛛的 api 接口
-
+  get 'zhizhuapi' => 'wechat/zhizhu/apis#index'
+  
   namespace :wechat do
 
     get 'boards/jbz_hotfilm'  # 最外层左下角“热映”界面，显示所有最近三天热映影片列表
