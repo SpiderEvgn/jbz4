@@ -14,7 +14,7 @@ class Wechat::Zhizhu::Showseat < ActiveRecord::Base
   # default_timeout 5  还没想好怎么用timeout
 
   def self.getShowseat(showId)
-    # 2.2.3 座位
+    # 2.2.6 场次座位信息
     client_key = ENV['JBZ4_ZHIZHU_CLIENT_KEY']
     private_key = ENV['JBZ4_ZHIZHU_PRIVATE_KEY']
     sign_value = Digest::MD5.hexdigest("#{showId}#{client_key}#{private_key}")
