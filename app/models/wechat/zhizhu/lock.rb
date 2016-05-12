@@ -13,7 +13,7 @@ class Wechat::Zhizhu::Lock < ActiveRecord::Base
   debug_output $stdout
   # default_timeout 5  还没想好怎么用timeout
 
-  def self.getLock(showId, cinemaId, hallId, filmId, seatId, merPrice, 
+  def self.LockSeats(showId, cinemaId, hallId, filmId, seatId, merPrice, 
                    feePrice, parorderId, mobile, activityId, notifyUrl)
     # 2.3.1 锁定座位
     client_key = ENV['JBZ4_ZHIZHU_CLIENT_KEY']
@@ -35,6 +35,7 @@ class Wechat::Zhizhu::Lock < ActiveRecord::Base
                                                   })['lockSeatList']
     # 判断返回值是否正确
     # "result"=>"3001", "message"=>"选座时，请尽量选连在一起的座位，不要留下单个的空闲座位!"
+    # 蜘蛛会判断座位是否落单，如此，可以在controller进行判断，正确则输出结果，否则显示message
     if response['result'].to_s == "0"
       return response['orderInfo']
     else
@@ -42,7 +43,7 @@ class Wechat::Zhizhu::Lock < ActiveRecord::Base
     end
   end
 
-  def self.getUnlock(orderId)
+  def self.UnlockSeats(orderId)
     # 2.3.2 解锁座位
     client_key = ENV['JBZ4_ZHIZHU_CLIENT_KEY']
     private_key = ENV['JBZ4_ZHIZHU_PRIVATE_KEY']
