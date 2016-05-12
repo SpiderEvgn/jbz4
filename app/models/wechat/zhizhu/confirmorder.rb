@@ -14,7 +14,7 @@ class Wechat::Zhizhu::Confirmorder < ActiveRecord::Base
   # default_timeout 5  还没想好怎么用timeout
 
   def self.ConfirmOrder(orderId, mobile)
-    # 2.2.5 场次
+    # 2.3.3 确认订单
     client_key = ENV['JBZ4_ZHIZHU_CLIENT_KEY']
     private_key = ENV['JBZ4_ZHIZHU_PRIVATE_KEY']
     sign_value = Digest::MD5.hexdigest("#{orderId}#{mobile}#{client_key}#{private_key}")
