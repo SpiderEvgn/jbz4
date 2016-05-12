@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511142129) do
+ActiveRecord::Schema.define(version: 20160511144702) do
 
   create_table "wechat_jbzlocal_cinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -298,6 +298,11 @@ ActiveRecord::Schema.define(version: 20160511142129) do
     t.string   "hallType",   limit: 255
   end
 
+  create_table "wechat_zhizhu_locks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "wechat_zhizhu_regions", force: :cascade do |t|
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -331,6 +336,11 @@ ActiveRecord::Schema.define(version: 20160511142129) do
     t.string   "duration",    limit: 255
     t.string   "dimensional", limit: 255
     t.string   "activityId",  limit: 255
+  end
+
+  create_table "wechat_zhizhu_showseats", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

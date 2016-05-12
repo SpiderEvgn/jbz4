@@ -35,28 +35,28 @@ class Wechat::Zhizhu::Lock < ActiveRecord::Base
                                                   })['lockSeatList']
     # 判断返回值是否正确
     # "result"=>"3001", "message"=>"选座时，请尽量选连在一起的座位，不要留下单个的空闲座位!"
-    # if response['result'].to_s == "0"
-    #   return response['orderInfo']
-    # else
-    #   return nil
-    # end
+    if response['result'].to_s == "0"
+      return response['orderInfo']
+    else
+      return nil
+    end
   end
 
-  def self.getUnlock(orderId, cinemaId)
+  def self.getUnlock(orderId)
     # 2.3.2 解锁座位
     client_key = ENV['JBZ4_ZHIZHU_CLIENT_KEY']
     private_key = ENV['JBZ4_ZHIZHU_PRIVATE_KEY']
-    sign_value = Digest::MD5.hexdigest("#{orderId}#{cinemaId}#{client_key}#{private_key}")
-    response = get("/unLockList.html", query: { key:      "#{client_key}", 
+    sign_value = Digest::MD5.hexdigest("#{orderId}#{client_key}#{private_key}")
+    response = get("/unLockSeat.html", query: { key:      "#{client_key}", 
                                                 orderId:  "#{orderId}",
                                                 sign:     "#{sign_value}"
-                                              })
+                                              })['unLockSeat']
     # 判断返回值是否正确
-    # if response['result'].to_s == "0"
-    #   return response['hallInfo']
-    # else
-    #   return nil
-    # end
+    if response['result'].to_s == "0"
+      return true
+    else
+      return false
+    end
   end
 
 end
