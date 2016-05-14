@@ -31,3 +31,5 @@ class Wechat::Maizuo::Queryorder < ActiveRecord::Base
     end
   end
 end
+
+# orderStatus   订单状态 0:未支付 1:成功 2:失败 3:确认中  订单在状态为 3 的情况下需要10分钟多次查询订单信息
