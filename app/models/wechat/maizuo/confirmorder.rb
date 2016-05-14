@@ -38,21 +38,21 @@ class Wechat::Maizuo::Confirmorder < ActiveRecord::Base
   end
 
   def self.confirmOrder(orderId, count, price, totalprice, mobile)
-    # 3. 拉取影院票品
+    # 8. 确认订单
     client_id = ENV['JBZ4_MAIZUO_CLIENT_ID']  # 测试ID: 52642103681
     key = ENV['JBZ4_MAIZUO_KEY']  # 测试key: xkGEr244(((<HAee4346fg
     time = Time.new
     timestamp = time.strftime("%Y%m%d%H%M%S")
     sign_value = Digest::MD5.hexdigest("client_id=#{client_id}&orderId=#{orderId}&timestamp=#{timestamp}&totalPrice=#{totalprice}&key=#{key}")
-    response = get("/rest/ticket3.0/confirmOrder", query: { client_id: "#{client_id}",
-                                                            orderId: "#{orderId}",
-                                                            totalPrice: "#{totalprice}",
-                                                            mobile: "#{mobile}",
-                                                            price: "#{price}",
-                                                            count: "#{count}",
-                                                            sign: "#{sign_value}",
-                                                            timestamp: "#{timestamp}",
-                                                            orderType: "2"
+    response = get("/rest/ticket3.0/confirmOrder", query: { client_id:   "#{client_id}",
+                                                            orderId:     "#{orderId}",
+                                                            totalPrice:  "#{totalprice}",
+                                                            mobile:      "#{mobile}",
+                                                            price:       "#{price}",
+                                                            count:       "#{count}",
+                                                            sign:        "#{sign_value}",
+                                                            timestamp:   "#{timestamp}",
+                                                            orderType:   "2"
                                                             # 目前我们只接受订座票，即选座才能购票
                                                           })
     response['data']['confirmId'] = Wechat::Maizuo::Confirmorder.decryptMode(response['data']['confirmId'])

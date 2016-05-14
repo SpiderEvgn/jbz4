@@ -1,24 +1,37 @@
 Rails.application.routes.draw do
 
-  get 'maizuoapi' => 'wechat/maizuo/cinemas#index'
   # 卖座的 api 接口
-
+  get 'maizuoapi' => 'wechat/maizuo/apis#index'
+  # 蜘蛛的 api 接口
+  get 'zhizhuapi' => 'wechat/zhizhu/apis#index'
+  
   namespace :wechat do
 
     get 'boards/jbz_hotfilm'  # 最外层左下角“热映”界面，显示所有最近三天热映影片列表
     get 'boards/jbz_cinema'   # 最外层中底部“影院”界面，显示所有影院
 
     namespace :maizuo do
-      get 'cinemas/delete'
-      get 'cinemas/getCinemaInfo'
-      get 'films/getFilmInfo'
-      get 'foretells/getMaizuoForetellInfo'
-      get 'foretells/getJbzForetellInfo'
-      get 'foretells/getJbzHotfilmInfo'
-      get 'reviews/getReviewInfo'
+      get 'apis/delete'
+      get 'apis/getCinemaInfo'
+      get 'apis/getFilmInfo'
+      get 'apis/getForetellInfo'
+      get 'apis/getJbzForetellInfo'
+      get 'apis/getJbzHotfilmInfo'
 
+      # get 'reviews/getReviewInfo' # 卖座测试不提供影评，也考虑以后实时获取
       # get 'hallseats/index'  # 影厅信息实时获取，目前设计用不到这个api
       # get 'cinematickets/index'  # 目前只负责订座票，暂且用不到票品信息
+    end
+
+    namespace :zhizhu do
+      get 'apis/delete'
+      get 'apis/getCityInfo'
+      get 'apis/getRegionInfo'
+      get 'apis/getCinemaInfo'
+      get 'apis/getHallInfo'
+      get 'apis/getFilmInfo'
+      get 'apis/getShowInfo'
+
     end
 
     namespace :jbzlocal do

@@ -13,14 +13,17 @@ MySql2
 
 Configuration steps:
 
-1. 在本地设置连接商家所需的 client_id 和 key:
+1. 在本地设置连接商家所需的环境变量: (详见各model)
 export JBZ4_MAIZUO_CLIENT_ID=***
 export JBZ4_MAIZUO_KEY=***
+export JBZ4_ZHIZHU_CLIENT_KEY=***
+export JBZ4_ZHIZHU_PRIVATE_KEY=***
 
 2. 测试地址需要改变地址 /etc/hosts:  115.29.236.48  open.maizuo.com
 
 3. rake db:create / migrate
 
 4. go to "/maizuoapi" to download data from Maizuo
+   go to "/zhizhuapi" to download data from Zhizhu
 
 5. go to "/" start the program

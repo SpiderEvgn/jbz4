@@ -21,9 +21,9 @@ class Wechat::Maizuo::Cinema < ActiveRecord::Base
     time = Time.new
     timestamp = time.strftime("%Y%m%d%H%M%S")
     sign_value = Digest::MD5.hexdigest("client_id=#{client_id}&timestamp=#{timestamp}&key=#{key}")
-    response = get("/rest/ticket3.0/cinemas", query: { client_id: "#{client_id}", 
-                                                       timestamp: "#{timestamp}", 
-                                                       sign: "#{sign_value}"
+    response = get("/rest/ticket3.0/cinemas", query: { client_id:  "#{client_id}", 
+                                                       timestamp:  "#{timestamp}", 
+                                                       sign:       "#{sign_value}"
                                                        })
     # 判断返回值是否正确
     if response['result'] == 0 || response['result'] == "0"

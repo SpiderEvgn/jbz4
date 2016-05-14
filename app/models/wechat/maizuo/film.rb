@@ -19,9 +19,9 @@ class Wechat::Maizuo::Film < ActiveRecord::Base
     time = Time.new
     timestamp = time.strftime("%Y%m%d%H%M%S")
     sign_value = Digest::MD5.hexdigest("client_id=#{client_id}&timestamp=#{timestamp}&key=#{key}")
-    response = get("/rest/ticket3.0/films", query: { client_id: "#{client_id}",  
-                                                     sign: "#{sign_value}",
-                                                     timestamp: "#{timestamp}"
+    response = get("/rest/ticket3.0/films", query: { client_id:  "#{client_id}",  
+                                                     sign:       "#{sign_value}",
+                                                     timestamp:  "#{timestamp}"
                                                      # count: "5"
                                                      })
     # 判断返回值是否正确

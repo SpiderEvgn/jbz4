@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427125933) do
+ActiveRecord::Schema.define(version: 20160512141504) do
 
   create_table "wechat_jbzlocal_cinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -84,6 +84,24 @@ ActiveRecord::Schema.define(version: 20160427125933) do
   end
 
   add_index "wechat_jbzlocal_hotfilms", ["filmId"], name: "index_wechat_jbzlocal_hotfilms_on_filmId", using: :btree
+
+  create_table "wechat_jbzlocal_orders", force: :cascade do |t|
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "orderId",           limit: 255
+    t.string   "offerId",           limit: 255
+    t.string   "confirmId",         limit: 255
+    t.string   "offerOrderId",      limit: 255
+    t.string   "thirdConfirmId",    limit: 255
+    t.string   "takeTicketPostion", limit: 255
+    t.text     "smTemplate",        limit: 65535
+    t.string   "isCheckGround",     limit: 255
+    t.string   "seatType",          limit: 255
+    t.string   "mobile",            limit: 255
+    t.string   "card",              limit: 255
+    t.string   "payMethod",         limit: 255
+    t.string   "platformId",        limit: 255
+  end
 
   create_table "wechat_maizuo_cinemas", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -211,6 +229,11 @@ ActiveRecord::Schema.define(version: 20160427125933) do
     t.string   "isOrder",    limit: 255
   end
 
+  create_table "wechat_maizuo_queryorders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "wechat_maizuo_realtimeseats", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -226,6 +249,113 @@ ActiveRecord::Schema.define(version: 20160427125933) do
     t.string   "filmPic",       limit: 255
     t.string   "reviewTime",    limit: 255
     t.string   "reviewContent", limit: 255
+  end
+
+  create_table "wechat_zhizhu_cinemas", force: :cascade do |t|
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "cityId",       limit: 255
+    t.string   "regionId",     limit: 255
+    t.string   "cinemaId",     limit: 255
+    t.string   "cinemaName",   limit: 255
+    t.string   "cinemaLogo",   limit: 255
+    t.string   "cinemaAdd",    limit: 255
+    t.string   "contact",      limit: 255
+    t.string   "getTicketWay", limit: 255
+    t.string   "endbuyDate",   limit: 255
+    t.string   "presaleDay",   limit: 255
+    t.string   "longitude",    limit: 255
+    t.string   "latitude",     limit: 255
+  end
+
+  create_table "wechat_zhizhu_cities", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "cityId",     limit: 255
+    t.string   "cityName",   limit: 255
+    t.string   "cityType",   limit: 255
+  end
+
+  create_table "wechat_zhizhu_confirmorders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "wechat_zhizhu_films", force: :cascade do |t|
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "filmId",      limit: 255
+    t.string   "filmName",    limit: 255
+    t.string   "englishName", limit: 255
+    t.string   "language",    limit: 255
+    t.string   "duration",    limit: 255
+    t.string   "dimensional", limit: 255
+    t.string   "country",     limit: 255
+    t.string   "director",    limit: 255
+    t.string   "actor",       limit: 255
+    t.string   "openingDate", limit: 255
+    t.string   "catalog",     limit: 255
+    t.string   "picture",     limit: 255
+    t.text     "description", limit: 65535
+  end
+
+  create_table "wechat_zhizhu_halls", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "cinemaId",   limit: 255
+    t.string   "hallId",     limit: 255
+    t.string   "hallName",   limit: 255
+    t.string   "hallType",   limit: 255
+  end
+
+  create_table "wechat_zhizhu_locks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "wechat_zhizhu_qryorders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "wechat_zhizhu_regions", force: :cascade do |t|
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "cityId",     limit: 255
+    t.string   "regionId",   limit: 255
+    t.string   "regionName", limit: 255
+  end
+
+  create_table "wechat_zhizhu_seats", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "wechat_zhizhu_shows", force: :cascade do |t|
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "showId",      limit: 255
+    t.string   "cinemaId",    limit: 255
+    t.string   "cinemaName",  limit: 255
+    t.string   "hallId",      limit: 255
+    t.string   "hallName",    limit: 255
+    t.string   "filmId",      limit: 255
+    t.string   "filmName",    limit: 255
+    t.string   "showDate",    limit: 255
+    t.string   "showTime",    limit: 255
+    t.string   "staPrice",    limit: 255
+    t.string   "userPrice",   limit: 255
+    t.string   "merPrice",    limit: 255
+    t.string   "feePrice",    limit: 255
+    t.string   "language",    limit: 255
+    t.string   "duration",    limit: 255
+    t.string   "dimensional", limit: 255
+    t.string   "activityId",  limit: 255
+  end
+
+  create_table "wechat_zhizhu_showseats", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
