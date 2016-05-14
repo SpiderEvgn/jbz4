@@ -31,7 +31,7 @@
     <div class="col-xs-12 col-sm-12">
       <%= simple_form_for :seats, url: wechat_jbzlocal_realtimeseats_path do |f| %>
         <%= f.input :seatNo, label: false, placeholder: "选择的座位", input_html: { id: 'seatNo'}, readonly: true %>
-        <%= f.hidden_field :seatId, input_html: { id: 'seatId' }, readonly: true %>
+        <%= f.input :seatId, label: false, input_html: { id: 'seatId', style: 'display: none;' }, readonly: true %>
         <%= f.input :mobile, label: false, placeholder: "请输入您的手机号码, 必填！" %>
         <%= f.submit '前往确认', class: "btn btn-info btn-lg btn-block" %>
       <% end %>
