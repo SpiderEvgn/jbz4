@@ -22,11 +22,13 @@ html lang="en"
         .col-xs-12.col-sm-12
           .jbz-notice.clearfix
             - if notice
-              #notice.alert.alert-success style="margin-bottom: 8px;"
+              #notice.alert.alert-success style="margin-bottom: 8px; padding: 4px 10px;"
                 = notice
                 a.close type="button" data-dismiss="alert" &times;
             - elsif alert
-              #notice.alert.alert-danger style="margin-bottom: 8px;"
+              #notice.alert.alert-danger style="margin-bottom: 8px; padding: 4px 10px"
+                = fa_icon 'eye'
+                ' 
                 = alert
                 a.close type="button" data-dismiss="alert" &times;
 

@@ -17,7 +17,7 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
       @seatresource = response.to_json
       session[:foretellId] = params[:id]
     else
-      redirect_to :back, notice: "场次无效，请重新选择，谢谢！"
+      redirect_to :back, alert: "场次无效，请重新选择，谢谢！"
     end
   end
 
@@ -51,10 +51,10 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
         redirect_to wechat_jbzlocal_orders_url
       else
         Wechat::Maizuo::Lock.unlockSeats(@orderId)
-        redirect_to :back, notice: "手机号不正确，请重新输入，谢谢！"
+        redirect_to :back, alert: "手机号不正确，请重新输入，谢谢！"
       end
     else
-      redirect_to :back, notice: "选座失败，请重新选择，谢谢！"
+      redirect_to :back, alert: "选座失败，请重新选择，谢谢！"
     end
 
   end
