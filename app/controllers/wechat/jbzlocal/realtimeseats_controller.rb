@@ -54,6 +54,7 @@ class Wechat::Jbzlocal::RealtimeseatsController < ApplicationController
         redirect_to :back, alert: "手机号不正确，请重新输入，谢谢！"
       end
     else
+      Wechat::Maizuo::Lock.unlockSeats(@orderId)
       redirect_to :back, alert: "选座失败，请重新选择，谢谢！"
     end
 
